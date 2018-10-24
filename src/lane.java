@@ -2,38 +2,38 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class lane {
-	ArrayList<spot> spots;
-	Queue<Object> monsterQ = new LinkedList<>();
+public class Lane {
+	ArrayList<Spot> spots;
+	Queue<Object> zombieQ = new LinkedList<>();
 	
 	
-	public lane() 
+	public Lane() 
 	{
 		for(int i = 0; i < 6; i ++) {
-			spots.add(new spot());
+			spots.add(new Spot());
 		}
 	}
 	
-	public lane(int lenght)
+	public Lane(int length)
 	{
-		for(int i = 0; i < lenght; i ++) {
-			spots.add(new spot());
+		for(int i = 0; i < length; i ++) {
+			spots.add(new Spot());
 		}
 	}
 	
 	public void addToQueue(Object zmb)
 	{
-		monsterQ.add(zmb);
+		zombieQ.add(zmb);
 	}
 	
-	public spot getZombie(int index)
+	public Spot getZombie(int index)
 	{
 		return spots.get(index);
 	}
 	
 	public Object getZombieQ()
 	{
-		return monsterQ.poll();
+		return zombieQ.poll();
 		
 	}
 }

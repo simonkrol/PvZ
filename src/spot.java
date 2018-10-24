@@ -1,12 +1,12 @@
-public class spot {
+public class Spot {
 	private boolean occupied = false;
 	private Object entity = null;
 	
-	public spot() {
+	public Spot() {
 
 	}
 	
-	public spot(Object entity) {
+	public Spot(Object entity) {
 		this.entity = entity;
 		occupied = true;
 	}
