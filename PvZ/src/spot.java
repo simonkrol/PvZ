@@ -18,4 +18,15 @@ public class spot {
 	public Object getEntity() {
 		return entity;
 	}
+	public void setEntity(Object entity) {
+		this.entity = entity;
+		if(entity != null)
+		{
+			occupied = true;
+		}
+		else
+		{
+			occupied = false;
+		}
+	}
 }
