@@ -3,6 +3,7 @@ public class Entity {
 	protected int currentHP, maxHP, attack, defence;
 	protected Lane lane;
 	protected double attackSpeed;
+	protected double attackState;
 	
 	public int getMaxHP() 
 	{
@@ -39,5 +40,19 @@ public class Entity {
 		this.attack = att;
 		this.defence = def;
 		this.attackSpeed = attSp;
+	}
+	protected void turn()
+	{
+		attackState +=this.attackSpeed;
+		while(attackState>=1)
+		{
+			this.attack();
+			attackState--;
+		}
+	}
+	
+	protected void attack()
+	{
+		System.out.println("Entity Attacks");
 	}
 }
