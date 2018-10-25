@@ -4,6 +4,7 @@ import java.util.Queue;
 public class Lane {
 	Spot[] spots;
 	Queue<Zombie> zombieQ = new LinkedList<>();
+	protected int distance;
 	
 	
 	public Lane() 
@@ -17,6 +18,7 @@ public class Lane {
 		for(int i = 0; i < length; i ++) {
 			spots[i] = new Spot();
 		}
+		distance = length * 250;//The distance from side to side;
 	}
 	
 	public void addToQueue(Zombie zombie)
@@ -33,5 +35,9 @@ public class Lane {
 	{
 		return zombieQ.poll();
 		
+	}
+	public int getDistance()
+	{
+		return distance;
 	}
 }
