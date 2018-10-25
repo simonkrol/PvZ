@@ -1,37 +1,35 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class Lane {
-	ArrayList<Spot> spots;
-	Queue<Object> zombieQ = new LinkedList<>();
+	Spot[] spots;
+	Queue<Zombie> zombieQ = new LinkedList<>();
 	
 	
 	public Lane() 
 	{
-		for(int i = 0; i < 6; i ++) {
-			spots.add(new Spot());
-		}
+		this(6);
 	}
 	
 	public Lane(int length)
 	{
+		spots = new Spot[length];
 		for(int i = 0; i < length; i ++) {
-			spots.add(new Spot());
+			spots[i] = new Spot();
 		}
 	}
 	
-	public void addToQueue(Object zmb)
+	public void addToQueue(Zombie zombie)
 	{
-		zombieQ.add(zmb);
+		zombieQ.add(zombie);
 	}
 	
-	public Spot getZombie(int index)
+	public Spot getSpot(int index)
 	{
-		return spots.get(index);
+		return spots[index];
 	}
 	
-	public Object getZombieQ()
+	public Zombie getZombie()
 	{
 		return zombieQ.poll();
 		

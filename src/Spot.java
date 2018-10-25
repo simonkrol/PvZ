@@ -1,26 +1,36 @@
-import java.util.ArrayList;
 
 public class Spot {
-	private ArrayList<Entity> entities;
+	private Plant plant;
 	
 	public Spot() {
-		this.entities = new ArrayList<Entity>();
+		plant = null;
 	}
 	
 	
-	public boolean getOcc() {
-		return entities.size() > 0;
+	public boolean getOccupied() {
+		return plant != null;
 	}
 	
-	protected ArrayList<Entity> getEntities() {
-		return entities;
+	public Plant getPlant() {
+		return plant;
 	}
 	
-	public void addEntity(Entity entity) {
-		this.entities.add(entity);
+	public boolean addPlant(Plant toAdd) {
+		if(!this.getOccupied()) 
+		{
+			this.plant = toAdd;
+			return true;
+		}
+		return false;
+		
 	}
 	
-	public void removeEntity(Entity entity) {
-		this.entities.remove(entity);
+	public boolean killPlant() {
+		if(this.getOccupied())
+		{
+			this.plant = null;
+			return true;
+		}
+		return false;
 	}
 }

@@ -1,34 +1,39 @@
 import java.util.ArrayList;
 
 public class Level {
-	ArrayList<Lane> grid = new ArrayList<>();
+	Lane [] grid;
 	
 	public Level(int width, int height){
+		grid = new Lane[height];
 		for(int i = 0; i < height; i++)
 		{
-			grid.add(new Lane());
+			grid[i] = new Lane();
 		}
 	}
 	
-	private Spot navigate(int height, int width)
+	private Spot getSpot(int laneIndex, int spotIndex)
 	{
-		return grid.get(height).getZombie(width);
+		return grid[laneIndex].getSpot(spotIndex);
 	}
 	
-	public void addEntity(Object ent,int height,int width)
+	public void placePlant(Plant plant,int laneI,int spotI)
 	{
-		Spot spot = navigate(height, width);
-		spot.setEntity(ent);
+		Spot spot = getSpot(laneI, spotI);
+		if(spot.addPlant(plant))
+		{
+			plant.setLocation(spot);
+			;//Decrement their sun counter by plant.getValue();
+		}
 	}
 	
-	public void removeEntity(int height,int width)
+	public void removePlant(int laneI,int spotI)
 	{
-		Spot spot = navigate(height, width);
-		spot.setEntity(null);
+		Spot spot = getSpot(laneI, spotI);
+		spot.killPlant();
 	}
 	
-	public void addToQ(Object zmb, int height)
+	public void addToQ(Zombie toAdd, int laneI)
 	{
-		grid.get(height).addToQueue(zmb);
+		grid[laneI].addToQueue(toAdd);
 	}
 }
