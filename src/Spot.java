@@ -1,32 +1,26 @@
+import java.util.ArrayList;
+
 public class Spot {
-	private boolean occupied = false;
-	private Object entity = null;
+	private ArrayList<Entity> entities;
 	
 	public Spot() {
-
+		this.entities = new ArrayList<Entity>();
 	}
 	
-	public Spot(Object entity) {
-		this.entity = entity;
-		occupied = true;
-	}
 	
 	public boolean getOcc() {
-		return occupied;
+		return entities.size() > 0;
 	}
 	
-	public Object getEntity() {
-		return entity;
+	protected ArrayList<Entity> getEntities() {
+		return entities;
 	}
-	public void setEntity(Object entity) {
-		this.entity = entity;
-		if(entity != null)
-		{
-			occupied = true;
-		}
-		else
-		{
-			occupied = false;
-		}
+	
+	public void addEntity(Entity entity) {
+		this.entities.add(entity);
+	}
+	
+	public void removeEntity(Entity entity) {
+		this.entities.remove(entity);
 	}
 }
