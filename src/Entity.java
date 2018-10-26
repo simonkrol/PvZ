@@ -41,17 +41,17 @@ public class Entity {
 		this.defence = def;
 		this.attackSpeed = attSp;
 	}
-	protected void turn()
+	protected void turn(Level curLevel)
 	{
 		attackState +=this.attackSpeed;
 		while(attackState>=1)
 		{
-			this.attack();
+			this.attack(curLevel);
 			attackState--;
 		}
 	}
 	
-	protected void attack()
+	protected void attack(Level curLevel)
 	{
 		System.out.println("Entity Attacks");
 	}

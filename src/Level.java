@@ -1,14 +1,15 @@
-import java.util.ArrayList;
 
 public class Level {
 	Lane [] grid;
+	Integer balance;
 	
-	public Level(int width, int height){
+	public Level(int width, int height, int balance){
 		grid = new Lane[height];
 		for(int i = 0; i < height; i++)
 		{
 			grid[i] = new Lane();
 		}
+		this.balance = balance;
 	}
 	
 	private Spot getSpot(int laneIndex, int spotIndex)
@@ -22,7 +23,7 @@ public class Level {
 		if(spot.addPlant(plant))
 		{
 			plant.setLocation(spot);
-			;//Decrement their sun counter by plant.getValue();
+			this.addToBalance(-plant.getValue());
 		}
 	}
 	
@@ -35,5 +36,8 @@ public class Level {
 	public void addToQ(Zombie toAdd, int laneI)
 	{
 		grid[laneI].addToQueue(toAdd);
+	}
+	public void addToBalance(int toAdd) {
+		balance += toAdd;
 	}
 }
