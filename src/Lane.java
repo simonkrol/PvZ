@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class Lane {
 	Spot[] spots;
 	Queue<Zombie> zombieQ = new LinkedList<>();
+	ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
 	protected int distance;
 	
 	
@@ -39,5 +41,9 @@ public class Lane {
 	public int getDistance()
 	{
 		return distance;
+	}
+	public void damageZombie(int damage)
+	{
+		//Deal damage to the first zombie in the lane
 	}
 }

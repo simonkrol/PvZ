@@ -13,5 +13,11 @@ public class Zombie extends Entity {
 	public void move() {
 		this.position += this.moveSpeed;
 	}
+	public boolean takeDamage(int damage)
+	{
+		this.currentHP -= damage;
+		if(this.currentHP<=0)return true;
+		return false;
+	}
 	
 }
