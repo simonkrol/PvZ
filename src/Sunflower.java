@@ -4,10 +4,12 @@ public class Sunflower extends Plant {
 	private static final int DEFAULT_ATTACK = 0;
 	private static final int DEFAULT_DEFENCE = 0;
 	private static final double DEFAULT_ATTACKSPEED = 0.3; //Attacks per turn
+	private static final int DEFAULT_VALUE = 50;
+	private static final int DEFAULT_DELAY = 5;
 	
 	public Sunflower(Lane lane)
 	{
-		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, lane);
+		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, lane, DEFAULT_VALUE, DEFAULT_DELAY);
 	}
 	protected void attack()
 	{
