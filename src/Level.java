@@ -2,6 +2,8 @@
 public class Level {
 	Lane [] grid;
 	Integer balance;
+	int width;
+	int height;
 	
 	public Level(int width, int height, int balance){
 		grid = new Lane[height];
@@ -10,6 +12,8 @@ public class Level {
 			grid[i] = new Lane(width);
 		}
 		this.balance = balance;
+		this.width = width;
+		this.height = height;
 	}
 	
 	private Spot getSpot(int laneIndex, int spotIndex)
@@ -39,5 +43,13 @@ public class Level {
 	}
 	public void addToBalance(int toAdd) {
 		balance += toAdd;
+	}
+	public int getWidth()
+	{
+		return width;
+	}
+	public int getHeight()
+	{
+		return height;
 	}
 }
