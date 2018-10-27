@@ -44,6 +44,14 @@ public class Lane {
 	}
 	public void damageZombie(int damage)
 	{
-		//Deal damage to the first zombie in the lane
+		Zombie closest = liveZombies.get(1);
+		for(Zombie zmb: liveZombies)
+		{
+			if(zmb.position < closest.position)
+			{
+				closest = zmb;
+			}
+		}
+		closest.takeDamage(damage);
 	}
 }

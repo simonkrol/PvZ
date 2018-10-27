@@ -7,7 +7,7 @@ public class Level {
 		grid = new Lane[height];
 		for(int i = 0; i < height; i++)
 		{
-			grid[i] = new Lane();
+			grid[i] = new Lane(width);
 		}
 		this.balance = balance;
 	}
