@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 
 public class Entity {
 	protected int currentHP, maxHP, attack, defence;
 	protected Lane lane;
 	protected double attackSpeed;
 	protected double attackState;
+	private static ArrayList<Entity> allEntities = new ArrayList<Entity>();
 	
 	public int getMaxHP() 
 	{
@@ -40,6 +42,7 @@ public class Entity {
 		this.attack = att;
 		this.defence = def;
 		this.attackSpeed = attSp;
+		allEntities.add(this);
 	}
 	protected void turn(Level curLevel)
 	{
@@ -54,5 +57,9 @@ public class Entity {
 	protected void attack(Level curLevel)
 	{
 		System.out.println("Entity Attacks");
+	}
+	public static ArrayList<Entity> getAllEntities()
+	{
+		return allEntities;
 	}
 }
