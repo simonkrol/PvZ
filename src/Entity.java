@@ -58,8 +58,11 @@ public class Entity {
 	{
 		System.out.println("Entity Attacks");
 	}
-	public static ArrayList<Entity> getAllEntities()
-	{
-		return allEntities;
+	
+	public static void allTurn(Level curLevel) {
+		for (Entity ent: allEntities)
+		{
+			ent.turn(curLevel);
+		}
 	}
 }

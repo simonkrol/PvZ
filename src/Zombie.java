@@ -10,6 +10,11 @@ public class Zombie extends Entity {
 	public int getMoveSpeed() {
 		return moveSpeed;
 	}
+	protected void turn(Level curLevel)
+	{
+		this.move();
+		super.turn(curLevel);
+	}
 	public void move() {
 		this.position += this.moveSpeed;
 	}
