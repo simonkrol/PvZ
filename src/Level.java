@@ -1,9 +1,9 @@
 
 public class Level {
-	Lane [] grid;
-	Integer balance;
-	int width;
-	int height;
+	public Lane [] grid;
+	public Integer balance;
+	public int width;
+	public int height;
 	
 	public Level(int width, int height, int balance){
 		grid = new Lane[height];
@@ -23,6 +23,11 @@ public class Level {
 	
 	public void placePlant(Plant plant,int laneI,int spotI)
 	{
+		if(plant.getValue() > balance)
+		{
+			System.out.println("Insufficient funds");
+			return;
+		}
 		Spot spot = getSpot(laneI, spotI);
 		if(spot.addPlant(plant))
 		{
