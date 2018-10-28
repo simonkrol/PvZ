@@ -1,19 +1,22 @@
 public class Gui {
-	private String laneLine;
+	private String laneLine = "";
 	private Level level;
+	private int turnNum = 0;
 	
 	public Gui(Level lvl)
 	{
 		this.level = lvl;
 		for(int i = 0; i < lvl.getWidth(); i ++)
 		{
-			laneLine += "----";
+			laneLine += "---";
 		}
 		
 	}
 	
 	protected void update()
 	{
+		turnNum++;
+		System.out.println("Turn: " + turnNum);
 		System.out.println(laneLine);
 		for(int i = 0; i < level.getHeight(); i ++)
 		{
@@ -40,23 +43,29 @@ public class Gui {
 					laneInfo += "|Pp";
 				}
 			}
-			else {
+			else{
+				boolean zombieAdded = false;
 				int zombieStack = 0;
 				for(Zombie zmb: curr.liveZombies)
 				{
-					if(zmb.position == curr.distance - currSpot*250)
+					if(zmb != null && zmb.position == curr.distance - currSpot*250)
 					{
+						zombieAdded = true;
 						zombieStack ++;
-						laneInfo += "|" + zombieStack + "z";
 					}
 				}
+				if(zombieStack > 0)
+				{
+					laneInfo += "|" + zombieStack + "z";
+				}
+				
+				if(!zombieAdded)
+				{
+					laneInfo += "|  ";
+				}
 			}
+			currSpot++;
 		}
 		return laneInfo + "|";
 	}
-	
-	
-	
-	
-	
 }

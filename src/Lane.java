@@ -54,4 +54,8 @@ public class Lane {
 		}
 		closest.takeDamage(damage);
 	}
+	protected void spawnZombieWave() 
+	{
+		liveZombies.add(zombieQ.poll());
+	}
 }

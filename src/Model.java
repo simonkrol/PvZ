@@ -3,6 +3,7 @@ public class Model {
 	boolean inProgress;
 	public Level lvl;
 	private Scanner scan;
+	private Gui gui;
 	
 	public Model(){
 		scan = new Scanner(System.in);
@@ -18,6 +19,14 @@ public class Model {
 	public void startGame(){
 		this.inProgress = true;
 		lvl = new Level(5, 5, 90);
+		gui = new Gui(lvl);
+		
+		//ADD ZOMBIE IN QUEUE
+		lvl.addToQ(new Zombie(10, 2, 1, 1, 1, null), 1);
+		lvl.addToQ(new Zombie(10, 2, 1, 1, 1, null), 1);
+		lvl.addToQ(new Zombie(10, 2, 1, 1, 1, null), 2);
+		lvl.addToQ(new Zombie(10, 2, 1, 1, 1, null), 4);
+		
 		System.out.println("Game Started. Prepare defenses. Balance: 90");
 		
 		boolean suffFunds = true;
@@ -32,9 +41,9 @@ public class Model {
 			if (suffFunds){
 			
 				System.out.println("Enter lane number: ");
-				int lane = scan.nextInt();
+				int lane = scan.nextInt() - 1;
 				System.out.println("Enter spot position: ");
-				int spot = scan.nextInt();
+				int spot = scan.nextInt() - 1;
 			
 				System.out.println("Enter Type of Plant, (s)unflower or (p)eashooter: ");
 				String type = scan.next();
@@ -58,12 +67,11 @@ public class Model {
 			
 		break;
 		case "e":
-			for (Lane l : lvl.grid){
-				for(int i = 0; i<5;i++){
-					System.out.println("Lane info: "+ l.spots[i].getPlant());
+			for(Lane lane: lvl.grid) 
+			{
+				lane.spawnZombieWave();
 			}
-			}
-			
+			gui.update();
 		
 		
 		
