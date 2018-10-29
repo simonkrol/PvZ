@@ -19,7 +19,7 @@ public class Model {
 	public void startGame()
 	{
 		this.inProgress = true;
-		lvl = new Level(5, 5, 90);
+		lvl = new Level(8, 6, 125);
 		gui = new Gui(lvl);
 		gui.update();
 		

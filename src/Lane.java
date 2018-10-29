@@ -14,10 +14,10 @@ public class Lane {
 	
 	public Lane() 
 	{
-		this(6);
+		this(8, 2);
 	}
 	
-	public Lane(int length)
+	public Lane(int length, int unplaceable)
 	{
 		spots = new Spot[length];
 		for(int i = 0; i < length; i ++) {

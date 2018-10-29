@@ -9,7 +9,7 @@ public class Level {
 		grid = new Lane[height];
 		for(int i = 0; i < height; i++)
 		{
-			grid[i] = new Lane(width);
+			grid[i] = new Lane(width, 2);
 		}
 		this.balance = balance;
 		this.width = width;
@@ -41,11 +41,6 @@ public class Level {
 		}
 	}
 	
-	public void removePlant(int laneI,int spotI)
-	{
-		Spot spot = getSpot(laneI, spotI);
-		spot.killPlant();
-	}
 	
 	public void addToQ(Zombie toAdd)
 	{
