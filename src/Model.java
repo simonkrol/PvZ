@@ -67,6 +67,8 @@ public class Model {
 					if(checkFail())
 					{
 						System.out.println("Zombies have gotten past! \nGame over! ");
+						System.out.println("Wasnt this...");
+						System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒\n▒▒▒▒▓▒▒▓▒▒▒▒\n▒▒▒▒▓▒▒▓▒▒▒▒\n▒▒▒▒▒▒▒▒▒▒▒▒\n▒▓▒▒▒▒▒▒▒▒▓▒\n▒▒▓▓▓▓▓▓▓▓▒▒\n▒▒▒▒▒▒▒▒▒▒▒▒");
 						return;
 					}
 					else
