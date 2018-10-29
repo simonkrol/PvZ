@@ -31,8 +31,6 @@ public class Level {
 			String [] lanes = curInstruction.split("-");
 			for(int i = 1; i< lanes.length; i++)
 			{
-				System.out.println(curInstruction);
-				System.out.println(lanes[i]);
 				grid[Integer.parseInt(lanes[i])-1].spawnZombie();
 			}
 			curInstruction = levelData.readLine();
