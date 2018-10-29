@@ -15,7 +15,7 @@ public class Main
 
 	/**
 	 * Creates a new main object
-	 * @throws IOException
+	 * @throws IOException If reading from datafile fails
 	 */
 	private Main() throws IOException
 	{
@@ -34,7 +34,7 @@ public class Main
 
 	/**
 	 * Start the game
-	 * @throws IOException
+	 * @throws IOException If reading from the file fails
 	 */
 	private void startGame() throws IOException
 	{
@@ -109,8 +109,8 @@ public class Main
 
 	/**
 	 * Main method, creates a new main object and allows the user to play
-	 * @param args
-	 * @throws IOException
+	 * @param args Main arguments
+	 * @throws IOException If reading from data file fails
 	 */
 	public static void main(String[] args) throws IOException
 	{

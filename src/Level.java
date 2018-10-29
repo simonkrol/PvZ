@@ -23,7 +23,7 @@ public class Level
 	 * @param height The height in spots, of the level
 	 * @param balance The player's starting sun balance
 	 * @param fileName The file storing the level's zombie data
-	 * @throws IOException
+	 * @throws IOException If readline fails
 	 */
 	protected Level(int width, int height, int balance, String fileName) throws IOException
 	{
@@ -41,7 +41,7 @@ public class Level
 
 	/**
 	 * Check the levelData and spawn any zombies intended for the given turn
-	 * @throws IOException
+	 * @throws IOException If readline fails
 	 */
 	protected void spawnZombies() throws IOException
 	{
@@ -129,7 +129,7 @@ public class Level
 
 	/**
 	 * Iterate through all lanes in the level and run all their turns, also spawn any new zombies
-	 * @throws IOException
+	 * @throws IOException  If readline fails
 	 */
 	protected void allTurn() throws IOException
 	{
