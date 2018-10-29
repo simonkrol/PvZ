@@ -2,19 +2,18 @@ import java.util.ArrayList;
 
 public class Lane
 {
-	protected int endState = 0;
-	protected boolean triggered = false;
-	Spot[] spots;
-	ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
-	protected int distance;
-	protected int numPlants = 0;
+	private int endState = 0;
+	private boolean triggered = false;
+	private Spot[] spots;
+	private ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
+	private int distance;
 
-	public Lane()
+	protected Lane()
 	{
 		this(8, 2);
 	}
 
-	public Lane(int length, int unplaceable)
+	protected Lane(int length, int unplaceable)
 	{
 		spots = new Spot[length];
 		for (int i = 0; i < length; i++)
@@ -24,17 +23,17 @@ public class Lane
 		distance = length * 250;// The distance from side to side;
 	}
 
-	public Spot getSpot(int index)
+	protected Spot getSpot(int index)
 	{
 		return spots[index];
 	}
 
-	public int getDistance()
+	protected int getDistance()
 	{
 		return distance;
 	}
 
-	public void damageZombie(int damage)
+	protected void damageZombie(int damage)
 	{
 		if (liveZombies.size() == 0)
 			return;
@@ -79,6 +78,89 @@ public class Lane
 				return spots[i].getPlant();
 		}
 		return null;
+	}
+
+	protected void allTurn(Level curLevel)
+	{
+		for (Spot spot : spots)
+		{
+			if (spot.getOccupied())
+				spot.getPlant().turn(curLevel);
+
+		}
+		for (Zombie zombie : liveZombies)
+		{
+			zombie.turn(curLevel);
+		}
+		if (triggered)
+		{
+			liveZombies.clear();
+			triggered = false;
+		}
+	}
+
+	protected boolean checkFail()
+	{
+		return endState >= 2;
+	}
+
+	protected boolean checkNoWin()
+	{
+		if (liveZombies.size() != 0)
+			return true;
+		return false;
+	}
+
+	protected boolean noZombies()
+	{
+		return liveZombies.size() == 0;
+	}
+
+	protected void killZombie(Zombie toKill)
+	{
+		liveZombies.remove(toKill);
+	}
+
+	protected String getInfo()
+	{
+		int curSpot = 1;
+		String laneInfo = "";
+		for (Spot spot : spots)
+		{
+			if (spot.getOccupied())
+			{
+				if (spot.getPlant() instanceof Sunflower)
+				{
+					laneInfo += "|Ps";
+				} else if (spot.getPlant() instanceof Peashooter)
+				{
+					laneInfo += "|Pp";
+				}
+			} else
+			{
+				boolean zombieAdded = false;
+				int zombieStack = 0;
+				for (Zombie zmb : liveZombies)
+				{
+					if (zmb != null && zmb.position == distance - curSpot * 250)
+					{
+						zombieAdded = true;
+						zombieStack++;
+					}
+				}
+				if (zombieStack > 0)
+				{
+					laneInfo += "|" + zombieStack + "z";
+				}
+
+				if (!zombieAdded)
+				{
+					laneInfo += "|  ";
+				}
+			}
+			curSpot++;
+		}
+		return laneInfo + "|";
 	}
 
 }

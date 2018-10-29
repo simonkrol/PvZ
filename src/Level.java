@@ -4,15 +4,15 @@ import java.io.IOException;
 
 public class Level
 {
-	public Lane[] grid;
-	public Integer balance;
-	public int width;
-	public int height;
-	public int turn;
-	public BufferedReader levelData;
-	public String curInstruction;
+	private Lane[] grid;
+	private Integer balance;
+	private int width;
+	private int height;
+	private int turn;
+	private BufferedReader levelData;
+	private String curInstruction;
 
-	public Level(int width, int height, int balance, String fileName) throws IOException
+	protected Level(int width, int height, int balance, String fileName) throws IOException
 	{
 		grid = new Lane[height];
 		for (int i = 0; i < height; i++)
@@ -26,7 +26,7 @@ public class Level
 		curInstruction = levelData.readLine();
 	}
 
-	public void spawnZombies() throws IOException
+	protected void spawnZombies() throws IOException
 	{
 		if (curInstruction == null)
 			return;
@@ -43,17 +43,17 @@ public class Level
 		}
 	}
 
-	public Lane getLane(int laneIndex)
+	protected Lane getLane(int laneIndex)
 	{
 		return grid[laneIndex];
 	}
 
-	private Spot getSpot(int laneIndex, int spotIndex)
+	protected Spot getSpot(int laneIndex, int spotIndex)
 	{
 		return grid[laneIndex].getSpot(spotIndex);
 	}
 
-	public void placePlant(Plant plant, int laneI, int spotI)
+	protected void placePlant(Plant plant, int laneI, int spotI)
 	{
 		if (plant.getValue() > balance)
 		{
@@ -65,46 +65,59 @@ public class Level
 		{
 			plant.setLocation(spot);
 			this.addToBalance(-plant.getValue());
-			grid[laneI].numPlants++;
 		}
 	}
 
-	public void addToBalance(int toAdd)
+	protected void addToBalance(int toAdd)
 	{
 		balance += toAdd;
 	}
 
-	public int getWidth()
+	protected int getWidth()
 	{
 		return width;
 	}
 
-	public int getHeight()
+	protected int getHeight()
 	{
 		return height;
 	}
 
-	public void allTurn() throws IOException
+	protected void allTurn() throws IOException
 	{
 		for (Lane lane : grid)
 		{
-			for (Spot spot : lane.spots)
-			{
-				if (spot.getOccupied())
-					spot.getPlant().turn(this);
-
-			}
-			for (Zombie zombie : lane.liveZombies)
-			{
-				zombie.turn(this);
-			}
-			if (lane.triggered)
-			{
-				lane.liveZombies.clear();
-				lane.triggered = false;
-			}
+			lane.allTurn(this);
 		}
 		turn++;
 		spawnZombies();
+	}
+
+	protected int getBalance()
+	{
+		return balance;
+	}
+
+	protected boolean checkFail()
+	{
+		for (int i = 0; i < grid.length; i++)
+		{
+			if (grid[i].checkFail())
+				return true;
+		}
+		return false;
+	}
+
+	protected boolean checkWin()
+	{
+		if (curInstruction != null)
+			return false;
+		for (int i = 0; i < grid.length; i++)
+		{
+			if (grid[i].checkNoWin())
+				return false;
+
+		}
+		return true;
 	}
 }

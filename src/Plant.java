@@ -5,19 +5,19 @@ public abstract class Plant extends Entity
 	protected int value;
 	protected int delay;
 
-	public Plant(int maxHP, int att, int def, double attSp, Lane lane, int value, int delay)
+	protected Plant(int maxHP, int att, int def, double attSp, Lane lane, int value, int delay)
 	{
 		super(maxHP, lane, att, def, attSp);
 		this.value = value;
 		this.delay = delay;
 	}
 
-	public Spot getLocation()
+	protected Spot getLocation()
 	{
 		return location;
 	}
 
-	public void setLocation(Spot location)
+	protected void setLocation(Spot location)
 	{
 		this.location = location;
 	}
@@ -34,7 +34,7 @@ public abstract class Plant extends Entity
 
 	protected void turn(Level curLevel)
 	{
-		if (lane.liveZombies.size() == 0)
+		if (lane.noZombies())
 			return;
 
 		attackState += this.attackSpeed;

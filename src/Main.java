@@ -3,12 +3,12 @@ import java.util.Scanner;
 
 public class Main
 {
-	boolean inProgress;
-	public Level lvl;
+	private boolean inProgress;
+	private Level lvl;
 	private Scanner scan;
 	private Gui gui;
 
-	public Main() throws IOException
+	private Main() throws IOException
 	{
 		scan = new Scanner(System.in);
 
@@ -23,14 +23,14 @@ public class Main
 		}
 	}
 
-	public void startGame() throws IOException
+	private void startGame() throws IOException
 	{
 		this.inProgress = true;
 		lvl = new Level(8, 6, 125, "Level.txt");
 		gui = new Gui(lvl);
 		gui.update();
 
-		System.out.println("Game Started. Prepare defenses. Balance: " + lvl.balance);
+		System.out.println("Game Started. Prepare defenses. Balance: " + lvl.getBalance());
 
 		boolean editing = true;
 
@@ -54,7 +54,7 @@ public class Main
 						case "s":
 							lvl.placePlant(new Sunflower(lvl.getLane(laneNum)), laneNum, spot);
 							gui.update();
-							System.out.println("Current Balance:" + lvl.balance);
+							System.out.println("Current Balance:" + lvl.getBalance());
 							break;
 						case "p":
 							lvl.placePlant(new Peashooter(lvl.getLane(laneNum)), laneNum, spot);
@@ -68,13 +68,13 @@ public class Main
 				case "e":
 					lvl.allTurn();
 					lvl.spawnZombies();
-					if (checkWin())
+					if (lvl.checkWin())
 					{
 						gui.update();
 						System.out.println("You Killed all the zombies! \n Congratulations you won!");
 						return;
 					}
-					if (checkFail())
+					if (lvl.checkFail())
 					{
 						gui.update();
 						System.out.println("Zombies have gotten past! \nGame over! ");
@@ -92,28 +92,6 @@ public class Main
 					return;
 			}
 		}
-	}
-
-	private boolean checkFail()
-	{
-		for (int i = 0; i < lvl.grid.length; i++)
-		{
-			if (lvl.grid[i].endState == 2)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private boolean checkWin()
-	{
-		for (int i = 0; i < lvl.grid.length; i++)
-		{
-			if (lvl.grid[i].liveZombies.size() != 0 || lvl.curInstruction != null)
-				return false;
-		}
-		return true;
 	}
 
 	public static void main(String[] args) throws IOException

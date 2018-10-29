@@ -4,23 +4,23 @@ public class Spot
 	private Plant plant;
 	private boolean placeable;
 
-	public Spot(boolean place)
+	protected Spot(boolean place)
 	{
 		plant = null;
 		placeable = place;
 	}
 
-	public boolean getOccupied()
+	protected boolean getOccupied()
 	{
 		return plant != null;
 	}
 
-	public Plant getPlant()
+	protected Plant getPlant()
 	{
 		return plant;
 	}
 
-	public boolean addPlant(Plant toAdd)
+	protected boolean addPlant(Plant toAdd)
 	{
 		if (!placeable)
 		{
@@ -37,7 +37,7 @@ public class Spot
 
 	}
 
-	public boolean killPlant()
+	protected boolean killPlant()
 	{
 		if (this.getOccupied())
 		{

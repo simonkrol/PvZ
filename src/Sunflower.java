@@ -8,7 +8,7 @@ public class Sunflower extends Plant
 	protected static final int DEFAULT_VALUE = 50;
 	private static final int DEFAULT_DELAY = 5;
 
-	public Sunflower(Lane lane)
+	protected Sunflower(Lane lane)
 	{
 		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, lane, DEFAULT_VALUE, DEFAULT_DELAY);
 	}

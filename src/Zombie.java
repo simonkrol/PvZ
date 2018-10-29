@@ -4,14 +4,14 @@ public abstract class Zombie extends Entity
 	protected int moveSpeed;
 	protected int position;
 
-	public Zombie(int hp, int att, int def, int mov, double attSp, Lane lane)
+	protected Zombie(int hp, int att, int def, int mov, double attSp, Lane lane)
 	{
 		super(hp, lane, att, def, attSp);
 		this.moveSpeed = mov;
 		this.position = 0; // Distance from the right side
 	}
 
-	public int getMoveSpeed()
+	protected int getMoveSpeed()
 	{
 		return moveSpeed;
 	}
@@ -30,7 +30,7 @@ public abstract class Zombie extends Entity
 		}
 	}
 
-	public void move()
+	protected void move()
 	{
 
 		if (lane.checkFrontPlant(this.position))
@@ -40,7 +40,7 @@ public abstract class Zombie extends Entity
 		{
 			position += moveSpeed;
 		}
-		if (position >= lane.distance)
+		if (position >= lane.getDistance())
 		{
 			lane.hitEnd();
 		}
@@ -49,7 +49,7 @@ public abstract class Zombie extends Entity
 
 	protected void die()
 	{
-		lane.liveZombies.remove(this);
+		lane.killZombie(this);
 	}
 
 	protected void attack(Level curLevel)

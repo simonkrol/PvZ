@@ -8,12 +8,12 @@ public class Peashooter extends Plant
 	protected static final int DEFAULT_VALUE = 40;
 	private static final int DEFAULT_DELAY = 5;
 
-	public Peashooter(Lane lane)
+	protected Peashooter(Lane lane)
 	{
 		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, lane, DEFAULT_VALUE, DEFAULT_DELAY);
 	}
 
-	public Peashooter(int maxHP, int att, int def, double attSp, Lane lane, int value, int delay)
+	protected Peashooter(int maxHP, int att, int def, double attSp, Lane lane, int value, int delay)
 	{
 		super(maxHP, att, def, attSp, lane, value, delay);
 		// TODO Auto-generated constructor stub
