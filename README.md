@@ -29,4 +29,10 @@
 5. If zombies reach the end of the lane, a 1-use per lane per level lawnmower will be used to mow over every zombie in that lane, the second time a zombie reaches the end of a lane, the player loses.
 6. If all waves of zombies are killed by the player, the player wins.
 
+### Roadmap Ahead
+- Add a real GUI instead of a text based UI
+- Refactor the project locations to be organized into MVC structure
+- Implement unit tests in the project
+- Implement continuous integration on github
+
 Readme Author: Simon Krol
