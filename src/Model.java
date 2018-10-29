@@ -21,7 +21,7 @@ public class Model {
 		this.inProgress = true;
 		lvl = new Level(5, 5, 90);
 		gui = new Gui(lvl);
-		
+		gui.update();
 		//ADD ZOMBIE IN QUEUE
 		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(1)), 1);
 		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(1)), 1);
@@ -44,14 +44,18 @@ public class Model {
 					System.out.println("Enter spot position: ");
 					int spot = scan.nextInt() - 1;
 				
-					System.out.println("Enter Type of Plant, (s)unflower or (p)eashooter: ");
+					System.out.println("Enter Type of Plant, (s)unflower[50] or (p)eashooter[40]: ");
 					String type = scan.next();
 					switch (type){
 						case "s":
 						lvl.placePlant(new Sunflower(lvl.getLane(laneNum)), laneNum, spot);
+						System.out.println("Balance:"+ lvl.balance);
+						gui.update();
 						break;
 						case "p":
 						lvl.placePlant(new Peashooter(new Lane(laneNum)), laneNum, spot);
+						System.out.println("Balance:" + lvl.balance);
+						gui.update();
 						break;
 						default:
 						System.out.println("Invalid Plant Type.");
