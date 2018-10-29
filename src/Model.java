@@ -22,6 +22,7 @@ public class Model {
 		lvl = new Level(5, 5, 90);
 		gui = new Gui(lvl);
 		gui.update();
+		
 		//ADD ZOMBIE IN QUEUE
 		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(1)));
 		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(1)));
@@ -67,7 +68,8 @@ public class Model {
 					lvl.allTurn();
 					if(checkFail())
 					{
-						System.out.println("_________uu$$$$$$$$$$$$$$$$$uu__________\n" + 
+						System.out.println(
+								"_________uu$$$$$$$$$$$$$$$$$uu__________\n" + 
 								"_________u$$$$$$$$$$$$$$$$$$$$$u_________\n" + 
 								"________u$$$$$$$$$$$$$$$$$$$$$$$u________\n" + 
 								"_______u$$$$$$$$$$$$$$$$$$$$$$$$$u_______\n" + 
@@ -105,10 +107,6 @@ public class Model {
 				case "q":
 				return;
 			}
-		
-		
-		
-		
 		}
 	}
 	
@@ -130,8 +128,7 @@ public class Model {
 	
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+	
 		new Model();
 		
 
