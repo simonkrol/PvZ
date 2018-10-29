@@ -24,8 +24,11 @@ public class Model {
 		gui.update();
 		
 		//ADD ZOMBIE IN QUEUE
-		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(1)));
-		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(1)));
+		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
+		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
+		lvl.addToQ(new DancerZombie(lvl.getLane(3)));
+		lvl.addToQ(new DancerZombie(lvl.getLane(4)));
+		
 		
 		
 		System.out.println("Game Started. Prepare defenses. Balance: 90");
@@ -100,6 +103,7 @@ public class Model {
 					{
 						gui.update();
 					}
+					break;
 				case "n":
 				System.out.println("Not implimented in this milestone");
 				break;
@@ -114,7 +118,7 @@ public class Model {
 	{
 		for(int i = 0; i < lvl.grid.length; i++)
 		{
-			if(lvl.grid[i].end)
+			if(lvl.grid[i].endState==2)
 			{
 				return true;
 			}

@@ -3,7 +3,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Lane {
-	protected boolean end = false;
+	protected int endState = 0;
 	protected boolean triggered = false;
 	Spot[] spots;
 	Queue<Zombie> zombieQ = new LinkedList<>();
@@ -61,7 +61,7 @@ public class Lane {
 	protected void hitEnd()
 	{
 		if(triggered)return;
-		end = true;
+		endState += 1;
 		triggered = true;
 		
 	}

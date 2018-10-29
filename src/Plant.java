@@ -1,5 +1,5 @@
 
-public class Plant extends Entity{
+public abstract class Plant extends Entity{
 	protected Spot location;
 	protected int value;
 	protected int delay;

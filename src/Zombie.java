@@ -1,5 +1,5 @@
 
-public class Zombie extends Entity {
+public abstract class Zombie extends Entity {
 	protected int moveSpeed;
 	protected int position;
 	
