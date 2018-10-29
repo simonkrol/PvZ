@@ -55,7 +55,11 @@ public class Lane {
 	protected void spawnZombieWave() 
 	{
 		if(zombieQ.size()>0) {
-			liveZombies.add(zombieQ.poll());
+			if(zombieQ.peek() instanceof EmptyZombie)zombieQ.remove();
+			else
+			{
+				liveZombies.add(zombieQ.poll());
+			}
 		}
 	}
 	protected void hitEnd()

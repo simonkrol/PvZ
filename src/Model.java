@@ -26,10 +26,8 @@ public class Model {
 		//ADD ZOMBIE IN QUEUE
 		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
 		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
-
-		
-		
-		
+		lvl.addToQ(new EmptyZombie(lvl.getLane(0)));
+		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
 		
 		System.out.println("Game Started. Prepare defenses. Balance: " + lvl.balance);
 		
