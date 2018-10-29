@@ -75,6 +75,12 @@ public class Model {
 					{
 						gui.update();
 					}
+				case "n":
+				System.out.println("Not implimented in this milestone");
+				break;
+				
+				case "q":
+				return;
 			}
 		
 		
