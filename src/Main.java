@@ -1,12 +1,12 @@
 import java.io.IOException;
 import java.util.Scanner; 
-public class Model {
+public class Main {
 	boolean inProgress;
 	public Level lvl;
 	private Scanner scan;
 	private Gui gui;
 	
-	public Model() throws IOException{
+	public Main() throws IOException{
 		scan = new Scanner(System.in);
 		
 		while(inProgress == false){
@@ -62,7 +62,7 @@ public class Model {
 					if(checkWin())
 					{
 						gui.update();
-						System.out.println("You Killed all the zombies! \n Congradulation you won!");
+						System.out.println("You Killed all the zombies! \n Congratulations you won!");
 						return;
 					}
 					if(checkFail())
@@ -99,15 +99,11 @@ public class Model {
 	}
 	private boolean checkWin()
 	{
-		boolean allGood = true;
 		for(int i = 0; i < lvl.grid.length; i++)
 		{
-			//if(lvl.grid[i].zombieQ.size() != 0 || lvl.grid[i].liveZombies.size() != 0)
-			//{
-			//	allGood = false;
-			//}
+			if(lvl.grid[i].liveZombies.size() != 0 || lvl.curInstruction != null)return false;
 		}
-		return false;
+		return true;
 	}
 	
 	
@@ -117,7 +113,7 @@ public class Model {
 
 	public static void main(String[] args) throws IOException {
 	
-		new Model();
+		new Main();
 		
 
 	}

@@ -46,7 +46,7 @@ public class Lane {
 	}
 	protected void spawnZombie()
 	{
-		liveZombies.add(new DancerZombie(this));
+		liveZombies.add(new BasicZombie(this));
 	}
 	protected void hitEnd()
 	{
