@@ -26,6 +26,7 @@ public class Model {
 		//ADD ZOMBIE IN QUEUE
 		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
 		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
+		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
 		lvl.addToQ(new DancerZombie(lvl.getLane(3)));
 		lvl.addToQ(new DancerZombie(lvl.getLane(4)));
 		
@@ -55,7 +56,7 @@ public class Model {
 						System.out.println("Current Balance:" + lvl.balance);
 						break;
 						case "p":
-						lvl.placePlant(new Peashooter(new Lane(laneNum)), laneNum, spot);
+						lvl.placePlant(new Peashooter(lvl.getLane(laneNum)), laneNum, spot);
 						gui.update();
 						break;
 						default:

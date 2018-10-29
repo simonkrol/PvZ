@@ -16,4 +16,13 @@ public class Sunflower extends Plant {
 		System.out.println("Sunflower has given you some sun");
 		curLevel.addToBalance(this.attack);
 	}
+	protected void turn(Level curLevel)
+	{
+		attackState +=this.attackSpeed;
+		while(attackState>=1)
+		{
+			this.attack(curLevel);
+			attackState--;
+		}
+	}
 }

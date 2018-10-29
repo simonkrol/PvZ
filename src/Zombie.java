@@ -14,27 +14,41 @@ public abstract class Zombie extends Entity {
 	protected void turn(Level curLevel)
 	{
 		this.move();
-		super.turn(curLevel);
+		if(lane.checkFrontPlant(position))
+		{
+			attackState +=this.attackSpeed;
+			while(attackState>=1)
+			{
+				this.attack(curLevel);
+				attackState--;
+			}
+		}
 	}
 	public void move() {
-		if(lane.getPlantPos() >= position/250) 
+		
+		if(lane.checkFrontPlant(this.position))
 		{
-			this.position += this.moveSpeed;
+			this.attack(null);
 		}
 		else
 		{
-			super.attack();		
+			position += moveSpeed;
 		}
 		if(position >= lane.distance) {
 			lane.hitEnd();
 		}
 		
 	}
-	public boolean takeDamage(int damage)
+	
+	protected void die()
 	{
-		this.currentHP -= damage;
-		if(this.currentHP<=0)return true;
-		return false;
+		lane.liveZombies.remove(this);
+	}
+	
+	protected void attack(Level curLevel)
+	{
+		lane.getFrontPlant().takeDamage(attack);
+
 	}
 	
 }

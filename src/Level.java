@@ -69,6 +69,7 @@ public class Level {
 			for(Spot spot: lane.spots)
 			{
 				if(spot.getOccupied())spot.getPlant().turn(this);
+				
 			}
 			for (Zombie zombie: lane.liveZombies)
 			{

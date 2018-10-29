@@ -1,9 +1,9 @@
 
 public class Peashooter extends Plant{
-	private static final int DEFAULT_HP = 4;
+	private static final int DEFAULT_HP = 5;
 	private static final int DEFAULT_ATTACK = 2;
 	private static final int DEFAULT_DEFENCE = 0;
-	private static final double DEFAULT_ATTACKSPEED = 0.3; //Attacks per turn
+	private static final double DEFAULT_ATTACKSPEED = 1; //Attacks per turn
 	private static final int DEFAULT_VALUE = 40;
 	private static final int DEFAULT_DELAY = 5;
 	

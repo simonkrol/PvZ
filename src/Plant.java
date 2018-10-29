@@ -21,5 +21,20 @@ public abstract class Plant extends Entity{
 	{
 		return value;
 	}
+	protected void die()
+	{
+		location.killPlant();
+	}
+	protected void turn(Level curLevel)
+	{
+		if(lane.liveZombies.size()==0)return;
+		
+		attackState +=this.attackSpeed;
+		while(attackState>=1)
+		{
+			this.attack(curLevel);
+			attackState--;
+		}
+	}
 
 }

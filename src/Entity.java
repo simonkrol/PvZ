@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-
-public class Entity {
+public abstract class Entity {
 	protected int currentHP, maxHP, attack, defence;
 	protected Lane lane;
 	protected double attackSpeed;
@@ -22,13 +20,8 @@ public class Entity {
 			this.die();
 		}
 	}
-	private void die() {
-		if(currentHP <= 0)
-		{
-			Spot spot = lane.getSpot(lane.getPlantPos());
-			spot.killPlant();
-		}
-	}
+	protected abstract void die();
+	
 	public int getAttack() {
 		return attack;
 	}
@@ -47,22 +40,13 @@ public class Entity {
 		this.defence = def;
 		this.attackSpeed = attSp;
 	}
-	protected void turn(Level curLevel)
-	{
-//		attackState +=this.attackSpeed;
-//		while(attackState>=1)
-//		{
-//			this.attack();
-//			attackState--;
-//		}
-	}
+	protected abstract void turn(Level curLevel);
 	
-	protected void attack()
+	protected abstract void attack(Level curLevel);
+	
+	public void takeDamage(int damage)
 	{
-		if(lane.hasPlants() && lane.numPlants > 0) {
-			Entity plant = lane.getSpot(lane.getPlantPos()).getPlant();
-			plant.changeHP(-attack);
-		}
-
+		this.currentHP -= damage;
+		if(this.currentHP<=0)this.die();
 	}
 }

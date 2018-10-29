@@ -45,7 +45,7 @@ public class Lane {
 		Zombie closest = liveZombies.get(0);
 		for(Zombie zmb: liveZombies)
 		{
-			if(zmb.position < closest.position)
+			if(zmb.position > closest.position)
 			{
 				closest = zmb;
 			}
@@ -66,21 +66,19 @@ public class Lane {
 		
 	}
 
-	protected int getPlantPos() {
-		for(int i = distance/250 -1; i >= 0; i-- )
+	protected Boolean checkFrontPlant(int position)
+	{
+		int index = spots.length -2 - (int) Math.floor(position/250.0);
+		if(index<0 || index >=spots.length)return false;
+		return spots[index].getOccupied();
+	}
+	protected Plant getFrontPlant()
+	{
+		for(int i = spots.length-1; i>=0; i--)
 		{
-			if(spots[i].getOccupied()) {
-				return i; //in this case it will return the index of the spot. Later this will be the pixels of the plant
-			}
+			if(spots[i].getOccupied())return spots[i].getPlant();
 		}
-		return distance;
+		return null;
 	}
 	
-	protected boolean hasPlants() {
-		if(numPlants != 0)
-		{
-			return true;
-		}
-		return false;
-	}
 }
