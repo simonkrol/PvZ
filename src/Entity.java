@@ -17,12 +17,17 @@ public class Entity {
 	public void changeHP(int change)
 	{
 		currentHP += change;
-		if(currentHP<=0) {
+		System.out.print("Current hp is: " + currentHP);
+		if(currentHP <= 0) {
 			this.die();
 		}
 	}
 	private void die() {
-		;
+		if(currentHP <= 0)
+		{
+			Spot spot = lane.getSpot(lane.getPlantPos());
+			spot.killPlant();
+		}
 	}
 	public int getAttack() {
 		return attack;
@@ -44,17 +49,20 @@ public class Entity {
 	}
 	protected void turn(Level curLevel)
 	{
-		attackState +=this.attackSpeed;
-		while(attackState>=1)
-		{
-			this.attack(curLevel);
-			attackState--;
-		}
+//		attackState +=this.attackSpeed;
+//		while(attackState>=1)
+//		{
+//			this.attack();
+//			attackState--;
+//		}
 	}
 	
-	protected void attack(Level curLevel)
+	protected void attack()
 	{
-		System.out.println(this.getClass().getName()+" attacks");
+		if(lane.hasPlants() && lane.numPlants > 0) {
+			Entity plant = lane.getSpot(lane.getPlantPos()).getPlant();
+			plant.changeHP(-attack);
+		}
 
 	}
 }

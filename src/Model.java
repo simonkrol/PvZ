@@ -25,8 +25,6 @@ public class Model {
 		//ADD ZOMBIE IN QUEUE
 		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(1)));
 		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(1)));
-		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(2)));
-		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(4)));
 		
 		
 		System.out.println("Game Started. Prepare defenses. Balance: 90");
@@ -73,7 +71,7 @@ public class Model {
 								"_______u$$$$$$$$$$$$$$$$$$$$$$$$$u_______\n" + 
 								"_______u$$$$$$”___”$$$”___”$$$$$$u________\n" + 
 								"_______”$$$$”______u$u_______$$$$”________\n" + 
-								"________$$$———u$u_______u$$$________\n" + 
+								"________$$$————————u$u_______u$$$________\n" + 
 								"________$$$u______u$$$u______u$$$________\n" + 
 								"_________”$$$$uu$$$___$$$uu$$$$”_________\n" + 
 								"__________”$$$$$$$”___”$$$$$$$”__________\n" + 

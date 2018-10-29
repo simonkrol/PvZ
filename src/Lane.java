@@ -9,6 +9,7 @@ public class Lane {
 	Queue<Zombie> zombieQ = new LinkedList<>();
 	ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
 	protected int distance;
+	protected int numPlants = 0;
 	
 	
 	public Lane() 
@@ -63,5 +64,23 @@ public class Lane {
 		end = true;
 		triggered = true;
 		
+	}
+
+	protected int getPlantPos() {
+		for(int i = distance/250 -1; i >= 0; i-- )
+		{
+			if(spots[i].getOccupied()) {
+				return i; //in this case it will return the index of the spot. Later this will be the pixels of the plant
+			}
+		}
+		return distance;
+	}
+	
+	protected boolean hasPlants() {
+		if(numPlants != 0)
+		{
+			return true;
+		}
+		return false;
 	}
 }

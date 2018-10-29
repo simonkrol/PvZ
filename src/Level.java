@@ -37,6 +37,7 @@ public class Level {
 		{
 			plant.setLocation(spot);
 			this.addToBalance(-plant.getValue());
+			grid[laneI].numPlants++;
 		}
 	}
 	

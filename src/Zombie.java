@@ -17,16 +17,18 @@ public class Zombie extends Entity {
 		super.turn(curLevel);
 	}
 	public void move() {
-		//Need to add move function
-		this.position += this.moveSpeed;
+		if(lane.getPlantPos() >= position/250) 
+		{
+			this.position += this.moveSpeed;
+		}
+		else
+		{
+			super.attack();		
+		}
 		if(position >= lane.distance) {
 			lane.hitEnd();
 		}
 		
-	}
-	public void attack(Level curLevel)
-	{
-		//Should only attack if right next to a plant
 	}
 	public boolean takeDamage(int damage)
 	{
