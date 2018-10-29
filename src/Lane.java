@@ -44,6 +44,7 @@ public class Lane {
 	}
 	public void damageZombie(int damage)
 	{
+		if(liveZombies.size()==0)return;
 		Zombie closest = liveZombies.get(1);
 		for(Zombie zmb: liveZombies)
 		{
