@@ -16,7 +16,13 @@ public class Zombie extends Entity {
 		super.turn(curLevel);
 	}
 	public void move() {
+		//Need to add move function
 		this.position += this.moveSpeed;
+		
+	}
+	public void attack(Level curLevel)
+	{
+		//Should only attack if right next to a plant
 	}
 	public boolean takeDamage(int damage)
 	{

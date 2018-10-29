@@ -16,6 +16,10 @@ public class Level {
 		this.height = height;
 	}
 	
+	public Lane getLane(int laneIndex)
+	{
+		return grid[laneIndex];
+	}
 	private Spot getSpot(int laneIndex, int spotIndex)
 	{
 		return grid[laneIndex].getSpot(spotIndex);

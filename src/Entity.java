@@ -56,7 +56,8 @@ public class Entity {
 	
 	protected void attack(Level curLevel)
 	{
-		System.out.println("Entity Attacks");
+		System.out.println(this.getClass().getName()+" attacks");
+
 	}
 	
 	public static void allTurn(Level curLevel) {
