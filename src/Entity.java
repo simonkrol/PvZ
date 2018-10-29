@@ -5,7 +5,6 @@ public class Entity {
 	protected Lane lane;
 	protected double attackSpeed;
 	protected double attackState;
-	private static ArrayList<Entity> allEntities = new ArrayList<Entity>();
 	
 	public int getMaxHP() 
 	{
@@ -42,7 +41,6 @@ public class Entity {
 		this.attack = att;
 		this.defence = def;
 		this.attackSpeed = attSp;
-		allEntities.add(this);
 	}
 	protected void turn(Level curLevel)
 	{
@@ -58,12 +56,5 @@ public class Entity {
 	{
 		System.out.println(this.getClass().getName()+" attacks");
 
-	}
-	
-	public static void allTurn(Level curLevel) {
-		for (Entity ent: allEntities)
-		{
-			ent.turn(curLevel);
-		}
 	}
 }

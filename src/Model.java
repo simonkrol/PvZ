@@ -23,10 +23,10 @@ public class Model {
 		gui = new Gui(lvl);
 		
 		//ADD ZOMBIE IN QUEUE
-		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(1)), 1);
-		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(1)), 1);
-		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(2)), 2);
-		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(3)), 4);
+		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(1)));
+		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(1)));
+		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(2)));
+		lvl.addToQ(new Zombie(10, 2, 1, 250, 1, lvl.getLane(4)));
 		
 		
 		System.out.println("Game Started. Prepare defenses. Balance: 90");
@@ -63,11 +63,11 @@ public class Model {
 					{
 						lane.spawnZombieWave();
 					}
-					Entity.allTurn(lvl);
-					if(checkFail())
-					{
-						return;
-					}
+					lvl.allTurn();
+//					if(checkFail())
+//					{
+//						return;
+//					}
 					gui.update();
 			}
 		

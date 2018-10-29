@@ -4,6 +4,7 @@ import java.util.Queue;
 
 public class Lane {
 	protected boolean end = false;
+	protected boolean triggered = false;
 	Spot[] spots;
 	Queue<Zombie> zombieQ = new LinkedList<>();
 	ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
@@ -33,12 +34,6 @@ public class Lane {
 	{
 		return spots[index];
 	}
-	
-	public Zombie getZombie()
-	{
-		return zombieQ.poll();
-		
-	}
 	public int getDistance()
 	{
 		return distance;
@@ -46,7 +41,7 @@ public class Lane {
 	public void damageZombie(int damage)
 	{
 		if(liveZombies.size()==0)return;
-		Zombie closest = liveZombies.get(1);
+		Zombie closest = liveZombies.get(0);
 		for(Zombie zmb: liveZombies)
 		{
 			if(zmb.position < closest.position)
@@ -58,15 +53,18 @@ public class Lane {
 	}
 	protected void spawnZombieWave() 
 	{
-		liveZombies.add(zombieQ.poll());
+		if(zombieQ.size()>0) {
+			liveZombies.add(zombieQ.poll());
+		}
 	}
 	protected void hitEnd()
 	{
+		if(triggered)return;
 		if(end) {
 			System.out.println("Zombies have gotten past! \n Game over! ");
 		}
-		liveZombies.clear();
 		end = true;
+		triggered = true;
 		
 	}
 }

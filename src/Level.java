@@ -46,9 +46,9 @@ public class Level {
 		spot.killPlant();
 	}
 	
-	public void addToQ(Zombie toAdd, int laneI)
+	public void addToQ(Zombie toAdd)
 	{
-		grid[laneI].addToQueue(toAdd);
+		toAdd.lane.addToQueue(toAdd);
 	}
 	public void addToBalance(int toAdd) {
 		balance += toAdd;
@@ -60,5 +60,24 @@ public class Level {
 	public int getHeight()
 	{
 		return height;
+	}
+	public void allTurn()
+	{
+		for(Lane lane: grid)
+		{
+			for(Spot spot: lane.spots)
+			{
+				if(spot.getOccupied())spot.getPlant().turn(this);
+			}
+			for (Zombie zombie: lane.liveZombies)
+			{
+				zombie.turn(this);
+			}
+			if(lane.triggered)
+			{
+				lane.liveZombies.clear();
+				lane.triggered = false;
+			}
+		}
 	}
 }
