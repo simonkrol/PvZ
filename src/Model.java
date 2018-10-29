@@ -26,9 +26,8 @@ public class Model {
 		//ADD ZOMBIE IN QUEUE
 		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
 		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
-		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
-		lvl.addToQ(new DancerZombie(lvl.getLane(3)));
-		lvl.addToQ(new DancerZombie(lvl.getLane(4)));
+
+		
 		
 		
 		
@@ -70,34 +69,14 @@ public class Model {
 						lane.spawnZombieWave();
 					}
 					lvl.allTurn();
+					if(checkWin())
+					{
+						System.out.println("You Killed all the zombies! \n Congradulation you won!");
+						return;
+					}
 					if(checkFail())
 					{
-						System.out.println(
-								"_________uu$$$$$$$$$$$$$$$$$uu__________\n" + 
-								"_________u$$$$$$$$$$$$$$$$$$$$$u_________\n" + 
-								"________u$$$$$$$$$$$$$$$$$$$$$$$u________\n" + 
-								"_______u$$$$$$$$$$$$$$$$$$$$$$$$$u_______\n" + 
-								"_______u$$$$$$$$$$$$$$$$$$$$$$$$$u_______\n" + 
-								"_______u$$$$$$”___”$$$”___”$$$$$$u________\n" + 
-								"_______”$$$$”______u$u_______$$$$”________\n" + 
-								"________$$$————————u$u_______u$$$________\n" + 
-								"________$$$u______u$$$u______u$$$________\n" + 
-								"_________”$$$$uu$$$___$$$uu$$$$”_________\n" + 
-								"__________”$$$$$$$”___”$$$$$$$”__________\n" + 
-								"____________u$$$$$$$u$$$$$$$u____________\n" + 
-								"_____________u$”$”$”$”$”$”$u______________\n" + 
-								"__uuu________$$u$_$_$_$_$u$$_______uuu__\n" + 
-								"_u$$$$________$$$$$u$u$u$$$_______u$$$$_\n" + 
-								"__$$$$$uu______”$$$$$$$$$”_____uu$$$$$$__\n" + 
-								"u$$$$$$$$$$$uu____”\"”\"”____uuuu$$$$$$$$$$\n" + 
-								"$$$$”\"”$$$$$$$$$$uuu___uu$$$$$$$$$”\"”$$$”\n" + 
-								"_”\"”______”\"$$$$$$$$$$$uu_”\"$”\"”___________\n" + 
-								"___________uuuu_”\"$$$$$$$$$$uuu___________\n" + 
-								"__u$$$uuu$$$$$$$$$uu_”\"$$$$$$$$$$$uuu$$$__\n" + 
-								"__$$$$$$$$$$”\"”\"___________”\"$$$$$$$$$$$”__\n" + 
-								"___”$$$$$”______________________”\"$$$$”\"__");
 						System.out.println("Zombies have gotten past! \nGame over! ");
-						
 						return;
 					}
 					else
@@ -125,6 +104,18 @@ public class Model {
 			}
 		}
 		return false;
+	}
+	private boolean checkWin()
+	{
+		boolean allGood = true;
+		for(int i = 0; i < lvl.grid.length; i++)
+		{
+			if(lvl.grid[i].zombieQ.size() != 0 || lvl.grid[i].liveZombies.size() != 0)
+			{
+				allGood = false;
+			}
+		}
+		return allGood;
 	}
 	
 	
