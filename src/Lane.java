@@ -3,6 +3,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Lane {
+	protected boolean end = false;
 	Spot[] spots;
 	Queue<Zombie> zombieQ = new LinkedList<>();
 	ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
@@ -58,5 +59,14 @@ public class Lane {
 	protected void spawnZombieWave() 
 	{
 		liveZombies.add(zombieQ.poll());
+	}
+	protected void hitEnd()
+	{
+		if(end) {
+			System.out.println("Zombies have gotten past! \n Game over! ");
+		}
+		liveZombies.clear();
+		end = true;
+		
 	}
 }

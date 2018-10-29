@@ -2,6 +2,7 @@
 public class Zombie extends Entity {
 	protected int moveSpeed;
 	protected int position;
+	
 	public Zombie(int hp, int att, int def, int mov, double attSp, Lane lane) {
 		super(hp, lane, att, def, attSp);
 		this.moveSpeed = mov;
@@ -18,6 +19,9 @@ public class Zombie extends Entity {
 	public void move() {
 		//Need to add move function
 		this.position += this.moveSpeed;
+		if(position >= lane.distance) {
+			lane.hitEnd();
+		}
 		
 	}
 	public void attack(Level curLevel)
