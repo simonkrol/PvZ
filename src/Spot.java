@@ -3,8 +3,9 @@ public class Spot {
 	private Plant plant;
 	private boolean placeable;
 	
-	public Spot() {
+	public Spot(boolean place) {
 		plant = null;
+		placeable = place;
 	}
 	
 	

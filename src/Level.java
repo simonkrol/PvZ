@@ -1,11 +1,17 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Level {
 	public Lane [] grid;
 	public Integer balance;
 	public int width;
 	public int height;
+	public int turn;
+	public BufferedReader levelData;
+	public String curInstruction;
 	
-	public Level(int width, int height, int balance){
+	public Level(int width, int height, int balance, String fileName) throws IOException{
 		grid = new Lane[height];
 		for(int i = 0; i < height; i++)
 		{
@@ -14,8 +20,24 @@ public class Level {
 		this.balance = balance;
 		this.width = width;
 		this.height = height;
+		levelData = new BufferedReader(new FileReader(fileName)); 
+		curInstruction = levelData.readLine();
 	}
-	
+	public void spawnZombies() throws IOException
+	{
+		if(curInstruction == null)return;
+		if(curInstruction.split("-")[0].equals(Integer.toString(turn)))
+		{
+			String [] lanes = curInstruction.split("-");
+			for(int i = 1; i< lanes.length; i++)
+			{
+				System.out.println(curInstruction);
+				System.out.println(lanes[i]);
+				grid[Integer.parseInt(lanes[i])-1].spawnZombie();
+			}
+			curInstruction = levelData.readLine();
+		}
+	}
 	public Lane getLane(int laneIndex)
 	{
 		return grid[laneIndex];
@@ -40,12 +62,7 @@ public class Level {
 			grid[laneI].numPlants++;
 		}
 	}
-	
-	
-	public void addToQ(Zombie toAdd)
-	{
-		toAdd.lane.addToQueue(toAdd);
-	}
+
 	public void addToBalance(int toAdd) {
 		balance += toAdd;
 	}
@@ -57,7 +74,7 @@ public class Level {
 	{
 		return height;
 	}
-	public void allTurn()
+	public void allTurn() throws IOException
 	{
 		for(Lane lane: grid)
 		{
@@ -76,5 +93,7 @@ public class Level {
 				lane.triggered = false;
 			}
 		}
+		turn++;
+		spawnZombies();
 	}
 }

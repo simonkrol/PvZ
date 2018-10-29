@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner; 
 public class Model {
 	boolean inProgress;
@@ -5,7 +6,7 @@ public class Model {
 	private Scanner scan;
 	private Gui gui;
 	
-	public Model(){
+	public Model() throws IOException{
 		scan = new Scanner(System.in);
 		
 		while(inProgress == false){
@@ -16,18 +17,12 @@ public class Model {
 			}
 		}
 	}
-	public void startGame()
+	public void startGame() throws IOException
 	{
 		this.inProgress = true;
-		lvl = new Level(8, 6, 125);
+		lvl = new Level(8, 6, 125, "Level.txt");
 		gui = new Gui(lvl);
 		gui.update();
-		
-		//ADD ZOMBIE IN QUEUE
-		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
-		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
-		lvl.addToQ(new EmptyZombie(lvl.getLane(0)));
-		lvl.addToQ(new DancerZombie(lvl.getLane(0)));
 		
 		System.out.println("Game Started. Prepare defenses. Balance: " + lvl.balance);
 		
@@ -62,18 +57,17 @@ public class Model {
 				
 					break;
 				case "e":
-					for(Lane lane: lvl.grid) 
-					{
-						lane.spawnZombieWave();
-					}
 					lvl.allTurn();
+					lvl.spawnZombies();
 					if(checkWin())
 					{
+						gui.update();
 						System.out.println("You Killed all the zombies! \n Congradulation you won!");
 						return;
 					}
 					if(checkFail())
 					{
+						gui.update();
 						System.out.println("Zombies have gotten past! \nGame over! ");
 						return;
 					}
@@ -108,12 +102,12 @@ public class Model {
 		boolean allGood = true;
 		for(int i = 0; i < lvl.grid.length; i++)
 		{
-			if(lvl.grid[i].zombieQ.size() != 0 || lvl.grid[i].liveZombies.size() != 0)
-			{
-				allGood = false;
-			}
+			//if(lvl.grid[i].zombieQ.size() != 0 || lvl.grid[i].liveZombies.size() != 0)
+			//{
+			//	allGood = false;
+			//}
 		}
-		return allGood;
+		return false;
 	}
 	
 	
@@ -121,7 +115,7 @@ public class Model {
 	
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 	
 		new Model();
 		

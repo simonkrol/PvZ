@@ -6,7 +6,7 @@ public abstract class Zombie extends Entity {
 	public Zombie(int hp, int att, int def, int mov, double attSp, Lane lane) {
 		super(hp, lane, att, def, attSp);
 		this.moveSpeed = mov;
-		this.position = -250; //Distance from the right side
+		this.position = 0; //Distance from the right side
 	}
 	public int getMoveSpeed() {
 		return moveSpeed;
