@@ -2,96 +2,120 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Level {
-	public Lane [] grid;
-	public Integer balance;
-	public int width;
-	public int height;
-	public int turn;
-	public BufferedReader levelData;
-	public String curInstruction;
-	
-	public Level(int width, int height, int balance, String fileName) throws IOException{
+public class Level
+{
+	private Lane[] grid;
+	private Integer balance;
+	private int width;
+	private int height;
+	private int turn;
+	private BufferedReader levelData;
+	private String curInstruction;
+
+	protected Level(int width, int height, int balance, String fileName) throws IOException
+	{
 		grid = new Lane[height];
-		for(int i = 0; i < height; i++)
+		for (int i = 0; i < height; i++)
 		{
 			grid[i] = new Lane(width, 2);
 		}
 		this.balance = balance;
 		this.width = width;
 		this.height = height;
-		levelData = new BufferedReader(new FileReader(fileName)); 
+		levelData = new BufferedReader(new FileReader(fileName));
 		curInstruction = levelData.readLine();
 	}
-	public void spawnZombies() throws IOException
+
+	protected void spawnZombies() throws IOException
 	{
-		if(curInstruction == null)return;
-		if(curInstruction.split("-")[0].equals(Integer.toString(turn)))
+		if (curInstruction == null)
+			return;
+		if (curInstruction.split("-")[0].equals(Integer.toString(turn)))
 		{
-			String [] lanes = curInstruction.split("-");
-			for(int i = 1; i< lanes.length; i++)
+			String[] lanes = curInstruction.split("-");
+			for (int i = 1; i < lanes.length; i++)
 			{
-				grid[Integer.parseInt(lanes[i])-1].spawnZombie();
+				grid[Integer.parseInt(lanes[i]) - 1].spawnZombie();
 			}
 			curInstruction = levelData.readLine();
 		}
 	}
-	public Lane getLane(int laneIndex)
+
+	protected Lane getLane(int laneIndex)
 	{
 		return grid[laneIndex];
 	}
-	private Spot getSpot(int laneIndex, int spotIndex)
+
+	protected Spot getSpot(int laneIndex, int spotIndex)
 	{
 		return grid[laneIndex].getSpot(spotIndex);
 	}
-	
-	public void placePlant(Plant plant,int laneI,int spotI)
+
+	protected void placePlant(Plant plant, int laneI, int spotI)
 	{
-		if(plant.getValue() > balance)
+		if (plant.getValue() > balance)
 		{
 			System.out.println("Insufficient funds");
 			return;
 		}
 		Spot spot = getSpot(laneI, spotI);
-		if(spot.addPlant(plant))
+		if (spot.addPlant(plant))
 		{
 			plant.setLocation(spot);
 			this.addToBalance(-plant.getValue());
-			grid[laneI].numPlants++;
 		}
 	}
 
-	public void addToBalance(int toAdd) {
+	protected void addToBalance(int toAdd)
+	{
 		balance += toAdd;
 	}
-	public int getWidth()
+
+	protected int getWidth()
 	{
 		return width;
 	}
-	public int getHeight()
+
+	protected int getHeight()
 	{
 		return height;
 	}
-	public void allTurn() throws IOException
+
+	protected void allTurn() throws IOException
 	{
-		for(Lane lane: grid)
+		for (Lane lane : grid)
 		{
-			for(Spot spot: lane.spots)
-			{
-				if(spot.getOccupied())spot.getPlant().turn(this);
-				
-			}
-			for (Zombie zombie: lane.liveZombies)
-			{
-				zombie.turn(this);
-			}
-			if(lane.triggered)
-			{
-				lane.liveZombies.clear();
-				lane.triggered = false;
-			}
+			lane.allTurn(this);
 		}
 		turn++;
 		spawnZombies();
+	}
+
+	protected int getBalance()
+	{
+		return balance;
+	}
+
+	protected boolean checkFail()
+	{
+		for (int i = 0; i < grid.length; i++)
+		{
+			if (grid[i].checkFail())
+				return true;
+		}
+		return false;
+	}
+
+	protected boolean checkWin()
+	{
+		if (curInstruction != null)
+			return false;
+		for (int i = 0; i < grid.length; i++)
+		{
+			if (grid[i].checkNoWin())
+				return false;
+
+		}
+		return true;
 	}
 }
