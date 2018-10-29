@@ -31,7 +31,7 @@ public class Model {
 		
 		
 		
-		System.out.println("Game Started. Prepare defenses. Balance: 90");
+		System.out.println("Game Started. Prepare defenses. Balance: " + lvl.balance);
 		
 		boolean editing = true;
 		
@@ -46,7 +46,7 @@ public class Model {
 					System.out.println("Enter spot position: ");
 					int spot = scan.nextInt() - 1;
 				
-					System.out.println("Enter Type of Plant, (s)unflower[50] or (p)eashooter[40]: ");
+					System.out.println("Enter Type of Plant, (s)unflower[" + Sunflower.DEFAULT_VALUE + "] or (p)eashooter[" + Peashooter.DEFAULT_VALUE +"]: ");
 					String type = scan.next();
 					switch (type){
 						case "s":

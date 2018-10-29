@@ -1,7 +1,6 @@
 public class Gui {
 	private String laneLine = "";
 	private Level level;
-	private int turnNum = 0;
 	
 	public Gui(Level lvl)
 	{
@@ -15,8 +14,7 @@ public class Gui {
 	
 	protected void update()
 	{
-		turnNum++;
-		System.out.println("Turn: " + turnNum);
+		System.out.println("Current Sunshine: " + level.balance);
 		System.out.println(laneLine);
 		for(int i = 0; i < level.getHeight(); i ++)
 		{
