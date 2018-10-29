@@ -1,4 +1,8 @@
-
+/**
+ * The Peashooter class, contains information about the Peashooter plant
+ * @author Simon Krol
+ * @version Oct 29, 2018
+ */
 public class Peashooter extends Plant
 {
 	private static final int DEFAULT_HP = 5;
@@ -8,17 +12,18 @@ public class Peashooter extends Plant
 	protected static final int DEFAULT_VALUE = 40;
 	private static final int DEFAULT_DELAY = 5;
 
+	/**
+	 * Creates a peashooter with default values
+	 * @param lane The lane the peashooter is in
+	 */
 	protected Peashooter(Lane lane)
 	{
 		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, lane, DEFAULT_VALUE, DEFAULT_DELAY);
 	}
 
-	protected Peashooter(int maxHP, int att, int def, double attSp, Lane lane, int value, int delay)
-	{
-		super(maxHP, att, def, attSp, lane, value, delay);
-		// TODO Auto-generated constructor stub
-	}
-
+	/**
+	 * Shoot a pea at the closest zombie in the lane
+	 */
 	protected void attack(Level curLevel)
 	{
 		this.lane.damageZombie(this.attack);

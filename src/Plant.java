@@ -1,10 +1,24 @@
-
+/**
+ * Abstract class that contains all Plants within the game (Peashooter and Sunflower)
+ * @author Simon Krol
+ * @version Oct 29, 2018
+ */
 public abstract class Plant extends Entity
 {
 	protected Spot location;
 	protected int value;
 	protected int delay;
 
+	/**
+	 * Constructor for plant (Only called from subclasses)
+	 * @param maxHP Maximum HP
+	 * @param att Attack Damage
+	 * @param def Defence(Not implemented)
+	 * @param attSp Attack Speed
+	 * @param lane Lane found within
+	 * @param value Cost to create
+	 * @param delay Delay until you can place another (Not implemented)
+	 */
 	protected Plant(int maxHP, int att, int def, double attSp, Lane lane, int value, int delay)
 	{
 		super(maxHP, lane, att, def, attSp);
@@ -12,26 +26,45 @@ public abstract class Plant extends Entity
 		this.delay = delay;
 	}
 
+	/**
+	 * Return the current spot the plant is on
+	 * @return The current spto
+	 */
 	protected Spot getLocation()
 	{
 		return location;
 	}
 
+	/**
+	 * Set the plant's current spot
+	 * @param location The spot to be changed to
+	 */
 	protected void setLocation(Spot location)
 	{
 		this.location = location;
 	}
 
+	/**
+	 * Get the price of the plant
+	 * @return Plants price
+	 */
 	public int getValue()
 	{
 		return value;
 	}
 
+	/**
+	 * Kill the plant and remove it from the board
+	 */
 	protected void die()
 	{
 		location.killPlant();
 	}
 
+	/**
+	 * Cause the plant to perform any of its actions
+	 * @param curLevel The current level
+	 */
 	protected void turn(Level curLevel)
 	{
 		if (lane.noZombies())

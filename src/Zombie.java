@@ -1,9 +1,22 @@
-
+/**
+ * Abstract class that contains all Zombies within the game (BasicZombie)
+ * @author Simon Krol
+ * @version Oct 29, 2018
+ */
 public abstract class Zombie extends Entity
 {
 	protected int moveSpeed;
 	protected int position;
 
+	/**
+	 * Create a zombie
+	 * @param hp Zombies current hp
+	 * @param att Attack damage
+	 * @param def Defence (Not implemented)
+	 * @param mov Movement speed
+	 * @param attSp Attack speed
+	 * @param lane Lane the zombie is in
+	 */
 	protected Zombie(int hp, int att, int def, int mov, double attSp, Lane lane)
 	{
 		super(hp, lane, att, def, attSp);
@@ -11,11 +24,19 @@ public abstract class Zombie extends Entity
 		this.position = 0; // Distance from the right side
 	}
 
+	/**
+	 * Return zombies movement speed
+	 * @return Movement speed
+	 */
 	protected int getMoveSpeed()
 	{
 		return moveSpeed;
 	}
 
+	/**
+	 * Cause the zombie to perform any of its actions
+	 * @param curLevel The current level
+	 */
 	protected void turn(Level curLevel)
 	{
 		this.move();
@@ -30,6 +51,9 @@ public abstract class Zombie extends Entity
 		}
 	}
 
+	/**
+	 * Try to move the zombie forward in the lane or attack the target in front of it
+	 */
 	protected void move()
 	{
 
@@ -47,11 +71,17 @@ public abstract class Zombie extends Entity
 
 	}
 
+	/**
+	 * Remove the zombie from the lane
+	 */
 	protected void die()
 	{
 		lane.killZombie(this);
 	}
 
+	/**
+	 * Attack the front plant in the lane
+	 */
 	protected void attack(Level curLevel)
 	{
 		lane.getFrontPlant().takeDamage(attack);

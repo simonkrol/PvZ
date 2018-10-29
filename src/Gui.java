@@ -1,8 +1,17 @@
+/**
+ * The Text based GUI being used to play Milestone 1
+ * @author Boyan Siromahov
+ * @version Oct 29, 2019
+ */
 public class Gui
 {
 	private String laneLine = "";
 	private Level level;
 
+	/**
+	 * Constructor for the gui class
+	 * @param lvl The current level being played
+	 */
 	protected Gui(Level lvl)
 	{
 		this.level = lvl;
@@ -13,6 +22,9 @@ public class Gui
 
 	}
 
+	/**
+	 * Update the board with any new information about plants, your balance or zombies
+	 */
 	protected void update()
 	{
 		System.out.println("Current Sunshine: " + level.getBalance());

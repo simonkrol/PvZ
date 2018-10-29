@@ -1,4 +1,8 @@
-
+/**
+ * The Sunflower class, contains information about the Peashooter plant
+ * @author Simon Krol
+ * @version Oct 29, 2018
+ */
 public class Sunflower extends Plant
 {
 	private static final int DEFAULT_HP = 4;
@@ -8,17 +12,29 @@ public class Sunflower extends Plant
 	protected static final int DEFAULT_VALUE = 50;
 	private static final int DEFAULT_DELAY = 5;
 
+	/**
+	 * Creates a sunflower with default values
+	 * @param lane The lane the sunflower is in
+	 */
 	protected Sunflower(Lane lane)
 	{
 		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, lane, DEFAULT_VALUE, DEFAULT_DELAY);
 	}
 
+	/**
+	 * Add sun to the players balance
+	 * @param curLevel The current level
+	 */
 	protected void attack(Level curLevel)
 	{
 		System.out.println("Sunflower has given you some sun");
 		curLevel.addToBalance(this.attack);
 	}
 
+	/**
+	 * Cause the sunflower to perform any required actions
+	 * @param curLevel The current level
+	 */
 	protected void turn(Level curLevel)
 	{
 		attackState += this.attackSpeed;

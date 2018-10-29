@@ -1,3 +1,8 @@
+/**
+ * The level class, contains all info about the current game being played
+ * @author Boyan Siromahov and Simon Krol
+ * @version Oct 29, 2018
+ */
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,6 +17,14 @@ public class Level
 	private BufferedReader levelData;
 	private String curInstruction;
 
+	/**
+	 * Construct a level
+	 * @param width The width in spots, of the level
+	 * @param height The height in spots, of the level
+	 * @param balance The player's starting sun balance
+	 * @param fileName The file storing the level's zombie data
+	 * @throws IOException
+	 */
 	protected Level(int width, int height, int balance, String fileName) throws IOException
 	{
 		grid = new Lane[height];
@@ -26,6 +39,10 @@ public class Level
 		curInstruction = levelData.readLine();
 	}
 
+	/**
+	 * Check the levelData and spawn any zombies intended for the given turn
+	 * @throws IOException
+	 */
 	protected void spawnZombies() throws IOException
 	{
 		if (curInstruction == null)
@@ -41,16 +58,33 @@ public class Level
 		}
 	}
 
+	/**
+	 * Return a given lane
+	 * @param laneIndex The index of the lane to be returned
+	 * @return a given Lane
+	 */
 	protected Lane getLane(int laneIndex)
 	{
 		return grid[laneIndex];
 	}
 
+	/**
+	 * Return a given spot
+	 * @param laneIndex The index of the lane the spot is contained within
+	 * @param spotIndex The idndex of the spot to be returned
+	 * @return a given Spot
+	 */
 	protected Spot getSpot(int laneIndex, int spotIndex)
 	{
 		return grid[laneIndex].getSpot(spotIndex);
 	}
 
+	/**
+	 * Try to place a plant at the given indices.
+	 * @param plant The plant being placed
+	 * @param laneI The lane index of the plants location
+	 * @param spotI The spot index of the plants location
+	 */
 	protected void placePlant(Plant plant, int laneI, int spotI)
 	{
 		if (plant.getValue() > balance)
@@ -66,21 +100,37 @@ public class Level
 		}
 	}
 
+	/**
+	 * Add sun to the player's balance
+	 * @param toAdd The amount fo be added
+	 */
 	protected void addToBalance(int toAdd)
 	{
 		balance += toAdd;
 	}
 
+	/**
+	 * Return the width in spots, of the level
+	 * @return Width of the level
+	 */
 	protected int getWidth()
 	{
 		return width;
 	}
 
+	/**
+	 * Return the height in spots, of the level
+	 * @return Height of the level
+	 */
 	protected int getHeight()
 	{
 		return height;
 	}
 
+	/**
+	 * Iterate through all lanes in the level and run all their turns, also spawn any new zombies
+	 * @throws IOException
+	 */
 	protected void allTurn() throws IOException
 	{
 		for (Lane lane : grid)
@@ -91,11 +141,19 @@ public class Level
 		spawnZombies();
 	}
 
+	/**
+	 * Return the user's current balance
+	 * @return Users balance
+	 */
 	protected int getBalance()
 	{
 		return balance;
 	}
 
+	/**
+	 * Check if the level has been failed. The level has been failed if any lane has failed.
+	 * @return true if failed, false otherwise
+	 */
 	protected boolean checkFail()
 	{
 		for (int i = 0; i < grid.length; i++)
@@ -106,6 +164,10 @@ public class Level
 		return false;
 	}
 
+	/**
+	 * Check if the player has won
+	 * @return true if won, false otherwise
+	 */
 	protected boolean checkWin()
 	{
 		if (curInstruction != null)

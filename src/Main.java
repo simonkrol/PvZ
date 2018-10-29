@@ -1,3 +1,8 @@
+/**
+ * The main class, creates the gui object and the level object and accepts user input (Pretty much the controller)
+ * @author Gordon MacDonald and Simon Krol
+ * @version Oct 29, 2018
+ */
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -8,6 +13,10 @@ public class Main
 	private Scanner scan;
 	private Gui gui;
 
+	/**
+	 * Creates a new main object
+	 * @throws IOException
+	 */
 	private Main() throws IOException
 	{
 		scan = new Scanner(System.in);
@@ -23,6 +32,10 @@ public class Main
 		}
 	}
 
+	/**
+	 * Start the game
+	 * @throws IOException
+	 */
 	private void startGame() throws IOException
 	{
 		this.inProgress = true;
@@ -94,6 +107,11 @@ public class Main
 		}
 	}
 
+	/**
+	 * Main method, creates a new main object and allows the user to play
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException
 	{
 
