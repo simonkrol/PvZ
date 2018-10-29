@@ -1,12 +1,9 @@
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class Lane {
 	protected int endState = 0;
 	protected boolean triggered = false;
 	Spot[] spots;
-	Queue<Zombie> zombieQ = new LinkedList<>();
 	ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
 	protected int distance;
 	protected int numPlants = 0;
@@ -14,21 +11,16 @@ public class Lane {
 	
 	public Lane() 
 	{
-		this(6);
+		this(8, 2);
 	}
 	
-	public Lane(int length)
+	public Lane(int length, int unplaceable)
 	{
 		spots = new Spot[length];
 		for(int i = 0; i < length; i ++) {
-			spots[i] = new Spot();
+			spots[i] = new Spot(length-i>unplaceable);
 		}
 		distance = length * 250;//The distance from side to side;
-	}
-	
-	public void addToQueue(Zombie zombie)
-	{
-		zombieQ.add(zombie);
 	}
 	
 	public Spot getSpot(int index)
@@ -52,15 +44,9 @@ public class Lane {
 		}
 		closest.takeDamage(damage);
 	}
-	protected void spawnZombieWave() 
+	protected void spawnZombie()
 	{
-		if(zombieQ.size()>0) {
-			if(zombieQ.peek() instanceof EmptyZombie)zombieQ.remove();
-			else
-			{
-				liveZombies.add(zombieQ.poll());
-			}
-		}
+		liveZombies.add(new DancerZombie(this));
 	}
 	protected void hitEnd()
 	{

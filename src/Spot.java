@@ -1,9 +1,11 @@
 
 public class Spot {
 	private Plant plant;
+	private boolean placeable;
 	
-	public Spot() {
+	public Spot(boolean place) {
 		plant = null;
+		placeable = place;
 	}
 	
 	
@@ -16,11 +18,17 @@ public class Spot {
 	}
 	
 	public boolean addPlant(Plant toAdd) {
+		if(!placeable)
+		{
+			System.out.println("You may not place a plant in this column.");
+			return false;
+		}
 		if(!this.getOccupied()) 
 		{
 			this.plant = toAdd;
 			return true;
 		}
+		System.out.println("This Spot already has a plant in it.");
 		return false;
 		
 	}
