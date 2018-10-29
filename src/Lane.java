@@ -60,9 +60,6 @@ public class Lane {
 	protected void hitEnd()
 	{
 		if(triggered)return;
-		if(end) {
-			System.out.println("Zombies have gotten past! \n Game over! ");
-		}
 		end = true;
 		triggered = true;
 		

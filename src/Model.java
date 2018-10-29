@@ -64,11 +64,15 @@ public class Model {
 						lane.spawnZombieWave();
 					}
 					lvl.allTurn();
-//					if(checkFail())
-//					{
-//						return;
-//					}
-					gui.update();
+					if(checkFail())
+					{
+						System.out.println("Zombies have gotten past! \nGame over! ");
+						return;
+					}
+					else
+					{
+						gui.update();
+					}
 			}
 		
 		
