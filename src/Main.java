@@ -53,7 +53,7 @@ public class Main
 			String c = scan.next();
 			switch (c)
 			{
-				case "p":
+				case "p": //Place plant
 					System.out.println("Enter lane number: ");
 					int laneNum = scan.nextInt() - 1;
 					System.out.println("Enter spot position: ");
@@ -78,7 +78,7 @@ public class Main
 					}
 
 					break;
-				case "e":
+				case "e": //End turn
 					lvl.allTurn();
 					lvl.spawnZombies();
 					if (lvl.checkWin())
@@ -97,11 +97,11 @@ public class Main
 						gui.update();
 					}
 					break;
-				case "n":
+				case "n": //New game
 					System.out.println("Not implimented in this milestone");
 					break;
 
-				case "q":
+				case "q": //Quit game 
 					return;
 			}
 		}

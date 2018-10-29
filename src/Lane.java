@@ -136,7 +136,7 @@ public class Lane
 		{
 			zombie.turn(curLevel);
 		}
-		if (triggered)
+		if (triggered) //check if lawnmower has been triggered
 		{
 			liveZombies.clear();
 			triggered = false;
@@ -191,7 +191,7 @@ public class Lane
 		String laneInfo = "";
 		for (Spot spot : spots)
 		{
-			if (spot.getOccupied())
+			if (spot.getOccupied()) //check all spots
 			{
 				if (spot.getPlant() instanceof Sunflower)
 				{
@@ -204,15 +204,15 @@ public class Lane
 			{
 				boolean zombieAdded = false;
 				int zombieStack = 0;
-				for (Zombie zmb : liveZombies)
+				for (Zombie zmb : liveZombies) //Check all zombies
 				{
-					if (zmb != null && zmb.position == distance - curSpot * 250)
+					if (zmb != null && zmb.position == distance - curSpot * 250) //Currently using a coordinate system, Later will be replaced with pixel range
 					{
 						zombieAdded = true;
 						zombieStack++;
 					}
 				}
-				if (zombieStack > 0)
+				if (zombieStack > 0) //Check for zombies stacking up in one spot
 				{
 					laneInfo += "|" + zombieStack + "z";
 				}

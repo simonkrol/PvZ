@@ -87,7 +87,7 @@ public class Level
 	 */
 	protected void placePlant(Plant plant, int laneI, int spotI)
 	{
-		if (plant.getValue() > balance)
+		if (plant.getValue() > balance) //check if player has enough to purchase the plant
 		{
 			System.out.println("Insufficient funds");
 			return;

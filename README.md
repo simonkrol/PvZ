@@ -1,10 +1,10 @@
-# PvZ - SYSC3110 Plants vs Zombies Software Development Project
+# PvZ - SYSC3110 Plants vs Zombies Software Development Project - [Github](https://github.com/simonkrol/PvZ)
 
 ### Authors:
-- Simon Krol -simonkrol
-- Boyan Siromahov - BoyanSiromahov
-- Shaun Gordon - swim224
-- Gordon MacDonald - Gordon-MacDonald
+- [Simon Krol](https://github.com/simonkrol)
+- [Boyan Siromahov](https://github.com/BoyanSiromahov)
+- [Shaun Gordon](https://github.com/swim224)
+- [Gordon MacDonald](https://github.com/Gordon-MacDonald)
 
 ### Changes made in Deliverable 1:
 - Added base model(Plants, Zombies, Level Grid)

@@ -5,7 +5,7 @@
  */
 public class Gui
 {
-	private String laneLine = "";
+	private String laneLine = ""; //String containing the horizontal line lengths
 	private Level level;
 
 	/**
@@ -31,7 +31,7 @@ public class Gui
 		System.out.println(laneLine);
 		for (int i = 0; i < level.getHeight(); i++)
 		{
-			System.out.println(level.getLane(i).getInfo());// contains the important info
+			System.out.println(level.getLane(i).getInfo()); // contains the info about how many zombies and plants there are in a lane
 			System.out.println(laneLine);
 		}
 	}
