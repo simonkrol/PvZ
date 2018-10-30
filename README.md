@@ -36,3 +36,5 @@
 - Implement continuous integration on github
 
 Readme Author: Simon Krol
+JavaDoc Documentation Author: Simon Krol
+UML Diagram and Sequence Diagram Author: Shaun Gordon
