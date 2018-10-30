@@ -53,7 +53,7 @@ public class Main
 			String c = scan.next();
 			switch (c)
 			{
-				case "p": //Place plant
+				case "p": //Place plants
 					System.out.println("Enter lane number: ");
 					int laneNum = scan.nextInt() - 1;
 					System.out.println("Enter spot position: ");
