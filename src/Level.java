@@ -9,11 +9,11 @@ import java.io.IOException;
 
 public class Level
 {
-	private Lane[] grid;
+	protected Lane[] grid;
 	private Integer balance;
 	private int width;
 	private int height;
-	private int turn;
+	protected int turn;
 	private BufferedReader levelData;
 	private String curInstruction;
 

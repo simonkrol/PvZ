@@ -9,8 +9,8 @@ public class Lane
 {
 	private int endState = 0;
 	private boolean triggered = false;
-	private Spot[] spots;
-	private ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
+	protected Spot[] spots;
+	protected ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
 	private int distance;
 	
 	/**

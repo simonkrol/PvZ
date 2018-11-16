@@ -3,6 +3,8 @@
  * @author Gordon MacDonald and Simon Krol
  * @version Oct 29, 2018
  */
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -11,7 +13,7 @@ public class Main
 	private boolean inProgress;
 	private Level lvl;
 	private Scanner scan;
-	private Gui gui;
+	private View gui;
 
 	/**
 	 * Creates a new main object
@@ -40,8 +42,8 @@ public class Main
 	{
 		this.inProgress = true;
 		lvl = new Level(8, 6, 125, "Level.txt");
-		gui = new Gui(lvl);
-		gui.update();
+		gui = new View(lvl);
+		//gui.paint();
 
 		System.out.println("Game Started. Prepare defenses. Balance: " + lvl.getBalance());
 
@@ -114,9 +116,7 @@ public class Main
 	 */
 	public static void main(String[] args) throws IOException
 	{
-
 		new Main();
-
 	}
 
 }

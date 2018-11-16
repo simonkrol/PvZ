@@ -87,5 +87,12 @@ public abstract class Zombie extends Entity
 		lane.getFrontPlant().takeDamage(attack);
 
 	}
-
+	
+	/**
+	 * returns the current position of the zombie
+	 * @return returns the poisiton of the zombie
+	 */
+	protected int getPosition(){
+		return position;
+	}
 }
