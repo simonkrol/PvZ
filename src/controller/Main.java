@@ -48,7 +48,7 @@ public class Main
 	private void startGame() throws IOException
 	{
 		this.inProgress = true;
-		lvl = new Level(8, 6, 125, "Assets/Levels/Level.txt");
+		lvl = new Level(8, 6, 125, "Assets/Levels/testLevel.txt");
 		gui = new View(lvl);
 		//gui.paint();
 

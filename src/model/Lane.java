@@ -34,7 +34,7 @@ public class Lane
 		{
 			spots[i] = new Spot(length - i > unplaceable);
 		}
-		distance = length * 250;// The distance from side to side;
+		distance = length * 125;// The distance from side to side;
 	}
 
 	/**
@@ -99,9 +99,9 @@ public class Lane
 	 * @param position The position of the zombie
 	 * @return True if in front of plant, false otherwise
 	 */
-	protected Boolean checkFrontPlant(int position)
+	protected boolean checkFrontPlant(int position)
 	{
-		int index = getSpots().length - 2 - (int) Math.floor(position / 250.0);
+		int index = (int)((distance - position)/125.0) -1;
 		if (index < 0 || index >= getSpots().length)
 			return false;
 		return getSpots()[index].getOccupied();

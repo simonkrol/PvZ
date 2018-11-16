@@ -47,7 +47,6 @@ public class Level
 	 */
 	public void spawnZombies() throws IOException
 	{
-		System.out.println(curInstruction);
 		if (curInstruction == null)
 			return;
 		if (curInstruction.split("-")[0].equals(Integer.toString(turn)))

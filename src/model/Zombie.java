@@ -59,11 +59,12 @@ public abstract class Zombie extends Entity
 	protected void move()
 	{
 
+		System.out.println(this.position);
+		System.out.println(lane.checkFrontPlant(this.position));
 		if (lane.checkFrontPlant(this.position))return;
 		position += moveSpeed;
-		if (position >= lane.getDistance())
+		if (position > lane.getDistance())
 		{
-			System.out.println("Hit end");
 			lane.hitEnd();
 		}
 

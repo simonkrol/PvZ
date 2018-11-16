@@ -29,7 +29,6 @@ public class Sunflower extends Plant
 	 */
 	protected void attack(Level curLevel)
 	{
-		System.out.println("Sunflower has given you some sun");
 		curLevel.addToBalance(this.attack);
 	}
 
