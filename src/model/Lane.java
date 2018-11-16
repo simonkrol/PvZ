@@ -10,8 +10,8 @@ public class Lane
 {
 	private int endState = 0;
 	private boolean triggered = false;
-	public Spot[] spots;
-	public ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
+	private Spot[] spots;
+	private ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
 	private int distance;
 	
 	/**
@@ -27,7 +27,7 @@ public class Lane
 	 * @param length The number of spots in the lane
 	 * @param unplaceable The number of spots at the end of the lane that plants may not live on
 	 */
-	protected Lane(int length, int unplaceable)
+	public Lane(int length, int unplaceable)
 	{
 		spots = new Spot[length];
 		for (int i = 0; i < length; i++)
@@ -44,13 +44,13 @@ public class Lane
 	 */
 	protected Spot getSpot(int index)
 	{
-		return spots[index];
+		return getSpots()[index];
 	}
 	/**
 	 * Returns the length of the lane in distance, where each spot is 250 units wide
 	 * @return The length of the lane
 	 */
-	public int getDistance()
+	protected int getDistance()
 	{
 		return distance;
 	}
@@ -61,10 +61,10 @@ public class Lane
 	 */
 	protected void damageZombie(int damage)
 	{
-		if (liveZombies.size() == 0)
+		if (getLiveZombies().size() == 0)
 			return;
-		Zombie closest = liveZombies.get(0);
-		for (Zombie zmb : liveZombies)
+		Zombie closest = getLiveZombies().get(0);
+		for (Zombie zmb : getLiveZombies())
 		{
 			if (zmb.position > closest.position)
 			{
@@ -79,7 +79,7 @@ public class Lane
 	 */
 	protected void spawnZombie()
 	{
-		liveZombies.add(new BasicZombie(this));
+		getLiveZombies().add(new BasicZombie(this));
 	}
 
 	/**
@@ -101,10 +101,10 @@ public class Lane
 	 */
 	protected Boolean checkFrontPlant(int position)
 	{
-		int index = spots.length - 2 - (int) Math.floor(position / 250.0);
-		if (index < 0 || index >= spots.length)
+		int index = getSpots().length - 2 - (int) Math.floor(position / 250.0);
+		if (index < 0 || index >= getSpots().length)
 			return false;
-		return spots[index].getOccupied();
+		return getSpots()[index].getOccupied();
 	}
 
 	/**
@@ -113,10 +113,10 @@ public class Lane
 	 */
 	protected Plant getFrontPlant()
 	{
-		for (int i = spots.length - 1; i >= 0; i--)
+		for (int i = getSpots().length - 1; i >= 0; i--)
 		{
-			if (spots[i].getOccupied())
-				return spots[i].getPlant();
+			if (getSpots()[i].getOccupied())
+				return getSpots()[i].getPlant();
 		}
 		return null;
 	}
@@ -127,19 +127,19 @@ public class Lane
 	 */
 	protected void allTurn(Level curLevel)
 	{
-		for (Spot spot : spots)
+		for (Spot spot : getSpots())
 		{
 			if (spot.getOccupied())
 				spot.getPlant().turn(curLevel);
 
 		}
-		for (Zombie zombie : liveZombies)
+		for (Zombie zombie : getLiveZombies())
 		{
 			zombie.turn(curLevel);
 		}
 		if (triggered) //check if lawnmower has been triggered
 		{
-			liveZombies.clear();
+			getLiveZombies().clear();
 			triggered = false;
 		}
 	}
@@ -159,7 +159,7 @@ public class Lane
 	 */
 	protected boolean checkNoWin()
 	{
-		if (liveZombies.size() != 0)
+		if (getLiveZombies().size() != 0)
 			return true;
 		return false;
 	}
@@ -170,7 +170,7 @@ public class Lane
 	 */
 	protected boolean noZombies()
 	{
-		return liveZombies.size() == 0;
+		return getLiveZombies().size() == 0;
 	}
 
 	/**
@@ -179,7 +179,7 @@ public class Lane
 	 */
 	protected void killZombie(Zombie toKill)
 	{
-		liveZombies.remove(toKill);
+		getLiveZombies().remove(toKill);
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class Lane
 	{
 		int curSpot = 1;
 		String laneInfo = "";
-		for (Spot spot : spots)
+		for (Spot spot : getSpots())
 		{
 			if (spot.getOccupied()) //check all spots
 			{
@@ -205,7 +205,7 @@ public class Lane
 			{
 				boolean zombieAdded = false;
 				int zombieStack = 0;
-				for (Zombie zmb : liveZombies) //Check all zombies
+				for (Zombie zmb : getLiveZombies()) //Check all zombies
 				{
 					if (zmb != null && zmb.position == distance - curSpot * 250) //Currently using a coordinate system, Later will be replaced with pixel range
 					{
@@ -227,13 +227,29 @@ public class Lane
 		}
 		return laneInfo + "|";
 	}
-	public int getEndState()
+	protected int getEndState()
 	{
 		return endState;
 	}
-	public int getNumZombies()
+	protected int getNumZombies()
 	{
-		return liveZombies.size();
+		return getLiveZombies().size();
 	}
+	public void addZombie(Zombie toAdd)
+	{
+		getLiveZombies().add(toAdd);
+	}
+
+	public Spot[] getSpots()
+	{
+		return spots;
+	}
+
+	public ArrayList<Zombie> getLiveZombies()
+	{
+		return liveZombies;
+	}
+
+
 
 }

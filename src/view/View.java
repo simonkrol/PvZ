@@ -128,7 +128,7 @@ class GameCanvas extends Canvas {
 		
 		int x = 0, y = 0;
 		for (Lane lane : level.grid) {
-			for (Spot spot : lane.spots) //draw plants
+			for (Spot spot : lane.getSpots()) //draw plants
 			{ 
 				g.drawImage(grass, x, y, this);
 				
@@ -144,7 +144,7 @@ class GameCanvas extends Canvas {
 				x += 125;
 			}
 			
-			for(Zombie zmb : lane.liveZombies) {
+			for(Zombie zmb : lane.getLiveZombies()) {
 				int pos = zmb.getPosition();
 				if(level.getWidth()*125 - zmb.getPosition() < 0) {
 					pos = 0;

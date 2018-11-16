@@ -1,5 +1,4 @@
-package testing;
-import model.*;
+package model;
 
 
 import static org.junit.Assert.*;
@@ -23,7 +22,7 @@ public class TestZombie
 		testLane = testLevel.getLane(0);
 		sunny = new Sunflower(testLane);
 		peter = new BasicZombie(testLane);
-		testLane.liveZombies.add(peter);
+		testLane.addZombie(peter);
 	}
 	@Test
 	public void testMovement()
