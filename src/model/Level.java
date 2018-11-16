@@ -94,10 +94,8 @@ public class Level
 			System.out.println("Insufficient funds");
 			return;
 		}
-		Spot spot = getSpot(laneI, spotI);
-		if (spot.addPlant(plant))
+		if(grid[laneI].placePlant(plant, spotI))
 		{
-			plant.setLocation(spot);
 			this.addToBalance(-plant.getValue());
 		}
 	}
@@ -176,7 +174,7 @@ public class Level
 			return false;
 		for (int i = 0; i < grid.length; i++)
 		{
-			if (grid[i].checkNoWin())
+			if (!grid[i].noZombies())
 				return false;
 
 		}

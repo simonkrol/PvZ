@@ -18,9 +18,9 @@ public class Sunflower extends Plant
 	 * Creates a sunflower with default values
 	 * @param lane The lane the sunflower is in
 	 */
-	public Sunflower(Lane lane)
+	public Sunflower()
 	{
-		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, lane, DEFAULT_VALUE, DEFAULT_DELAY);
+		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, DEFAULT_VALUE, DEFAULT_DELAY);
 	}
 
 	/**

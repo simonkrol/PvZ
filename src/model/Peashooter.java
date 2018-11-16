@@ -18,9 +18,9 @@ public class Peashooter extends Plant
 	 * Creates a peashooter with default values
 	 * @param lane The lane the peashooter is in
 	 */
-	public Peashooter(Lane lane)
+	public Peashooter()
 	{
-		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, lane, DEFAULT_VALUE, DEFAULT_DELAY);
+		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, DEFAULT_VALUE, DEFAULT_DELAY);
 	}
 
 	/**

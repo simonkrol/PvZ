@@ -13,6 +13,11 @@ public class BasicZombie extends Zombie
 	private static final int DEFAULT_MOVESPEED = 125; // Units per turn
 	private static final double DEFAULT_ATTACKSPEED = 0.8; // Attacks per turn
 
+	
+	public BasicZombie()
+	{
+		this(null);
+	}
 	/**
 	 * Constructor to create a basicZombie
 	 * @param lane The lane the zombie will exist in

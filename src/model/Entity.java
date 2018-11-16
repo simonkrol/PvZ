@@ -22,14 +22,14 @@ public abstract class Entity
 	 * @param def The entities defence, currently unused
 	 * @param attSp The entities attack speed
 	 */
-	protected Entity(int maxHP, Lane lane, int att, int def, double attSp)
+	protected Entity(int maxHP, int att, int def, double attSp, Lane lane)
 	{
 		this.maxHP = maxHP;
 		this.currentHP = maxHP;
-		this.lane = lane;
 		this.attack = att;
 		this.defence = def;
 		this.attackSpeed = attSp;
+		this.lane = lane;
 	}
 
 	/**
@@ -70,5 +70,9 @@ public abstract class Entity
 	protected double getAttackSpeed()
 	{
 		return attackSpeed;
+	}
+	protected void setLane(Lane newLane)
+	{
+		this.lane = newLane;
 	}
 }

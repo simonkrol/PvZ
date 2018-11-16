@@ -55,7 +55,7 @@ public class Controller implements ActionListener, MouseListener {
 			System.exit(0);
 		} else if (button.getText().equals("Sunflower")) {
 			if (level.getAdd()) {
-				level.placePlant(new Sunflower(level.getLane(view.canvas.hLY)), view.canvas.hLY, view.canvas.hLX);
+				level.placePlant(new Sunflower(), view.canvas.hLY, view.canvas.hLX);
 				level.setAdd(false);
 				view.canvas.highlight = false;
 				view.update();
@@ -64,7 +64,7 @@ public class Controller implements ActionListener, MouseListener {
 
 		else if (button.getText().equals("Peashooter")) {
 			if (level.getAdd()) {
-				level.placePlant(new Peashooter(level.getLane(view.canvas.hLY)), view.canvas.hLY, view.canvas.hLX);
+				level.placePlant(new Peashooter(), view.canvas.hLY, view.canvas.hLX);
 				level.setAdd(false);
 				view.canvas.highlight = false;
 				view.update();

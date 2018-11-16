@@ -21,7 +21,7 @@ public abstract class Zombie extends Entity
 	 */
 	protected Zombie(int hp, int att, int def, int mov, double attSp, Lane lane)
 	{
-		super(hp, lane, att, def, attSp);
+		super(hp, att, def, attSp, lane);
 		this.moveSpeed = mov;
 		this.position = 0; // Distance from the right side
 	}
@@ -68,6 +68,7 @@ public abstract class Zombie extends Entity
 		}
 		if (position >= lane.getDistance())
 		{
+			System.out.println("Hit end");
 			lane.hitEnd();
 		}
 

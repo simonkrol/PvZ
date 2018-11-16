@@ -74,12 +74,12 @@ public class Main
 					switch (type)
 					{
 						case "s":
-							lvl.placePlant(new Sunflower(lvl.getLane(laneNum)), laneNum, spot);
+							lvl.placePlant(new Sunflower(), laneNum, spot);
 							gui.update();
 							System.out.println("Current Balance:" + lvl.getBalance());
 							break;
 						case "p":
-							lvl.placePlant(new Peashooter(lvl.getLane(laneNum)), laneNum, spot);
+							lvl.placePlant(new Peashooter(), laneNum, spot);
 							gui.update();
 							break;
 						default:

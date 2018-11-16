@@ -21,9 +21,9 @@ public abstract class Plant extends Entity
 	 * @param value Cost to create
 	 * @param delay Delay until you can place another (Not implemented)
 	 */
-	protected Plant(int maxHP, int att, int def, double attSp, Lane lane, int value, int delay)
+	protected Plant(int maxHP, int att, int def, double attSp, int value, int delay)
 	{
-		super(maxHP, lane, att, def, attSp);
+		super(maxHP, att, def, attSp, null);
 		this.value = value;
 		this.delay = delay;
 	}

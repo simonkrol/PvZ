@@ -152,17 +152,6 @@ public class Lane
 	{
 		return endState >= 2;
 	}
-
-	/**
-	 * Check to see if the game is still ongoing
-	 * @return True if ongoing, false otherwise
-	 */
-	protected boolean checkNoWin()
-	{
-		if (getLiveZombies().size() != 0)
-			return true;
-		return false;
-	}
 	
 	/**
 	 * Return if no zombies exist in the lane
@@ -238,6 +227,7 @@ public class Lane
 	public void addZombie(Zombie toAdd)
 	{
 		getLiveZombies().add(toAdd);
+		toAdd.setLane(this);
 	}
 
 	public Spot[] getSpots()
@@ -248,6 +238,18 @@ public class Lane
 	public ArrayList<Zombie> getLiveZombies()
 	{
 		return liveZombies;
+	}
+	
+	protected boolean placePlant(Plant toPlace, int spotIndex)
+	{
+		Spot spot = spots[spotIndex];
+		if (spot.addPlant(toPlace))
+		{
+			toPlace.setLane(this);
+			toPlace.setLocation(spot);
+			return true;
+		}
+		return false;
 	}
 
 
