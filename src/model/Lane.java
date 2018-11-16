@@ -50,7 +50,7 @@ public class Lane
 	 * Returns the length of the lane in distance, where each spot is 250 units wide
 	 * @return The length of the lane
 	 */
-	protected int getDistance()
+	public int getDistance()
 	{
 		return distance;
 	}
@@ -226,6 +226,14 @@ public class Lane
 			curSpot++;
 		}
 		return laneInfo + "|";
+	}
+	public int getEndState()
+	{
+		return endState;
+	}
+	public int getNumZombies()
+	{
+		return liveZombies.size();
 	}
 
 }

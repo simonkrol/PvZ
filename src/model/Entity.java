@@ -57,4 +57,16 @@ public abstract class Entity
 		if (this.currentHP <= 0)
 			this.die();
 	}
+	public int getCurrentHP()
+	{
+		return currentHP;
+	}
+	public int getAttack()
+	{
+		return attack;
+	}
+	public double getAttackSpeed()
+	{
+		return attackSpeed;
+	}
 }

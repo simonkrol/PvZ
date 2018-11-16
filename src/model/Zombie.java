@@ -39,7 +39,7 @@ public abstract class Zombie extends Entity
 	 * Cause the zombie to perform any of its actions
 	 * @param curLevel The current level
 	 */
-	protected void turn(Level curLevel)
+	public void turn(Level curLevel)
 	{
 		this.move();
 		if (lane.checkFrontPlant(position))
@@ -56,7 +56,7 @@ public abstract class Zombie extends Entity
 	/**
 	 * Try to move the zombie forward in the lane or attack the target in front of it
 	 */
-	protected void move()
+	public void move()
 	{
 
 		if (lane.checkFrontPlant(this.position))
@@ -76,7 +76,7 @@ public abstract class Zombie extends Entity
 	/**
 	 * Remove the zombie from the lane
 	 */
-	protected void die()
+	public void die()
 	{
 		lane.killZombie(this);
 	}
@@ -84,7 +84,7 @@ public abstract class Zombie extends Entity
 	/**
 	 * Attack the front plant in the lane
 	 */
-	protected void attack(Level curLevel)
+	public void attack(Level curLevel)
 	{
 		lane.getFrontPlant().takeDamage(attack);
 
@@ -92,7 +92,7 @@ public abstract class Zombie extends Entity
 	
 	/**
 	 * returns the current position of the zombie
-	 * @return returns the poisiton of the zombie
+	 * @return returns the position of the zombie
 	 */
 	public int getPosition(){
 		return position;
