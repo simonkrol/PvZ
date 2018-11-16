@@ -90,9 +90,12 @@ public class View extends JFrame {
 	}
 
 	
-	private void addPlant(Plant plant) {
+	private void addPlant(Plant plant, Point p) {
+		Graphics g = canvas.getGraphics();
 		if(add) {
-			//add plant to canvasn
+			int posY = (int)Math.floor(p.y/125) +1;
+			int posX = (int)Math.floor(p.x/125) +1;
+			level.placePlant(plant, posY, posX);
 		}
 	}
 }
