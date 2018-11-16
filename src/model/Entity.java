@@ -7,7 +7,9 @@ package model;
  */
 public abstract class Entity
 {
-	protected int currentHP, maxHP, attack, defence;
+	private int currentHP, maxHP;
+	protected int attack;
+	private int defence;
 	protected Lane lane;
 	protected double attackSpeed;
 	protected double attackState;
@@ -56,5 +58,17 @@ public abstract class Entity
 		this.currentHP -= damage;
 		if (this.currentHP <= 0)
 			this.die();
+	}
+	protected int getCurrentHP()
+	{
+		return currentHP;
+	}
+	protected int getAttack()
+	{
+		return attack;
+	}
+	protected double getAttackSpeed()
+	{
+		return attackSpeed;
 	}
 }

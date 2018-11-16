@@ -92,7 +92,7 @@ public abstract class Zombie extends Entity
 	
 	/**
 	 * returns the current position of the zombie
-	 * @return returns the poisiton of the zombie
+	 * @return returns the position of the zombie
 	 */
 	public int getPosition(){
 		return position;
