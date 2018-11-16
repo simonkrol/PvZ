@@ -16,6 +16,7 @@ public class Level
 	protected int turn;
 	private BufferedReader levelData;
 	private String curInstruction;
+	protected boolean add = false;
 
 	/**
 	 * Construct a level
@@ -71,7 +72,7 @@ public class Level
 	/**
 	 * Return a given spot
 	 * @param laneIndex The index of the lane the spot is contained within
-	 * @param spotIndex The idndex of the spot to be returned
+	 * @param spotIndex The index of the spot to be returned
 	 * @return a given Spot
 	 */
 	protected Spot getSpot(int laneIndex, int spotIndex)
