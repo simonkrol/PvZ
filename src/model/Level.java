@@ -47,6 +47,7 @@ public class Level
 	 */
 	public void spawnZombies() throws IOException
 	{
+		System.out.println(curInstruction);
 		if (curInstruction == null)
 			return;
 		if (curInstruction.split("-")[0].equals(Integer.toString(turn)))
@@ -78,7 +79,7 @@ public class Level
 	 */
 	protected Spot getSpot(int laneIndex, int spotIndex)
 	{
-		return grid[laneIndex].getSpot(spotIndex);
+		return getLane(laneIndex).getSpot(spotIndex);
 	}
 
 	/**
@@ -87,17 +88,24 @@ public class Level
 	 * @param laneI The lane index of the plants location
 	 * @param spotI The spot index of the plants location
 	 */
-	public void placePlant(Plant plant, int laneI, int spotI)
+	public boolean placePlant(Plant plant, int laneI, int spotI)
 	{
+		if(laneI<0 || laneI > getWidth()-1 || spotI<0 || spotI > getHeight()-1)
+		{
+			System.out.println("Index out of bounds");
+			return false;
+		}
 		if (plant.getValue() > balance) //check if player has enough to purchase the plant
 		{
 			System.out.println("Insufficient funds");
-			return;
+			return false;
 		}
-		if(grid[laneI].placePlant(plant, spotI))
+		if(getLane(laneI).placePlant(plant, spotI))
 		{
 			this.addToBalance(-plant.getValue());
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -174,8 +182,7 @@ public class Level
 			return false;
 		for (int i = 0; i < grid.length; i++)
 		{
-			if (!grid[i].noZombies())
-				return false;
+			if (!grid[i].noZombies()) return false;
 
 		}
 		return true;
@@ -189,5 +196,14 @@ public class Level
 	public void setAdd(boolean add)
 	{
 		this.add = add;
+	}
+	public int getNumZombies()
+	{
+		int sum = 0;
+		for (int i = 0; i < grid.length; i++)
+		{
+			sum+=grid[i].getNumZombies();
+		}
+		return sum;
 	}
 }
