@@ -1,7 +1,10 @@
+package controller;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import view.View;
 
 public class ClickListerner implements MouseListener{
 

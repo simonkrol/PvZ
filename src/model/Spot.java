@@ -1,3 +1,4 @@
+package model;
 /**
  * The Spot class, used to split lanes
  * @author Boyan Siromahov and Simon Krol
@@ -31,7 +32,7 @@ public class Spot
 	 * Return the current plant in the spot
 	 * @return Current plant
 	 */
-	protected Plant getPlant()
+	public Plant getPlant()
 	{
 		return plant;
 	}

@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Abstract class that contains all Plants within the game (Peashooter and Sunflower)
  * @author Simon Krol

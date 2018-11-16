@@ -1,8 +1,19 @@
+package view;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.*;
+
+import controller.ButtonListener;
+import controller.ClickListerner;
+import model.Lane;
+import model.Level;
+import model.Peashooter;
+import model.Plant;
+import model.Spot;
+import model.Sunflower;
+import model.Zombie;
 
 /**
  * The SWING based GUI being used to play Milestone 2
@@ -15,7 +26,8 @@ public class View extends JFrame {
 	private Level level;
 	JLabel info;
 	JPanel information;
-	protected int x, y;
+	public int x;
+	public int y;
 	protected boolean add;
 
 	public View(Level lvl) {

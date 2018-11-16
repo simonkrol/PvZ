@@ -1,3 +1,5 @@
+package controller;
+import model.*;
 /**
  * The main class, creates the gui object and the level object and accepts user input (Pretty much the controller)
  * @author Gordon MacDonald and Simon Krol
@@ -7,6 +9,11 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.Scanner;
+
+import model.Level;
+import model.Peashooter;
+import model.Sunflower;
+import view.View;
 
 public class Main
 {

@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Abstract class that contains all entities within the game (Plants and Zombies)
  * @author Simon Krol

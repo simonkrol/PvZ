@@ -1,3 +1,5 @@
+package model;
+
 /**
  * The Sunflower class, contains information about the Peashooter plant
  * @author Simon Krol
@@ -9,14 +11,14 @@ public class Sunflower extends Plant
 	private static final int DEFAULT_ATTACK = 12;
 	private static final int DEFAULT_DEFENCE = 0;
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
-	protected static final int DEFAULT_VALUE = 50;
+	public static final int DEFAULT_VALUE = 50;
 	private static final int DEFAULT_DELAY = 5;
 
 	/**
 	 * Creates a sunflower with default values
 	 * @param lane The lane the sunflower is in
 	 */
-	protected Sunflower(Lane lane)
+	public Sunflower(Lane lane)
 	{
 		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, lane, DEFAULT_VALUE, DEFAULT_DELAY);
 	}

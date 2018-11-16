@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Abstract class that contains all Zombies within the game (BasicZombie)
  * @author Simon Krol
@@ -92,7 +94,7 @@ public abstract class Zombie extends Entity
 	 * returns the current position of the zombie
 	 * @return returns the poisiton of the zombie
 	 */
-	protected int getPosition(){
+	public int getPosition(){
 		return position;
 	}
 }

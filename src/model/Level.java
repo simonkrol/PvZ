@@ -1,3 +1,4 @@
+package model;
 /**
  * The level class, contains all info about the current game being played
  * @author Boyan Siromahov and Simon Krol
@@ -9,11 +10,11 @@ import java.io.IOException;
 
 public class Level
 {
-	protected Lane[] grid;
+	public Lane[] grid;
 	private Integer balance;
 	private int width;
 	private int height;
-	protected int turn;
+	public int turn;
 	private BufferedReader levelData;
 	private String curInstruction;
 
@@ -25,7 +26,7 @@ public class Level
 	 * @param fileName The file storing the level's zombie data
 	 * @throws IOException If readline fails
 	 */
-	protected Level(int width, int height, int balance, String fileName) throws IOException
+	public Level(int width, int height, int balance, String fileName) throws IOException
 	{
 		grid = new Lane[height];
 		for (int i = 0; i < height; i++)
@@ -43,7 +44,7 @@ public class Level
 	 * Check the levelData and spawn any zombies intended for the given turn
 	 * @throws IOException If readline fails
 	 */
-	protected void spawnZombies() throws IOException
+	public void spawnZombies() throws IOException
 	{
 		if (curInstruction == null)
 			return;
@@ -63,7 +64,7 @@ public class Level
 	 * @param laneIndex The index of the lane to be returned
 	 * @return a given Lane
 	 */
-	protected Lane getLane(int laneIndex)
+	public Lane getLane(int laneIndex)
 	{
 		return grid[laneIndex];
 	}
@@ -85,7 +86,7 @@ public class Level
 	 * @param laneI The lane index of the plants location
 	 * @param spotI The spot index of the plants location
 	 */
-	protected void placePlant(Plant plant, int laneI, int spotI)
+	public void placePlant(Plant plant, int laneI, int spotI)
 	{
 		if (plant.getValue() > balance) //check if player has enough to purchase the plant
 		{
@@ -113,7 +114,7 @@ public class Level
 	 * Return the width in spots, of the level
 	 * @return Width of the level
 	 */
-	protected int getWidth()
+	public int getWidth()
 	{
 		return width;
 	}
@@ -122,7 +123,7 @@ public class Level
 	 * Return the height in spots, of the level
 	 * @return Height of the level
 	 */
-	protected int getHeight()
+	public int getHeight()
 	{
 		return height;
 	}
@@ -131,7 +132,7 @@ public class Level
 	 * Iterate through all lanes in the level and run all their turns, also spawn any new zombies
 	 * @throws IOException  If readline fails
 	 */
-	protected void allTurn() throws IOException
+	public void allTurn() throws IOException
 	{
 		for (Lane lane : grid)
 		{
@@ -145,7 +146,7 @@ public class Level
 	 * Return the user's current balance
 	 * @return Users balance
 	 */
-	protected int getBalance()
+	public int getBalance()
 	{
 		return balance;
 	}
@@ -154,7 +155,7 @@ public class Level
 	 * Check if the level has been failed. The level has been failed if any lane has failed.
 	 * @return true if failed, false otherwise
 	 */
-	protected boolean checkFail()
+	public boolean checkFail()
 	{
 		for (int i = 0; i < grid.length; i++)
 		{
@@ -168,7 +169,7 @@ public class Level
 	 * Check if the player has won
 	 * @return true if won, false otherwise
 	 */
-	protected boolean checkWin()
+	public boolean checkWin()
 	{
 		if (curInstruction != null)
 			return false;

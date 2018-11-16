@@ -1,3 +1,5 @@
+package model;
+
 /**
  * The Peashooter class, contains information about the Peashooter plant
  * @author Simon Krol
@@ -9,14 +11,14 @@ public class Peashooter extends Plant
 	private static final int DEFAULT_ATTACK = 2;
 	private static final int DEFAULT_DEFENCE = 0;
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
-	protected static final int DEFAULT_VALUE = 40;
+	public static final int DEFAULT_VALUE = 40;
 	private static final int DEFAULT_DELAY = 5;
 
 	/**
 	 * Creates a peashooter with default values
 	 * @param lane The lane the peashooter is in
 	 */
-	protected Peashooter(Lane lane)
+	public Peashooter(Lane lane)
 	{
 		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, lane, DEFAULT_VALUE, DEFAULT_DELAY);
 	}

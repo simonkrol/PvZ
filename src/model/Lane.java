@@ -1,3 +1,4 @@
+package model;
 /**
  * The lane class, seperates the game board into each lane.
  * @author Boyan Siromahov and Simon Krol
@@ -9,14 +10,14 @@ public class Lane
 {
 	private int endState = 0;
 	private boolean triggered = false;
-	protected Spot[] spots;
-	protected ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
+	public Spot[] spots;
+	public ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
 	private int distance;
 	
 	/**
 	 * Construct a default lane of length 8, where the last 2 spots can not host plants
 	 */
-	protected Lane()
+	public Lane()
 	{
 		this(8, 2);
 	}

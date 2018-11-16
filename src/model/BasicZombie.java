@@ -1,3 +1,5 @@
+package model;
+
 /**
  * The Basic Zombie class
  * @author Simon Krol
