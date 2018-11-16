@@ -5,10 +5,10 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 /**
- * The Text based GUI being used to play Milestone 1
+ * The SWING based GUI being used to play Milestone 2
  * 
  * @author Boyan Siromahov
- * @version Oct 29, 2019
+ * @version Nov 16, 2019
  */
 public class View extends JFrame {
 	private GameCanvas canvas;
@@ -47,12 +47,12 @@ public class View extends JFrame {
 		
 		JButton sunflowerBtn = new JButton();
 		sunflowerBtn.setSize(125,125);
-		sunflowerBtn.setIcon(new ImageIcon("bin/rsz_unknown.png"));
+		sunflowerBtn.setIcon(new ImageIcon("Assets/Pictures/rsz_unknown.png"));
 		plants.add(sunflowerBtn);
 		
 		JButton peashooterBtn = new JButton();
 		peashooterBtn.setSize(125,125);
-		peashooterBtn.setIcon(new ImageIcon("bin/peaShooter.png"));
+		peashooterBtn.setIcon(new ImageIcon("Assets/Pictures/peaShooter.png"));
 		plants.add(peashooterBtn);
 		
 		JPanel buttons = new JPanel();
@@ -109,10 +109,10 @@ class GameCanvas extends Canvas {
 	
 	@Override
 	public void paint(Graphics g) {
-		Image grass = new ImageIcon("bin/grass.jpg").getImage();
-		Image zombie = new ImageIcon("bin/zombie.png").getImage();
-		Image sunflower = new ImageIcon("bin/rsz_unknown.png").getImage();
-		Image peashooter = new ImageIcon("bin/peaShooter.png").getImage();
+		Image grass = new ImageIcon("Assets/Pictures/grass.jpg").getImage();
+		Image zombie = new ImageIcon("Assets/Pictures/zombie.png").getImage();
+		Image sunflower = new ImageIcon("Assets/Pictures/rsz_unknown.png").getImage();
+		Image peashooter = new ImageIcon("Assets/Pictures/peaShooter.png").getImage();
 		
 		int x = 0, y = 0;
 		for (Lane lane : level.grid) {
