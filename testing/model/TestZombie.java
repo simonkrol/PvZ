@@ -60,23 +60,6 @@ public class TestZombie
 		assertEquals("Lane should have 0 zombies", 0, testLane.getNumZombies());
 	}
 	@Test 
-	public void testTurn()
-	{
-
-		testLane.placePlant(sunny, 1);
-		peter.setPosition(250);
-		peter.move();
-		assertEquals("Current position should not have increased past the plant", 250, peter.getPosition());
-		int numTurn = (int) Math.ceil(1.0/peter.getAttackSpeed());
-		int sunnyHP = sunny.getCurrentHP();
-		while(numTurn>0)
-		{
-			peter.turn(null);
-			numTurn--;
-		}
-		assertFalse("Sunny's hp should have dropped", sunnyHP <= sunny.getCurrentHP());
-	}
-	@Test 
 	public void testClear() throws IOException
 	{	
 		peter.setPosition(999);
@@ -85,6 +68,4 @@ public class TestZombie
 		assertEquals("LiveZombies should contain no zombies", 0, testLane.getNumZombies());
 	}
 	
-	
-
 }

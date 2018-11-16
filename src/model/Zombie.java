@@ -99,4 +99,5 @@ public abstract class Zombie extends Entity
 		position = newPosition;
 	}
 	
+	
 }

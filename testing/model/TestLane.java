@@ -124,5 +124,22 @@ public class TestLane
 		lane2.spawnZombie();
 		assertEquals("Lane should have 2 zombies", 2, lane2.getNumZombies());
 	}
+	
+	public void testTurn()
+	{
+
+		lane2.placePlant(sunny, 1);
+		peter.setPosition(250);
+		peter.move();
+		assertEquals("Current position should not have increased past the plant", 250, peter.getPosition());
+		int numTurn = (int) Math.ceil(1.0/peter.getAttackSpeed());
+		int sunnyHP = sunny.getCurrentHP();
+		while(numTurn>0)
+		{
+			peter.turn(null);
+			numTurn--;
+		}
+		assertFalse("Sunny's hp should have dropped", sunnyHP <= sunny.getCurrentHP());
+	}
 
 }
