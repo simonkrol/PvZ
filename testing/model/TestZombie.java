@@ -38,7 +38,7 @@ public class TestZombie
 		int currentHP = sunny.getCurrentHP();
 		peter.move();
 		assertEquals("Current position should be blocked by sunflower", 4*peter.getMoveSpeed(), peter.getPosition());
-		assertEquals("Sunny's HP should have decreased by peters attack", currentHP - peter.getAttack(), sunny.getCurrentHP());
+	
 	}
 	@Test
 	public void testAttack()
@@ -74,12 +74,12 @@ public class TestZombie
 	@Test 
 	public void testTurn()
 	{
-		
-		testLevel.placePlant(sunny, 0, 1);
+
+		testLane.placePlant(sunny, 1);
 		peter.move();
 		peter.move();
 		peter.move();
-		peter.move();
+
 		assertEquals("Current position should only have increased twice", 2*peter.getMoveSpeed(), peter.getPosition());
 		int numTurn = (int) Math.ceil(1.0/peter.getAttackSpeed());
 		int sunnyHP = sunny.getCurrentHP();
