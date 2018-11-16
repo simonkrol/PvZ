@@ -29,15 +29,9 @@ public class TestZombie
 	{
 		assertEquals("Current position should be 0", 0, peter.getPosition());
 		peter.move();
+		assertEquals("Current position should have increased by 1 movespeed", 1*peter.getMoveSpeed(), peter.getPosition());
 		peter.move();
-		assertEquals("Current position should have increased by 2 movespeed", 2*peter.getMoveSpeed(), peter.getPosition());
-		peter.move();
-		peter.move();
-		assertEquals("Current position should have increased by 2 movespeed", 4*peter.getMoveSpeed(), peter.getPosition());
-		testLevel.placePlant(sunny, 0, 0);
-		int currentHP = sunny.getCurrentHP();
-		peter.move();
-		assertEquals("Current position should be blocked by sunflower", 4*peter.getMoveSpeed(), peter.getPosition());
+		assertEquals("Current position should have increased by 1 movespeed", 2*peter.getMoveSpeed(), peter.getPosition());
 	
 	}
 	@Test
@@ -52,15 +46,9 @@ public class TestZombie
 	@Test
 	public void testLawnMower()
 	{
-		peter.move();
-		peter.move();
-		peter.move();
-		peter.move();
-		peter.move();
-		peter.move();
-		assertEquals("Current position should have increased by 6 movespeed", 6*peter.getMoveSpeed(), peter.getPosition());
+		peter.setPosition(999);
+		assertEquals("Current position should be 999", 999, peter.getPosition());
 		assertEquals("EndState should be 0", 0, testLane.getEndState());
-		peter.move();
 		peter.move();
 		assertEquals("EndState should be 1", 1, testLane.getEndState());
 	}
@@ -76,11 +64,9 @@ public class TestZombie
 	{
 
 		testLane.placePlant(sunny, 1);
+		peter.setPosition(250);
 		peter.move();
-		peter.move();
-		peter.move();
-
-		assertEquals("Current position should only have increased twice", 2*peter.getMoveSpeed(), peter.getPosition());
+		assertEquals("Current position should not have increased past the plant", 250, peter.getPosition());
 		int numTurn = (int) Math.ceil(1.0/peter.getAttackSpeed());
 		int sunnyHP = sunny.getCurrentHP();
 		while(numTurn>0)
@@ -93,15 +79,7 @@ public class TestZombie
 	@Test 
 	public void testClear() throws IOException
 	{	
-		System.out.println("test clear");
-		
-		testLane.allTurn(null);
-		testLane.allTurn(null);
-		testLane.allTurn(null);
-		testLane.allTurn(null);
-		testLane.allTurn(null);
-		testLane.allTurn(null);
-		testLane.allTurn(null);
+		peter.setPosition(999);
 		assertEquals("LiveZombies should contain only 1 zombie", 1, testLane.getNumZombies());
 		testLane.allTurn(null);
 		assertEquals("LiveZombies should contain no zombies", 0, testLane.getNumZombies());

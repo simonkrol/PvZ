@@ -93,4 +93,10 @@ public abstract class Zombie extends Entity
 	public int getPosition(){
 		return position;
 	}
+	
+	protected void setPosition(int newPosition)
+	{
+		position = newPosition;
+	}
+	
 }
