@@ -8,6 +8,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ //Put the name of the test class in here
 	TestZombie.class,
 	TestLane.class,
+	TestLevel.class,
+	TestSpot.class,
 })
 
 public class Tests
