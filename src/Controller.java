@@ -28,7 +28,6 @@ public class Controller implements ActionListener, MouseListener {
 		button = (JButton) e.getSource();
 		if (button.getText().equals("Add plant")) {
 			level.add = true;
-			System.out.println("adding stuff");
 
 		} else if (button.getText().equals("End Turn")) {
 			try {
@@ -78,7 +77,6 @@ public class Controller implements ActionListener, MouseListener {
 		if (level.add) {
 			x = m.x - s.x;
 			y = m.y - s.y - 50;
-			System.out.println("clicked HL " + x + "  " + y);
 			posY = (int) Math.floor(y / 125);
 			posX = (int) Math.floor(x / 125);
 			view.canvas.highLight(posX, posY);
