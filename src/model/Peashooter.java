@@ -3,7 +3,7 @@ package model;
 /**
  * The Peashooter class, contains information about the Peashooter plant
  * @author Simon Krol
- * @version Oct 29, 2018
+ * @version Nov 16, 2018
  */
 public class Peashooter extends Plant
 {

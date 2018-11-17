@@ -1,13 +1,16 @@
 package view;
+
+/**
+ * The View Class, creates and displays the GUI to the user
+ * @author Boyan Siromahov and Gordon MacDonald
+ * @version Nov 16, 2018
+ */
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
 import controller.*;
 import model.*;
-
 
 /**
  * The SWING based GUI being used to play Milestone 2
@@ -15,14 +18,20 @@ import model.*;
  * @author Boyan Siromahov
  * @version Nov 16, 2019
  */
-public class View extends JFrame {
+public class View extends JFrame
+{
+	private static final long serialVersionUID = 1L;
 	public GameCanvas canvas;
 	private Level level;
 	JLabel info;
 	JPanel information;
 
-
-	public View(Level lvl) {
+	/**
+	 * Create a new view for a given level
+	 * @param lvl The level the view is created for
+	 */
+	public View(Level lvl)
+	{
 		level = lvl;
 		canvas = new GameCanvas(lvl);
 		setLayout(new BorderLayout());
@@ -85,9 +94,13 @@ public class View extends JFrame {
 		quit.addActionListener(new Controller(level, this));
 	}
 
-	public void update() {
+	/**
+	 * Repaint the canvas with the new model information
+	 * Reset the text showing the players balance and the turn number
+	 */
+	public void update()
+	{
 		canvas.repaint();
 		info.setText("SUN: " + level.getBalance() + "  Turn: " + level.turn);
 	}
 }
-

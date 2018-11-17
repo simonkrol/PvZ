@@ -1,8 +1,9 @@
 package model;
+
 /**
  * The Spot class, used to split lanes
  * @author Boyan Siromahov and Simon Krol
- * @version Oct 29, 2018
+ * @version Nov 16, 2018
  */
 public class Spot
 {

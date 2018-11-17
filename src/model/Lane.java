@@ -1,8 +1,9 @@
 package model;
+
 /**
  * The lane class, seperates the game board into each lane.
  * @author Boyan Siromahov and Simon Krol
- * @version Oct 29, 2018
+ * @version Nov 16, 2018
  */
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ public class Lane
 	private Spot[] spots;
 	private ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
 	private int distance;
-	
+
 	/**
 	 * Construct a default lane of length 8, where the last 2 spots can not host plants
 	 */
@@ -21,7 +22,7 @@ public class Lane
 	{
 		this(8, 2);
 	}
-	
+
 	/**
 	 * Construct a lane
 	 * @param length The number of spots in the lane
@@ -46,6 +47,7 @@ public class Lane
 	{
 		return getSpots()[index];
 	}
+
 	/**
 	 * Returns the length of the lane in distance, where each spot is 250 units wide
 	 * @return The length of the lane
@@ -73,7 +75,7 @@ public class Lane
 		}
 		closest.takeDamage(damage);
 	}
-	
+
 	/**
 	 * Spawn a zombie in the lane
 	 */
@@ -93,7 +95,7 @@ public class Lane
 		triggered = true;
 
 	}
-	
+
 	/**
 	 * Check if a zombie is standing directly in front of a plant
 	 * @param position The position of the zombie
@@ -101,7 +103,7 @@ public class Lane
 	 */
 	protected boolean checkFrontPlant(int position)
 	{
-		int index = (int)((distance - position)/125.0) -1;
+		int index = (int) ((distance - position) / 125.0) - 1;
 		if (index < 0 || index >= getSpots().length)
 			return false;
 		return getSpots()[index].getOccupied();
@@ -137,7 +139,7 @@ public class Lane
 		{
 			zombie.turn(curLevel);
 		}
-		if (triggered) //check if lawnmower has been triggered
+		if (triggered) // check if lawnmower has been triggered
 		{
 			getLiveZombies().clear();
 			triggered = false;
@@ -152,7 +154,7 @@ public class Lane
 	{
 		return endState >= 2;
 	}
-	
+
 	/**
 	 * Return if no zombies exist in the lane
 	 * @return True if no zombies, false otherwise
@@ -181,7 +183,7 @@ public class Lane
 		String laneInfo = "";
 		for (Spot spot : getSpots())
 		{
-			if (spot.getOccupied()) //check all spots
+			if (spot.getOccupied()) // check all spots
 			{
 				if (spot.getPlant() instanceof Sunflower)
 				{
@@ -194,15 +196,17 @@ public class Lane
 			{
 				boolean zombieAdded = false;
 				int zombieStack = 0;
-				for (Zombie zmb : getLiveZombies()) //Check all zombies
+				for (Zombie zmb : getLiveZombies()) // Check all zombies
 				{
-					if (zmb != null && zmb.position == distance - curSpot * 250) //Currently using a coordinate system, Later will be replaced with pixel range
+					if (zmb != null && zmb.position == distance - curSpot * 250) // Currently using a coordinate system,
+																					// Later will be replaced with pixel
+																					// range
 					{
 						zombieAdded = true;
 						zombieStack++;
 					}
 				}
-				if (zombieStack > 0) //Check for zombies stacking up in one spot
+				if (zombieStack > 0) // Check for zombies stacking up in one spot
 				{
 					laneInfo += "|" + zombieStack + "z";
 				}
@@ -216,30 +220,59 @@ public class Lane
 		}
 		return laneInfo + "|";
 	}
+
+	/**
+	 * Return the lane's end state
+	 * @return End state
+	 */
 	protected int getEndState()
 	{
 		return endState;
 	}
+
+	/**
+	 * Return the number of zombies alive in the lane
+	 * @return Number of live zombies
+	 */
 	protected int getNumZombies()
 	{
 		return getLiveZombies().size();
 	}
+
+	/**
+	 * Add a zombie to the lane
+	 * @param toAdd The zombie to add
+	 */
 	public void addZombie(Zombie toAdd)
 	{
 		getLiveZombies().add(toAdd);
 		toAdd.setLane(this);
 	}
 
+	/**
+	 * Get the lane's spots
+	 * @return The spots in the lane
+	 */
 	public Spot[] getSpots()
 	{
 		return spots;
 	}
 
+	/**
+	 * Get the live zombies in the lane
+	 * @return The lane's live zombies
+	 */
 	public ArrayList<Zombie> getLiveZombies()
 	{
 		return liveZombies;
 	}
-	
+
+	/**
+	 * Place a given plant at the given index
+	 * @param toPlace The plant to place
+	 * @param spotIndex The spot's index where to place the plant
+	 * @return True if successful, false otherwise
+	 */
 	protected boolean placePlant(Plant toPlace, int spotIndex)
 	{
 		Spot spot = spots[spotIndex];
@@ -251,7 +284,5 @@ public class Lane
 		}
 		return false;
 	}
-
-
 
 }

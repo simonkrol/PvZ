@@ -3,7 +3,7 @@ package model;
 /**
  * Abstract class that contains all Zombies within the game (BasicZombie)
  * @author Simon Krol
- * @version Oct 29, 2018
+ * @version Nov 16, 2018
  */
 public abstract class Zombie extends Entity
 {
@@ -61,7 +61,8 @@ public abstract class Zombie extends Entity
 
 		System.out.println(this.position);
 		System.out.println(lane.checkFrontPlant(this.position));
-		if (lane.checkFrontPlant(this.position))return;
+		if (lane.checkFrontPlant(this.position))
+			return;
 		position += moveSpeed;
 		if (position > lane.getDistance())
 		{
@@ -86,19 +87,23 @@ public abstract class Zombie extends Entity
 		lane.getFrontPlant().takeDamage(attack);
 
 	}
-	
+
 	/**
 	 * returns the current position of the zombie
 	 * @return returns the position of the zombie
 	 */
-	public int getPosition(){
+	public int getPosition()
+	{
 		return position;
 	}
-	
+
+	/**
+	 * Set the position of the zombie
+	 * @param newPosition The zombies new position
+	 */
 	protected void setPosition(int newPosition)
 	{
 		position = newPosition;
 	}
-	
-	
+
 }

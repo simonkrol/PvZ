@@ -3,7 +3,7 @@ package model;
 /**
  * The Basic Zombie class
  * @author Simon Krol
- * @version Oct 29, 2018
+ * @version Nov 16, 2018
  */
 public class BasicZombie extends Zombie
 {
@@ -13,11 +13,14 @@ public class BasicZombie extends Zombie
 	private static final int DEFAULT_MOVESPEED = 125; // Units per turn
 	private static final double DEFAULT_ATTACKSPEED = 0.8; // Attacks per turn
 
-	
+	/**
+	 * Create a basicZombie without a starting lane
+	 */
 	public BasicZombie()
 	{
 		this(null);
 	}
+
 	/**
 	 * Constructor to create a basicZombie
 	 * @param lane The lane the zombie will exist in

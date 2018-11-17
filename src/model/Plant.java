@@ -3,7 +3,7 @@ package model;
 /**
  * Abstract class that contains all Plants within the game (Peashooter and Sunflower)
  * @author Simon Krol
- * @version Oct 29, 2018
+ * @version Nov 16, 2018
  */
 public abstract class Plant extends Entity
 {

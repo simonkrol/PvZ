@@ -1,8 +1,9 @@
 package controller;
+
 /**
  * The main class, creates the gui object and the level object
  * @author Gordon MacDonald and Simon Krol
- * @version Oct 29, 2018
+ * @version Nov 16, 2018
  */
 import java.io.IOException;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ public class Main
 {
 	/**
 	 * Start the game
+	 * 
 	 * @throws IOException If reading from the file fails
 	 */
 	private static void startGame() throws IOException
@@ -25,24 +27,26 @@ public class Main
 
 	/**
 	 * Main method, accept user input and start the game
+	 * 
 	 * @param args Main arguments
-	 * @throws IOException If reading from data file fails
+	 * @throws IOException 
+	 * If reading from data file fails
 	 */
 	public static void main(String[] args) throws IOException
 	{
 		Scanner input = new Scanner(System.in);
 		String s;
 		boolean idle = true;
-		while(idle)
+		while (idle)
 		{
 			System.out.println("Enter (n)ew game or (q)uit:");
 			s = input.nextLine();
-			if(s.equals("n")) 
+			if (s.equals("n"))
 			{
 				idle = false;
 				startGame();
-			}
-			else if(s.equals("q"))System.exit(0);
+			} else if (s.equals("q"))
+				System.exit(0);
 		}
 		input.close();
 	}

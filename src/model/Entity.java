@@ -3,7 +3,7 @@ package model;
 /**
  * Abstract class that contains all entities within the game (Plants and Zombies)
  * @author Simon Krol
- * @version Oct 29, 2018
+ * @version Nov 16, 2018
  */
 public abstract class Entity
 {
@@ -59,18 +59,38 @@ public abstract class Entity
 		if (this.currentHP <= 0)
 			this.die();
 	}
+
+	/**
+	 * Return the Entities current Health
+	 * @return Current Health
+	 */
 	protected int getCurrentHP()
 	{
 		return currentHP;
 	}
+
+	/**
+	 * Return the Entities attack value
+	 * @return Attack value
+	 */
 	protected int getAttack()
 	{
 		return attack;
 	}
+
+	/**
+	 * Return the Entities attack speed
+	 * @return Attack speed
+	 */
 	protected double getAttackSpeed()
 	{
 		return attackSpeed;
 	}
+
+	/**
+	 * Change the entities lane
+	 * @param newLane The entities new lane
+	 */
 	protected void setLane(Lane newLane)
 	{
 		this.lane = newLane;

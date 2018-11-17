@@ -1,8 +1,9 @@
 package model;
+
 /**
  * The level class, contains all info about the current game being played
  * @author Boyan Siromahov and Simon Krol
- * @version Oct 29, 2018
+ * @version Nov 16, 2018
  */
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -89,17 +90,17 @@ public class Level
 	 */
 	public boolean placePlant(Plant plant, int laneI, int spotI)
 	{
-		if(laneI<0 || laneI > getWidth()-1 || spotI<0 || spotI > getHeight()-1)
+		if (laneI < 0 || laneI > getWidth() - 1 || spotI < 0 || spotI > getHeight() - 1)
 		{
 			System.out.println("Index out of bounds");
 			return false;
 		}
-		if (plant.getValue() > balance) //check if player has enough to purchase the plant
+		if (plant.getValue() > balance) // check if player has enough to purchase the plant
 		{
 			System.out.println("Insufficient funds");
 			return false;
 		}
-		if(getLane(laneI).placePlant(plant, spotI))
+		if (getLane(laneI).placePlant(plant, spotI))
 		{
 			this.addToBalance(-plant.getValue());
 			return true;
@@ -181,27 +182,41 @@ public class Level
 			return false;
 		for (int i = 0; i < grid.length; i++)
 		{
-			if (!grid[i].noZombies()) return false;
+			if (!grid[i].noZombies())
+				return false;
 
 		}
 		return true;
 	}
 
+	/**
+	 * Get whether the level is primed to place a plant
+	 * @return add
+	 */
 	public boolean getAdd()
 	{
 		return add;
 	}
 
+	/**
+	 * Set whether the level is ready to place a plant
+	 * @param add The new add value
+	 */
 	public void setAdd(boolean add)
 	{
 		this.add = add;
 	}
+
+	/**
+	 * Get the total number of zombies alive in the level
+	 * @return
+	 */
 	public int getNumZombies()
 	{
 		int sum = 0;
 		for (int i = 0; i < grid.length; i++)
 		{
-			sum+=grid[i].getNumZombies();
+			sum += grid[i].getNumZombies();
 		}
 		return sum;
 	}
