@@ -10,6 +10,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestLane.class,
 	TestLevel.class,
 	TestSpot.class,
+	TestPlant.class,
 })
 
 public class Tests

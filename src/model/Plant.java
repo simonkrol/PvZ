@@ -30,7 +30,7 @@ public abstract class Plant extends Entity
 
 	/**
 	 * Return the current spot the plant is on
-	 * @return The current spto
+	 * @return The current spot
 	 */
 	protected Spot getLocation()
 	{
