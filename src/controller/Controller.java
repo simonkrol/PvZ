@@ -12,6 +12,7 @@ import java.awt.event.*;
 import java.io.IOException;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class Controller implements ActionListener, MouseListener
 {
@@ -21,6 +22,7 @@ public class Controller implements ActionListener, MouseListener
 	protected int x, y;
 	private int posY;
 	private int posX;
+	
 
 	/**
 	 * Create a controller for the current level
@@ -57,12 +59,14 @@ public class Controller implements ActionListener, MouseListener
 			{
 				view.update();
 				System.out.println("You Killed all the zombies! \n Congratulations you won!");
+				JOptionPane.showMessageDialog(null, "You killed them all!", "WIN", JOptionPane.PLAIN_MESSAGE);
 				return;
 			}
 			if (level.checkFail())
 			{
 				view.update();
 				System.out.println("Zombies have gotten past! \nGame over! ");
+				JOptionPane.showMessageDialog(null, "Zombies have gotten past!  Game over", "LOSS", JOptionPane.PLAIN_MESSAGE);
 				return;
 			} else
 			{
