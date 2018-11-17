@@ -7,7 +7,11 @@ import java.io.IOException;
 
 import org.junit.Test;
 import org.junit.Before;
-
+/**
+ * Tests Zombie class
+ * @author Simon Krol
+ * @version Nov 16, 2018
+ */
 public class TestZombie
 {
 	Level testLevel;

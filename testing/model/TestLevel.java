@@ -6,7 +6,11 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * Tests Level class
+ * @author Simon Krol
+ * @version Nov 16, 2018
+ */
 public class TestLevel
 {
 	Level testLevel;

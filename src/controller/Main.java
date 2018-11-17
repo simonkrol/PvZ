@@ -8,6 +8,8 @@ package controller;
 import java.io.IOException;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import model.Level;
 import view.View;
 
@@ -29,26 +31,13 @@ public class Main
 	 * Main method, accept user input and start the game
 	 * 
 	 * @param args Main arguments
-	 * @throws IOException 
-	 * If reading from data file fails
+	 * @throws IOException If reading from data file fails
 	 */
 	public static void main(String[] args) throws IOException
 	{
 		Scanner input = new Scanner(System.in);
 		String s;
-		boolean idle = true;
-		while (idle)
-		{
-			System.out.println("Enter (n)ew game or (q)uit:");
-			s = input.nextLine();
-			if (s.equals("n"))
-			{
-				idle = false;
-				startGame();
-			} else if (s.equals("q"))
-				System.exit(0);
-		}
-		input.close();
+		startGame();
+		JOptionPane.showMessageDialog(null, "To place a plant: click 'Add plant', then the tile you wish to play on, then the type of plant", "Instructions", JOptionPane.PLAIN_MESSAGE);
 	}
-
 }

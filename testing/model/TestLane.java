@@ -4,13 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * Tests Lane class
+ * @author Simon Krol
+ * @version Nov 16, 2018
+ */
 public class TestLane
 {
 	Lane lane1, lane2;
 	BasicZombie peter;
 	Sunflower sunny;
 	Peashooter penny;
+
 	@Before
 	public void setUp() throws Exception
 	{
@@ -22,12 +27,11 @@ public class TestLane
 		lane1.addZombie(peter);
 		
 	}
-
 	@Test
 	public void testGetDistance()
 	{
-		assertEquals("Lane1, should have distance = 8*250", 2000, lane1.getDistance());
-		assertEquals("Lane2, should have distance = 4*250", 1000, lane2.getDistance());
+		assertEquals("Lane1, should have distance = 8*250", 1000, lane1.getDistance());
+		assertEquals("Lane2, should have distance = 4*250", 500, lane2.getDistance());
 	}
 
 	@Test

@@ -32,11 +32,12 @@ public class View extends JFrame
 	 */
 	public View(Level lvl)
 	{
+
 		level = lvl;
 		canvas = new GameCanvas(lvl);
 		setLayout(new BorderLayout());
 		setSize(lvl.getWidth() * 127, lvl.getHeight() * 125 + 300);
-		setTitle("Plants Vs Zombies - Ghetto Edition");
+		setTitle("Plants Vs Zombies");
 		add("Center", canvas);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
