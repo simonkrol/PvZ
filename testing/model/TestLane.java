@@ -30,8 +30,8 @@ public class TestLane
 	@Test
 	public void testGetDistance()
 	{
-		assertEquals("Lane1, should have distance = 8*250", 1000, lane1.getDistance());
-		assertEquals("Lane2, should have distance = 4*250", 500, lane2.getDistance());
+		assertEquals("Lane1, should have distance = 8*125", 1000, lane1.getDistance());
+		assertEquals("Lane2, should have distance = 4*125", 500, lane2.getDistance());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class TestLane
 	{
 		
 		lane1.placePlant(sunny, 0);
-		assertTrue("Lane has a front plant", lane1.checkFrontPlant(1500));
+		assertTrue("Lane has a front plant", lane1.checkFrontPlant(875));
 		
 	}
 
