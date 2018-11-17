@@ -35,8 +35,6 @@ public class Main
 	 */
 	public static void main(String[] args) throws IOException
 	{
-		Scanner input = new Scanner(System.in);
-		String s;
 		startGame();
 		JOptionPane.showMessageDialog(null, "To place a plant: click 'Add plant', then the tile you wish to play on, then the type of plant", "Instructions", JOptionPane.PLAIN_MESSAGE);
 	}
