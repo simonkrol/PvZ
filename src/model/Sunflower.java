@@ -16,7 +16,6 @@ public class Sunflower extends Plant
 
 	/**
 	 * Creates a sunflower with default values
-	 * @param lane The lane the sunflower is in
 	 */
 	public Sunflower()
 	{

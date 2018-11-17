@@ -87,6 +87,7 @@ public class Level
 	 * @param plant The plant being placed
 	 * @param laneI The lane index of the plants location
 	 * @param spotI The spot index of the plants location
+	 * @return True if successful, false otherwise
 	 */
 	public boolean placePlant(Plant plant, int laneI, int spotI)
 	{
@@ -209,7 +210,7 @@ public class Level
 
 	/**
 	 * Get the total number of zombies alive in the level
-	 * @return
+	 * @return Number of live zombies
 	 */
 	public int getNumZombies()
 	{

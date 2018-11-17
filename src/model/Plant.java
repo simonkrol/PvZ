@@ -17,7 +17,6 @@ public abstract class Plant extends Entity
 	 * @param att Attack Damage
 	 * @param def Defence(Not implemented)
 	 * @param attSp Attack Speed
-	 * @param lane Lane found within
 	 * @param value Cost to create
 	 * @param delay Delay until you can place another (Not implemented)
 	 */

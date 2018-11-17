@@ -16,7 +16,6 @@ public class Peashooter extends Plant
 
 	/**
 	 * Creates a peashooter with default values
-	 * @param lane The lane the peashooter is in
 	 */
 	public Peashooter()
 	{
