@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * Class calls all JUnit tests
+ * @author Simon Krol, Shaun Gordon
+ * @version Nov 16, 2018
+ */
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;

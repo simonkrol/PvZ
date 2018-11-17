@@ -1,10 +1,14 @@
 package model;
 import static org.junit.Assert.*;
 
-import java.io.IOException;
-
 import org.junit.Test;
 import org.junit.Before;
+
+/**
+ * Tests Spot class
+ * @author Shaun Gordon
+ * @version Nov 16, 2018
+ */
 public class TestPlant 
 {
 	Level testLevel;
