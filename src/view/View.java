@@ -68,9 +68,6 @@ public class View extends JFrame
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
 
-		JButton add = new JButton("Add plant");
-		add.setSize(50, 100);
-		buttons.add(add);
 
 		JButton end = new JButton("End Turn");
 		end.setSize(50, 100);
@@ -88,7 +85,6 @@ public class View extends JFrame
 
 		// action listeners
 		canvas.addMouseListener(new Controller(level, this));
-		add.addActionListener(new Controller(level, this));
 		end.addActionListener(new Controller(level, this));
 		sunflowerBtn.addActionListener(new Controller(level, this));
 		peashooterBtn.addActionListener(new Controller(level, this));

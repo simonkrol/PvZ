@@ -41,12 +41,9 @@ public class Controller implements ActionListener, MouseListener
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
+		System.out.println(view.canvas.highlight);
 		button = (JButton) e.getSource();
-		if (button.getText().equals("Add plant"))
-		{
-			level.setAdd(true);
-
-		} else if (button.getText().equals("End Turn"))
+		if (button.getText().equals("End Turn"))
 		{
 			try
 			{
@@ -78,10 +75,10 @@ public class Controller implements ActionListener, MouseListener
 			System.exit(0);
 		} else if (button.getText().equals("Sunflower"))
 		{
-			if (level.getAdd())
+			System.out.println(view.canvas.highlight);
+			if (view.canvas.highlight)
 			{
 				level.placePlant(new Sunflower(), view.canvas.hLY, view.canvas.hLX);
-				level.setAdd(false);
 				view.canvas.highlight = false;
 				view.update();
 			}
@@ -89,14 +86,15 @@ public class Controller implements ActionListener, MouseListener
 
 		else if (button.getText().equals("Peashooter"))
 		{
-			if (level.getAdd())
+			System.out.println(view.canvas.highlight);
+			if (view.canvas.highlight)
 			{
 				level.placePlant(new Peashooter(), view.canvas.hLY, view.canvas.hLX);
-				level.setAdd(false);
 				view.canvas.highlight = false;
 				view.update();
 			}
 		}
+		view.canvas.setHighLight(false);
 
 	}
 
@@ -108,15 +106,12 @@ public class Controller implements ActionListener, MouseListener
 	{
 		Point m = MouseInfo.getPointerInfo().getLocation();
 		Point s = view.getLocationOnScreen();
-		if (level.getAdd())
-		{
-			x = m.x - s.x;
-			y = m.y - s.y - 50;
-			posY = (int) Math.floor(y / 125);
-			posX = (int) Math.floor(x / 125);
-			view.canvas.highLight(posX, posY);
-			view.update();
-		}
+		x = m.x - s.x;
+		y = m.y - s.y - 50;
+		posY = (int) Math.floor(y / 125);
+		posX = (int) Math.floor(x / 125);
+		view.canvas.highLight(posX, posY);
+		view.update();
 	}
 
 	@Override

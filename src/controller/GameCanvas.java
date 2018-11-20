@@ -58,7 +58,6 @@ public class GameCanvas extends Canvas
 				if (x == hLX * 125 && y == hLY * 125 && highlight)
 				{
 					g.drawImage(grassHL, x, y, this);
-					highlight = false;
 
 				} else
 				{
@@ -104,6 +103,14 @@ public class GameCanvas extends Canvas
 		highlight = true;
 		hLX = x;
 		hLY = y;
+	}
+	/**
+	 * Set whether the current block should be highlighted
+	 * @param highlight The new boolean representing whether the block is highlighted
+	 */
+	protected void setHighLight(boolean highlight)
+	{
+		this.highlight = highlight;
 	}
 
 }
