@@ -35,6 +35,8 @@ public class Main
 	public static void main(String[] args) throws IOException
 	{
 		startGame();
-		JOptionPane.showMessageDialog(null, "To place a plant: click the tile you wish to play on, then the type of plant", "Instructions", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(null,
+				"To place a plant: click the tile you wish to play on, then the type of plant", "Instructions",
+				JOptionPane.PLAIN_MESSAGE);
 	}
 }

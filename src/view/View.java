@@ -35,11 +35,11 @@ public class View extends JFrame
 	{
 		level = lvl;
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
+
 		calcBlockSize();
 		canvas = new GameCanvas(level, blockWidth, blockHeight);
-		
-		setLayout(new BorderLayout()); 
+
+		setLayout(new BorderLayout());
 		setTitle("Plants Vs Zombies");
 		add("Center", canvas);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,7 +56,7 @@ public class View extends JFrame
 
 		JPanel plants = new JPanel();
 		plants.setLayout(new FlowLayout());
-		plants.setSize(level.getWidth()*blockWidth, (int)(Math.floor(1.5*blockHeight)));
+		plants.setSize(level.getWidth() * blockWidth, (int) (Math.floor(1.5 * blockHeight)));
 
 		JButton sunflowerBtn = new JButton("Sunflower");
 		sunflowerBtn.setSize(blockWidth, blockHeight);
@@ -71,13 +71,12 @@ public class View extends JFrame
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
 
-
 		JButton end = new JButton("End Turn");
-		end.setSize((int) Math.floor(blockWidth/2.5), (int) Math.floor(blockHeight/1.25));
+		end.setSize((int) Math.floor(blockWidth / 2.5), (int) Math.floor(blockHeight / 1.25));
 		buttons.add(end);
 
 		JButton quit = new JButton("Quit Game");
-		quit.setSize((int) Math.floor(blockWidth/2.5), (int) Math.floor(blockHeight/1.25));
+		quit.setSize((int) Math.floor(blockWidth / 2.5), (int) Math.floor(blockHeight / 1.25));
 		buttons.add(quit);
 
 		selections.add(buttons);
@@ -85,7 +84,6 @@ public class View extends JFrame
 		add(selections, BorderLayout.PAGE_END);
 
 		revalidate();
-	
 
 		// action listeners
 		canvas.addMouseListener(new Controller(level, this));
@@ -93,7 +91,7 @@ public class View extends JFrame
 		sunflowerBtn.addActionListener(new Controller(level, this));
 		peashooterBtn.addActionListener(new Controller(level, this));
 		quit.addActionListener(new Controller(level, this));
-		
+
 		setVisible(true);
 		this.setResizable(false);
 	}
@@ -107,29 +105,48 @@ public class View extends JFrame
 		canvas.repaint();
 		info.setText("SUN: " + level.getBalance() + "  Turn: " + level.turn);
 	}
-	
+
+	/**
+	 * Calculate the size of each spot on the grid, setting the 
+	 * blockWidth and blockHeight values
+	 */
 	public void calcBlockSize()
 	{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		//Get the width of each spot on the grid
-		System.out.println(screenSize.width);
-		System.out.println(level.getWidth());
-		blockWidth = screenSize.width / level.getWidth(); 
-		//Get the height of each spot on the grid, allowing 1.5 additional spots for the menu
-		blockHeight = (int) (screenSize.height /(level.getHeight() + 3.5)); 
+		// Get the width of each spot on the grid
+		blockWidth = screenSize.width / level.getWidth();
+		// Get the height of each spot on the grid, allowing 3.5 additional spots for
+		// the menu
+		blockHeight = (int) (screenSize.height / (level.getHeight() + 3.5));
 	}
-	
-	private ImageIcon getScaledImage(ImageIcon srcImg, int w, int h){
-		Image image = srcImg.getImage(); // transform it 
-		Image newimg = image.getScaledInstance(w, h,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-		return new ImageIcon(newimg);  // transform it back
+
+	/**
+	 * Get a scale ImageIcon of an ImageIcon with the given size values
+	 * @param srcImg The src ImageIcon
+	 * @param w The new Width
+	 * @param h The new Height
+	 * @return Scaled ImageIcon
+	 */
+	private ImageIcon getScaledImage(ImageIcon srcImg, int w, int h)
+	{
+		Image image = srcImg.getImage(); // transform it
+		Image newimg = image.getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+		return new ImageIcon(newimg); // transform it back
 	}
-	
+
+	/**
+	 * Get the blockWidth of the current GUI
+	 * @return width of each spot
+	 */
 	public int getBlockWidth()
 	{
 		return blockWidth;
 	}
-	
+
+	/**
+	 * Get the blockHeight of the current GUI
+	 * @return height of each spot
+	 */
 	public int getBlockHeight()
 	{
 		return blockHeight;

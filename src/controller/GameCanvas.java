@@ -40,7 +40,7 @@ public class GameCanvas extends Canvas
 		this.blockWidth = blockWidth;
 		this.blockHeight = blockHeight;
 		grass = getScaledImage(new ImageIcon("Assets/Pictures/grass.jpg"), blockWidth, blockHeight);
-		zombie = getScaledImage(new ImageIcon("Assets/Pictures/zombie.png"), blockWidth/2, blockHeight);
+		zombie = getScaledImage(new ImageIcon("Assets/Pictures/zombie.png"), blockWidth / 2, blockHeight);
 		sunflower = getScaledImage(new ImageIcon("Assets/Pictures/rsz_unknown.png"), blockWidth, blockHeight);
 		peashooter = getScaledImage(new ImageIcon("Assets/Pictures/peaShooter.png"), blockWidth, blockHeight);
 		grassHL = getScaledImage(new ImageIcon("Assets/Pictures/HLgrass.jpg"), blockWidth, blockHeight);
@@ -82,7 +82,7 @@ public class GameCanvas extends Canvas
 			for (Zombie zmb : lane.getLiveZombies())
 			{
 				int pos = zmb.getPosition();
-				if ((level.getWidth()-zmb.getPosition()) * blockWidth  < 0)
+				if ((level.getWidth() - zmb.getPosition()) * blockWidth < 0)
 				{
 					pos = 0;
 				} else
@@ -108,6 +108,7 @@ public class GameCanvas extends Canvas
 		hLX = x;
 		hLY = y;
 	}
+
 	/**
 	 * Set whether the current block should be highlighted
 	 * @param highlight The new boolean representing whether the block is highlighted
@@ -116,10 +117,18 @@ public class GameCanvas extends Canvas
 	{
 		this.highlight = highlight;
 	}
-	
-	private Image getScaledImage(ImageIcon srcImg, int w, int h){
-		Image image = srcImg.getImage(); // transform it 
-		return image.getScaledInstance(w, h,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+
+	/**
+	 * Get a scale Image of an ImageIcon with the given size values
+	 * @param srcImg The src ImageIcon
+	 * @param w The new Width
+	 * @param h The new Height
+	 * @return Scaled Image
+	 */
+	private Image getScaledImage(ImageIcon srcImg, int w, int h)
+	{
+		Image image = srcImg.getImage(); // transform it
+		return image.getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
 	}
 
 }
