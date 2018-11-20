@@ -33,9 +33,9 @@ public class TestZombie
 	{
 		assertEquals("Current position should be 0", 0, peter.getPosition());
 		peter.move();
-		assertEquals("Current position should have increased by 1 movespeed", 1*peter.getMoveSpeed(), peter.getPosition());
+		assertEquals("Current position should have increased by 1 movespeed", (int)peter.getMoveSpeed(), peter.getPosition());
 		peter.move();
-		assertEquals("Current position should have increased by 1 movespeed", 2*peter.getMoveSpeed(), peter.getPosition());
+		assertEquals("Current position should have increased by 1 movespeed", (int)(2*peter.getMoveSpeed()), peter.getPosition());
 	
 	}
 	@Test

@@ -10,10 +10,10 @@ import java.util.ArrayList;
 public class Lane
 {
 	private int endState = 0;
+	private int length;
 	private boolean triggered = false;
 	private Spot[] spots;
 	private ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
-	private int distance;
 
 	/**
 	 * Construct a default lane of length 8, where the last 2 spots can not host plants
@@ -35,7 +35,7 @@ public class Lane
 		{
 			spots[i] = new Spot(length - i > unplaceable);
 		}
-		distance = length * 125;// The distance from side to side;
+		this.length = length;
 	}
 
 	/**
@@ -46,15 +46,6 @@ public class Lane
 	protected Spot getSpot(int index)
 	{
 		return getSpots()[index];
-	}
-
-	/**
-	 * Returns the length of the lane in distance, where each spot is 250 units wide
-	 * @return The length of the lane
-	 */
-	protected int getDistance()
-	{
-		return distance;
 	}
 
 	/**
@@ -103,7 +94,7 @@ public class Lane
 	 */
 	protected boolean checkFrontPlant(int position)
 	{
-		int index = (int) ((distance - position) / 125.0) - 1;
+		int index = (length - position) - 1;
 		if (index < 0 || index >= getSpots().length)
 			return false;
 		return getSpots()[index].getOccupied();
@@ -198,7 +189,7 @@ public class Lane
 				int zombieStack = 0;
 				for (Zombie zmb : getLiveZombies()) // Check all zombies
 				{
-					if (zmb != null && zmb.position == distance - curSpot * 250) // Currently using a coordinate system,
+					if (zmb != null && zmb.position == length - curSpot) // Currently using a coordinate system,
 																					// Later will be replaced with pixel
 																					// range
 					{
@@ -283,6 +274,14 @@ public class Lane
 			return true;
 		}
 		return false;
+	}
+	/**
+	 * Get the number of spots in the lane
+	 * @return Length of lane
+	 */
+	protected int getLength()
+	{
+		return length;
 	}
 
 }

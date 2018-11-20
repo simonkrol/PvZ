@@ -19,6 +19,7 @@ public class Level
 	private BufferedReader levelData;
 	private String curInstruction;
 	private boolean add = false;
+	private int blockWidth;
 
 	/**
 	 * Construct a level
@@ -220,5 +221,21 @@ public class Level
 			sum += grid[i].getNumZombies();
 		}
 		return sum;
+	}
+	/**
+	 * Set the new block width for the level
+	 * @param blockWidth New blockwidth
+	 */
+	public void setBlockWidth(int blockWidth)
+	{
+		this.blockWidth = blockWidth;
+	}
+	/**
+	 * Get the level's blockwidth
+	 * @return Level's blockwidth
+	 */
+	public int getBlockWidth()
+	{
+		return blockWidth;
 	}
 }

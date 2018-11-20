@@ -40,7 +40,7 @@ public class GameCanvas extends Canvas
 		this.blockWidth = blockWidth;
 		this.blockHeight = blockHeight;
 		grass = getScaledImage(new ImageIcon("Assets/Pictures/grass.jpg"), blockWidth, blockHeight);
-		zombie = getScaledImage(new ImageIcon("Assets/Pictures/zombie.png"), blockWidth, blockHeight);
+		zombie = getScaledImage(new ImageIcon("Assets/Pictures/zombie.png"), blockWidth/2, blockHeight);
 		sunflower = getScaledImage(new ImageIcon("Assets/Pictures/rsz_unknown.png"), blockWidth, blockHeight);
 		peashooter = getScaledImage(new ImageIcon("Assets/Pictures/peaShooter.png"), blockWidth, blockHeight);
 		grassHL = getScaledImage(new ImageIcon("Assets/Pictures/HLgrass.jpg"), blockWidth, blockHeight);
@@ -82,12 +82,12 @@ public class GameCanvas extends Canvas
 			for (Zombie zmb : lane.getLiveZombies())
 			{
 				int pos = zmb.getPosition();
-				if (level.getWidth() * blockWidth - zmb.getPosition() < 0)
+				if ((level.getWidth()-zmb.getPosition()) * blockWidth  < 0)
 				{
 					pos = 0;
 				} else
 				{
-					pos = level.getWidth() * blockWidth - zmb.getPosition();
+					pos = (level.getWidth() - zmb.getPosition()) * blockWidth;
 				}
 				g.drawImage(zombie, pos, y, this);
 			}
