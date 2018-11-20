@@ -31,6 +31,7 @@
 - **When the size of the gui is changed, the component's sizes don't change and can overlap in strange ways(Fixed)**
 - No menu exists to give instructions, only a popup at game start
 - Print statements still exist throughout the project and should be removed
+- Win/Lose Dialog Box Doesn't end game 
 
 
 ### How to play:
