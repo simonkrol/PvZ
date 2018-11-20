@@ -108,8 +108,8 @@ public class Controller implements ActionListener, MouseListener
 		Point s = view.getLocationOnScreen();
 		x = m.x - s.x;
 		y = m.y - s.y - 50;
-		posY = (int) Math.floor(y / 125);
-		posX = (int) Math.floor(x / 125);
+		posY = (int) Math.floor(y / view.getBlockHeight());
+		posX = (int) Math.floor(x / view.getBlockWidth());
 		view.canvas.highLight(posX, posY);
 		view.update();
 	}

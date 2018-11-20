@@ -23,6 +23,7 @@ public class View extends JFrame
 	private static final long serialVersionUID = 1L;
 	public GameCanvas canvas;
 	private Level level;
+	private int blockWidth, blockHeight;
 	JLabel info;
 	JPanel information;
 
@@ -32,15 +33,16 @@ public class View extends JFrame
 	 */
 	public View(Level lvl)
 	{
-
 		level = lvl;
-		canvas = new GameCanvas(lvl);
-		setLayout(new BorderLayout());
-		setSize(lvl.getWidth() * 127, lvl.getHeight() * 125 + 300);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
+		calcBlockSize();
+		canvas = new GameCanvas(level, blockWidth, blockHeight);
+		
+		setLayout(new BorderLayout()); 
 		setTitle("Plants Vs Zombies");
 		add("Center", canvas);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
 
 		information = new JPanel();
 		information.setLayout(new FlowLayout());
@@ -54,15 +56,16 @@ public class View extends JFrame
 
 		JPanel plants = new JPanel();
 		plants.setLayout(new FlowLayout());
+		plants.setSize(level.getWidth()*blockWidth, (int)(Math.floor(1.5*blockHeight)));
 
 		JButton sunflowerBtn = new JButton("Sunflower");
-		sunflowerBtn.setSize(125, 125);
-		sunflowerBtn.setIcon(new ImageIcon("Assets/Pictures/rsz_unknown.png"));
+		sunflowerBtn.setSize(blockWidth, blockHeight);
+		sunflowerBtn.setIcon(getScaledImage(new ImageIcon("Assets/Pictures/rsz_unknown.png"), blockWidth, blockHeight));
 		plants.add(sunflowerBtn);
 
 		JButton peashooterBtn = new JButton("Peashooter");
-		peashooterBtn.setSize(125, 125);
-		peashooterBtn.setIcon(new ImageIcon("Assets/Pictures/peaShooter.png"));
+		peashooterBtn.setSize(blockWidth, blockHeight);
+		peashooterBtn.setIcon(getScaledImage(new ImageIcon("Assets/Pictures/peaShooter.png"), blockWidth, blockHeight));
 		plants.add(peashooterBtn);
 
 		JPanel buttons = new JPanel();
@@ -70,11 +73,11 @@ public class View extends JFrame
 
 
 		JButton end = new JButton("End Turn");
-		end.setSize(50, 100);
+		end.setSize((int) Math.floor(blockWidth/2.5), (int) Math.floor(blockHeight/1.25));
 		buttons.add(end);
 
 		JButton quit = new JButton("Quit Game");
-		quit.setSize(50, 100);
+		quit.setSize((int) Math.floor(blockWidth/2.5), (int) Math.floor(blockHeight/1.25));
 		buttons.add(quit);
 
 		selections.add(buttons);
@@ -82,6 +85,7 @@ public class View extends JFrame
 		add(selections, BorderLayout.PAGE_END);
 
 		revalidate();
+	
 
 		// action listeners
 		canvas.addMouseListener(new Controller(level, this));
@@ -89,6 +93,9 @@ public class View extends JFrame
 		sunflowerBtn.addActionListener(new Controller(level, this));
 		peashooterBtn.addActionListener(new Controller(level, this));
 		quit.addActionListener(new Controller(level, this));
+		
+		setVisible(true);
+		this.setResizable(false);
 	}
 
 	/**
@@ -99,5 +106,32 @@ public class View extends JFrame
 	{
 		canvas.repaint();
 		info.setText("SUN: " + level.getBalance() + "  Turn: " + level.turn);
+	}
+	
+	public void calcBlockSize()
+	{
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		//Get the width of each spot on the grid
+		System.out.println(screenSize.width);
+		System.out.println(level.getWidth());
+		blockWidth = screenSize.width / level.getWidth(); 
+		//Get the height of each spot on the grid, allowing 1.5 additional spots for the menu
+		blockHeight = (int) (screenSize.height /(level.getHeight() + 3.5)); 
+	}
+	
+	private ImageIcon getScaledImage(ImageIcon srcImg, int w, int h){
+		Image image = srcImg.getImage(); // transform it 
+		Image newimg = image.getScaledInstance(w, h,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+		return new ImageIcon(newimg);  // transform it back
+	}
+	
+	public int getBlockWidth()
+	{
+		return blockWidth;
+	}
+	
+	public int getBlockHeight()
+	{
+		return blockHeight;
 	}
 }

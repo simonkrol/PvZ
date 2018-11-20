@@ -22,13 +22,10 @@ public class GameCanvas extends Canvas
 {
 
 	private static final long serialVersionUID = 1L;
+	private final int blockWidth, blockHeight;
 	private Level level;
 	private Graphics g;
-	Image grass = new ImageIcon("Assets/Pictures/grass.jpg").getImage();
-	Image zombie = new ImageIcon("Assets/Pictures/zombie.png").getImage();
-	Image sunflower = new ImageIcon("Assets/Pictures/rsz_unknown.png").getImage();
-	Image peashooter = new ImageIcon("Assets/Pictures/peaShooter.png").getImage();
-	Image grassHL = new ImageIcon("Assets/Pictures/HLgrass.jpg").getImage();
+	Image grass, zombie, sunflower, peashooter, grassHL;
 	protected boolean highlight = false;
 	protected int hLX = 0, hLY = 0;
 
@@ -37,9 +34,16 @@ public class GameCanvas extends Canvas
 	 * 
 	 * @param lvl The current level
 	 */
-	public GameCanvas(Level lvl)
+	public GameCanvas(Level lvl, int blockWidth, int blockHeight)
 	{
 		level = lvl;
+		this.blockWidth = blockWidth;
+		this.blockHeight = blockHeight;
+		grass = getScaledImage(new ImageIcon("Assets/Pictures/grass.jpg"), blockWidth, blockHeight);
+		zombie = getScaledImage(new ImageIcon("Assets/Pictures/zombie.png"), blockWidth, blockHeight);
+		sunflower = getScaledImage(new ImageIcon("Assets/Pictures/rsz_unknown.png"), blockWidth, blockHeight);
+		peashooter = getScaledImage(new ImageIcon("Assets/Pictures/peaShooter.png"), blockWidth, blockHeight);
+		grassHL = getScaledImage(new ImageIcon("Assets/Pictures/HLgrass.jpg"), blockWidth, blockHeight);
 	}
 
 	@Override
@@ -55,7 +59,7 @@ public class GameCanvas extends Canvas
 		{
 			for (Spot spot : lane.getSpots()) // draw plants and spots
 			{
-				if (x == hLX * 125 && y == hLY * 125 && highlight)
+				if (x == hLX * blockWidth && y == hLY * blockHeight && highlight)
 				{
 					g.drawImage(grassHL, x, y, this);
 
@@ -72,23 +76,23 @@ public class GameCanvas extends Canvas
 					g.drawImage(peashooter, x, y, this);
 				}
 
-				x += 125;
+				x += blockWidth;
 			}
 
 			for (Zombie zmb : lane.getLiveZombies())
 			{
 				int pos = zmb.getPosition();
-				if (level.getWidth() * 125 - zmb.getPosition() < 0)
+				if (level.getWidth() * blockWidth - zmb.getPosition() < 0)
 				{
 					pos = 0;
 				} else
 				{
-					pos = level.getWidth() * 125 - zmb.getPosition();
+					pos = level.getWidth() * blockWidth - zmb.getPosition();
 				}
 				g.drawImage(zombie, pos, y, this);
 			}
 			x = 0;
-			y += 125;
+			y += blockHeight;
 		}
 
 	}
@@ -111,6 +115,11 @@ public class GameCanvas extends Canvas
 	protected void setHighLight(boolean highlight)
 	{
 		this.highlight = highlight;
+	}
+	
+	private Image getScaledImage(ImageIcon srcImg, int w, int h){
+		Image image = srcImg.getImage(); // transform it 
+		return image.getScaledInstance(w, h,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 	}
 
 }
