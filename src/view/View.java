@@ -25,7 +25,7 @@ public class View extends JFrame
 	private Level level;
 	private int blockWidth, blockHeight;
 	JLabel info;
-	JPanel information;
+	JPanel information, selections, contentPane;
 
 	/**
 	 * Create a new view for a given level
@@ -34,14 +34,12 @@ public class View extends JFrame
 	public View(Level lvl)
 	{
 		level = lvl;
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-		calcBlockSize();
-		canvas = new GameCanvas(level, blockWidth, blockHeight);
 
 		setLayout(new BorderLayout());
+
+
+
 		setTitle("Plants Vs Zombies");
-		add("Center", canvas);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		information = new JPanel();
@@ -51,37 +49,49 @@ public class View extends JFrame
 		information.add(info);
 		add(information, BorderLayout.PAGE_START);
 
-		JPanel selections = new JPanel();
+		selections = new JPanel();
 		selections.setLayout(new BoxLayout(selections, BoxLayout.PAGE_AXIS));
 
 		JPanel plants = new JPanel();
 		plants.setLayout(new FlowLayout());
-		plants.setSize(level.getWidth() * blockWidth, (int) (Math.floor(1.5 * blockHeight)));
 
 		JButton sunflowerBtn = new JButton("Sunflower");
-		sunflowerBtn.setSize(blockWidth, blockHeight);
-		sunflowerBtn.setIcon(getScaledImage(new ImageIcon("Assets/Pictures/rsz_unknown.png"), blockWidth, blockHeight));
+		sunflowerBtn.setSize(125, 125);
+		sunflowerBtn.setIcon(getScaledImage(new ImageIcon("Assets/Pictures/rsz_unknown.png"), 125, 125));
 		plants.add(sunflowerBtn);
 
 		JButton peashooterBtn = new JButton("Peashooter");
-		peashooterBtn.setSize(blockWidth, blockHeight);
-		peashooterBtn.setIcon(getScaledImage(new ImageIcon("Assets/Pictures/peaShooter.png"), blockWidth, blockHeight));
+		peashooterBtn.setSize(125, 125);
+		peashooterBtn.setIcon(getScaledImage(new ImageIcon("Assets/Pictures/peaShooter.png"),125, 125));
 		plants.add(peashooterBtn);
 
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
 
 		JButton end = new JButton("End Turn");
-		end.setSize((int) Math.floor(blockWidth / 2.5), (int) Math.floor(blockHeight / 1.25));
+		end.setSize(50, 100);
 		buttons.add(end);
 
 		JButton quit = new JButton("Quit Game");
-		quit.setSize((int) Math.floor(blockWidth / 2.5), (int) Math.floor(blockHeight / 1.25));
+		quit.setSize(50, 100);
 		buttons.add(quit);
 
 		selections.add(buttons);
 		selections.add(plants);
 		add(selections, BorderLayout.PAGE_END);
+
+
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		pack();
+		setVisible(true);
+		setResizable(false);
+		calcBlockSize();
+
+		System.out.println(blockWidth);
+		System.out.println(blockHeight);
+		canvas = new GameCanvas(level, blockWidth, blockHeight);
+		add(canvas, BorderLayout.CENTER);
+
 
 		revalidate();
 
@@ -92,8 +102,7 @@ public class View extends JFrame
 		peashooterBtn.addActionListener(new Controller(level, this));
 		quit.addActionListener(new Controller(level, this));
 
-		setVisible(true);
-		this.setResizable(false);
+
 	}
 
 	/**
@@ -112,12 +121,12 @@ public class View extends JFrame
 	 */
 	public void calcBlockSize()
 	{
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
 		// Get the width of each spot on the grid
-		blockWidth = screenSize.width / level.getWidth();
-		// Get the height of each spot on the grid, allowing 3.5 additional spots for
-		// the menu
-		blockHeight = (int) (screenSize.height / (level.getHeight() + 3.5));
+		blockWidth = getWidth() / level.getWidth();
+		// Get the height of each spot on the grid, not counting the Info and Plant menus or the taskbar
+		// We subtract the info menu twice to also get rid of the top bar from this calculation
+		blockHeight = (getHeight()- scnMax.bottom - 2*information.getHeight() - selections.getHeight()) / level.getHeight();
 	}
 
 	/**
