@@ -9,7 +9,6 @@ public class Sunflower extends Plant
 {
 	private static final int DEFAULT_HP = 4;
 	private static final int DEFAULT_ATTACK = 12;
-	private static final int DEFAULT_DEFENCE = 0;
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	public static final int DEFAULT_VALUE = 50;
 	private static final int DEFAULT_DELAY = 5;
@@ -19,16 +18,19 @@ public class Sunflower extends Plant
 	 */
 	public Sunflower()
 	{
-		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, DEFAULT_VALUE, DEFAULT_DELAY);
+		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_ATTACKSPEED, DEFAULT_VALUE, DEFAULT_DELAY);
 	}
 
 	/**
 	 * Add sun to the players balance
 	 * @param curLevel The current level
 	 */
-	protected void attack(Level curLevel)
+	protected void attack(Object curLevel)
 	{
-		curLevel.addToBalance(this.attack);
+		if(curLevel instanceof Level)
+		{
+			((Level) curLevel).addToBalance(this.attack);
+		}
 	}
 
 	/**

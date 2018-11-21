@@ -8,6 +8,7 @@ package model;
 public abstract class Plant extends Entity
 {
 	protected Spot location;
+	protected int distance;
 	protected int value;
 	protected int delay;
 
@@ -20,9 +21,9 @@ public abstract class Plant extends Entity
 	 * @param value Cost to create
 	 * @param delay Delay until you can place another (Not implemented)
 	 */
-	protected Plant(int maxHP, int att, int def, double attSp, int value, int delay)
+	protected Plant(int maxHP, int att, double attSp, int value, int delay)
 	{
-		super(maxHP, att, def, attSp, null);
+		super(maxHP, att, attSp, null);
 		this.value = value;
 		this.delay = delay;
 	}
@@ -53,6 +54,14 @@ public abstract class Plant extends Entity
 	{
 		return value;
 	}
+	/**
+	 * Set the index location of the plant
+	 * @param newDistance The new distance value
+	 */
+	protected void setDistance(int newDistance)
+	{
+		distance = newDistance;
+	}
 
 	/**
 	 * Kill the plant and remove it from the board
@@ -68,14 +77,14 @@ public abstract class Plant extends Entity
 	 */
 	protected void turn(Level curLevel)
 	{
-		if (lane.noZombies())
-			return;
-
-		attackState += this.attackSpeed;
-		while (attackState >= 1)
+		if (lane.attackableZombies(distance))
 		{
-			this.attack(curLevel);
-			attackState--;
+			attackState += this.attackSpeed;
+			while (attackState >= 1)
+			{
+				this.attack(curLevel);
+				attackState--;
+			}
 		}
 	}
 

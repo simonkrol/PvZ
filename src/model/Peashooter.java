@@ -9,7 +9,6 @@ public class Peashooter extends Plant
 {
 	private static final int DEFAULT_HP = 5;
 	private static final int DEFAULT_ATTACK = 2;
-	private static final int DEFAULT_DEFENCE = 0;
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	public static final int DEFAULT_VALUE = 40;
 	private static final int DEFAULT_DELAY = 5;
@@ -19,15 +18,15 @@ public class Peashooter extends Plant
 	 */
 	public Peashooter()
 	{
-		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_DEFENCE, DEFAULT_ATTACKSPEED, DEFAULT_VALUE, DEFAULT_DELAY);
+		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_ATTACKSPEED, DEFAULT_VALUE, DEFAULT_DELAY);
 	}
 
 	/**
 	 * Shoot a pea at the closest zombie in the lane
 	 */
-	protected void attack(Level curLevel)
+	protected void attack(Object toAttack)
 	{
-		this.lane.damageZombie(this.attack);
+		lane.createProjectile(new PeaProjectile(attack, this. distance+0.3, lane));
 	}
 
 }

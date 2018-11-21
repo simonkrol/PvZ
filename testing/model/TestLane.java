@@ -67,25 +67,6 @@ public class TestLane
 	}
 
 	@Test
-	public void testCheckFrontPlant()
-	{
-		
-		lane1.placePlant(sunny, 0);
-		assertTrue("Lane has a front plant", lane1.checkFrontPlant(7));
-		
-	}
-
-	@Test
-	public void testGetFrontPlant()
-	{
-		assertTrue("Front plant is null", lane1.getFrontPlant() == null);
-		lane1.placePlant(sunny, 0);
-		assertTrue("Sunny is the front plant", sunny.equals(lane1.getFrontPlant()));
-		lane1.placePlant(penny, 1);
-		assertTrue("Penny is the front plant", penny.equals(lane1.getFrontPlant()));
-	}
-
-	@Test
 	public void testCheckFail()
 	{
 		assertFalse("Not yet failed", lane2.checkFail());

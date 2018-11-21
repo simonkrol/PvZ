@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import model.Lane;
 import model.Level;
 import model.Peashooter;
+import model.Projectile;
 import model.Spot;
 import model.Sunflower;
 import model.Zombie;
@@ -26,7 +27,7 @@ public class GameCanvas extends JPanel
 	private final int blockWidth, blockHeight;
 	private Level level;
 	private Graphics g;
-	Image basicZombie, sunflower, peashooter, lawnMower;
+	Image basicZombie, sunflower, peashooter, lawnMower, pea;
 	Image grass[];
 	protected boolean highlight = false;
 	protected int hLX = 0, hLY = 0;
@@ -44,7 +45,8 @@ public class GameCanvas extends JPanel
 		this.blockHeight = blockHeight;
 		grass = new Image[4];
 		lawnMower = getScaledImage(new ImageIcon("res/assets/Pvz_G/LawnMower.png"), (int)(blockWidth/1.5), (int)(blockHeight/1.5));
-
+		pea = getScaledImage(new ImageIcon("res/assets/PvZ_G/Pea.png"), blockWidth/4, blockWidth/4);
+		
 		grass[0] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass0.png"), blockWidth, blockHeight);
 		grass[1] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass1.png"), blockWidth, blockHeight);
 		grass[2] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass0H.png"), blockWidth, blockHeight);
@@ -101,7 +103,7 @@ public class GameCanvas extends JPanel
 
 			for (Zombie zmb : lane.getLiveZombies())
 			{
-				int pos = zmb.getPosition();
+				double pos = zmb.getPosition();
 				if ((level.getWidth() - pos) * blockWidth < 0)
 				{
 					pos = 0;
@@ -110,7 +112,11 @@ public class GameCanvas extends JPanel
 					pos = (level.getWidth() - pos) * blockWidth;
 				}
 				pos += (blockWidth/2) - basicZombie.getWidth(this)/2;
-				g.drawImage(basicZombie, pos, y*blockHeight, this);
+				g.drawImage(basicZombie, (int)pos, y*blockHeight, this);
+			}
+			for (Projectile proj : lane.getProjectiles())
+			{
+				g.drawImage(pea,(int)(proj.getPosition()*blockWidth), (int)((y+proj.getOffset())*blockHeight)+blockHeight/2 - pea.getHeight(this)/2 , this);
 			}
 			x = 0;
 			y ++;

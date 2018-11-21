@@ -9,7 +9,6 @@ public abstract class Entity
 {
 	private int currentHP, maxHP;
 	protected int attack;
-	private int defence;
 	protected Lane lane;
 	protected double attackSpeed;
 	protected double attackState;
@@ -22,12 +21,11 @@ public abstract class Entity
 	 * @param def The entities defence, currently unused
 	 * @param attSp The entities attack speed
 	 */
-	protected Entity(int maxHP, int att, int def, double attSp, Lane lane)
+	protected Entity(int maxHP, int att, double attSp, Lane lane)
 	{
 		this.maxHP = maxHP;
 		this.currentHP = maxHP;
 		this.attack = att;
-		this.defence = def;
 		this.attackSpeed = attSp;
 		this.lane = lane;
 	}
@@ -45,9 +43,11 @@ public abstract class Entity
 
 	/**
 	 * Method to be initialized in each subclass that causes the entity to attack
-	 * @param curLevel The current level being played
+	 * ToAttack would be an entity instead of an object except that we need a way of
+	 * adding sun to our balance, once sun entities are added, this can be changed.
+	 * @param toAttack The object being attacked
 	 */
-	protected abstract void attack(Level curLevel);
+	protected abstract void attack(Object toAttack);
 
 	/**
 	 * Reduce the entities HP, if at 0 or below, the entity will die

@@ -14,6 +14,7 @@ public class Lane
 	private boolean triggered = false;
 	private Spot[] spots;
 	private ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
+	private ArrayList<Projectile> projectiles  = new ArrayList<Projectile>();
 
 	/**
 	 * Construct a default lane of length 8, where the last 2 spots can not host plants
@@ -54,10 +55,10 @@ public class Lane
 	 */
 	protected void damageZombie(int damage)
 	{
-		if (getLiveZombies().size() == 0)
+		if (liveZombies.size() == 0)
 			return;
-		Zombie closest = getLiveZombies().get(0);
-		for (Zombie zmb : getLiveZombies())
+		Zombie closest = liveZombies.get(0);
+		for (Zombie zmb : liveZombies)
 		{
 			if (zmb.position > closest.position)
 			{
@@ -72,7 +73,7 @@ public class Lane
 	 */
 	protected void spawnZombie()
 	{
-		getLiveZombies().add(new BasicZombie(this));
+		liveZombies.add(new BasicZombie(this));
 	}
 
 	/**
@@ -88,31 +89,18 @@ public class Lane
 	}
 
 	/**
-	 * Check if a zombie is standing directly in front of a plant
+	 * Check if a plant exists directly in front of the zombie
 	 * @param position The position of the zombie
-	 * @return True if in front of plant, false otherwise
+	 * @return The plant in front of the zombie or null
 	 */
-	protected boolean checkFrontPlant(int position)
+	protected Plant checkFrontPlant(double position)
 	{
-		int index = (length - position) - 1;
+		int index =(int) (length - Math.round(position)) - 1;
 		if (index < 0 || index >= getSpots().length)
-			return false;
-		return getSpots()[index].getOccupied();
+			return null;
+		return getSpots()[index].getPlant();
 	}
 
-	/**
-	 * Returns the plant in the spot closest to the zombies
-	 * @return The most upfront plant
-	 */
-	protected Plant getFrontPlant()
-	{
-		for (int i = getSpots().length - 1; i >= 0; i--)
-		{
-			if (getSpots()[i].getOccupied())
-				return getSpots()[i].getPlant();
-		}
-		return null;
-	}
 
 	/**
 	 * Iterates through all plants and zombies in the lane and causes them to update
@@ -126,17 +114,33 @@ public class Lane
 				spot.getPlant().turn(curLevel);
 
 		}
-		for (Zombie zombie : getLiveZombies())
+		for (Projectile proj: projectiles)
+		{
+			proj.turn(curLevel);
+		}
+		clearUsedProj();
+		for (Zombie zombie : liveZombies)
 		{
 			zombie.turn(curLevel);
 		}
 		if (triggered) // check if lawnmower has been triggered
 		{
-			getLiveZombies().clear();
+			liveZombies.clear();
 			triggered = false;
 		}
 	}
 
+	private void clearUsedProj()
+	{
+		for(int i = 0; i < projectiles.size(); i++)
+		{
+			if(projectiles.get(i).getExploded())
+			{
+				projectiles.remove(i);
+				i--;
+			}
+		}
+	}
 	/**
 	 * Check to see if the player has lost
 	 * @return True if lost, false otherwise
@@ -147,12 +151,23 @@ public class Lane
 	}
 
 	/**
-	 * Return if no zombies exist in the lane
-	 * @return True if no zombies, false otherwise
+	 * Return if zombies exist in the lane on the right of the given index
+	 * @return True if zombies, false otherwise
 	 */
+	protected boolean attackableZombies(int distance)
+	{
+		for (Zombie z: liveZombies)
+		{
+			if((length - distance - 1)>z.getPosition())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	protected boolean noZombies()
 	{
-		return getLiveZombies().size() == 0;
+		return liveZombies.size()==0;
 	}
 
 	/**
@@ -161,7 +176,15 @@ public class Lane
 	 */
 	protected void killZombie(Zombie toKill)
 	{
-		getLiveZombies().remove(toKill);
+		liveZombies.remove(toKill);
+	}
+	/**
+	 * Kill a given projectile in the lane
+	 * @param toKill
+	 */
+	protected void killProjectile(Projectile toKill)
+	{
+		projectiles.remove(toKill);
 	}
 
 	/**
@@ -187,7 +210,7 @@ public class Lane
 			{
 				boolean zombieAdded = false;
 				int zombieStack = 0;
-				for (Zombie zmb : getLiveZombies()) // Check all zombies
+				for (Zombie zmb : liveZombies) // Check all zombies
 				{
 					if (zmb != null && zmb.position == length - curSpot) // Currently using a coordinate system,
 																					// Later will be replaced with pixel
@@ -227,7 +250,7 @@ public class Lane
 	 */
 	protected int getNumZombies()
 	{
-		return getLiveZombies().size();
+		return liveZombies.size();
 	}
 
 	/**
@@ -236,7 +259,7 @@ public class Lane
 	 */
 	public void addZombie(Zombie toAdd)
 	{
-		getLiveZombies().add(toAdd);
+		liveZombies.add(toAdd);
 		toAdd.setLane(this);
 	}
 
@@ -257,6 +280,10 @@ public class Lane
 	{
 		return liveZombies;
 	}
+	public ArrayList<Projectile> getProjectiles()
+	{
+		return projectiles;
+	}
 
 	/**
 	 * Place a given plant at the given index
@@ -269,6 +296,7 @@ public class Lane
 		Spot spot = spots[spotIndex];
 		if (spot.addPlant(toPlace))
 		{
+			toPlace.setDistance(spotIndex);
 			toPlace.setLane(this);
 			toPlace.setLocation(spot);
 			return true;
@@ -282,6 +310,27 @@ public class Lane
 	protected int getLength()
 	{
 		return length;
+	}
+	
+	protected Zombie getProjZombie(double projMS, double projPos)
+	{
+		Zombie closest = null;
+		double cDistance = projMS;
+		double distance;
+		for (Zombie z: liveZombies)
+		{
+			distance = (length - projPos - 1) - z.getPosition();
+			if(distance >=0 && distance < cDistance + z.getMoveSpeed())
+			{
+				cDistance = distance - z.getMoveSpeed();
+				closest = z;
+			}
+		}
+		return closest;
+	}
+	protected void createProjectile(Projectile toCreate)
+	{
+		projectiles.add(toCreate);
 	}
 
 }
