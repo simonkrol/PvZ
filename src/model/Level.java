@@ -94,12 +94,12 @@ public class Level
 	{
 		if (laneI < 0 || laneI > getWidth() - 1 || spotI < 0 || spotI > getHeight() - 1)
 		{
-			System.out.println("Index out of bounds");
+			//System.out.println("Index out of bounds");
 			return false;
 		}
 		if (plant.getValue() > balance) // check if player has enough to purchase the plant
 		{
-			System.out.println("Insufficient funds");
+			//System.out.println("Insufficient funds");
 			return false;
 		}
 		if (getLane(laneI).placePlant(plant, spotI))
