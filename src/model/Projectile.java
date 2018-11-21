@@ -30,23 +30,18 @@ public class Projectile extends Entity
 	@Override
 	protected void turn(Level curLevel)
 	{
+		move();
 		Zombie toAttack = lane.getProjZombie(moveSpeed, position);
 		if(toAttack != null) 
 		{
 			attack(toAttack);
 		}
-		else
-		{
-			move();
-		}
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	protected void attack(Object toAttack)
 	{
-		System.out.println(toAttack instanceof Zombie);
 		if(toAttack instanceof Zombie)
 		{
 			((Zombie) toAttack).takeDamage(attack);

@@ -178,14 +178,6 @@ public class Lane
 	{
 		liveZombies.remove(toKill);
 	}
-	/**
-	 * Kill a given projectile in the lane
-	 * @param toKill
-	 */
-	protected void killProjectile(Projectile toKill)
-	{
-		projectiles.remove(toKill);
-	}
 
 	/**
 	 * Return string based info about the lane, used to build the GUI
@@ -315,12 +307,12 @@ public class Lane
 	protected Zombie getProjZombie(double projMS, double projPos)
 	{
 		Zombie closest = null;
-		double cDistance = projMS;
+		double cDistance = projMS/2;
 		double distance;
 		for (Zombie z: liveZombies)
 		{
-			distance = (length - projPos - 1) - z.getPosition();
-			if(distance >=0 && distance < cDistance + z.getMoveSpeed())
+			distance = (length - projPos) - z.getPosition();
+			if(distance < cDistance +z.getMoveSpeed() && distance >= -projMS/2 && distance <= projMS/2 + z.getMoveSpeed())
 			{
 				cDistance = distance - z.getMoveSpeed();
 				closest = z;
