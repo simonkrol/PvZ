@@ -39,11 +39,11 @@ public class GameCanvas extends Canvas
 		level = lvl;
 		this.blockWidth = blockWidth;
 		this.blockHeight = blockHeight;
-		grass = getScaledImage(new ImageIcon("Assets/Pictures/grass.jpg"), blockWidth, blockHeight);
-		zombie = getScaledImage(new ImageIcon("Assets/Pictures/zombie.png"), blockWidth / 2, blockHeight);
+		grass = getScaledImage(new ImageIcon("Assets/Pictures/grass.png"), blockWidth, blockHeight);
+		zombie = getScaledImage(new ImageIcon("Assets/Pictures/zombie.png"), blockWidth, blockHeight);
 		sunflower = getScaledImage(new ImageIcon("Assets/Pictures/rsz_unknown.png"), blockWidth, blockHeight);
 		peashooter = getScaledImage(new ImageIcon("Assets/Pictures/peaShooter.png"), blockWidth, blockHeight);
-		grassHL = getScaledImage(new ImageIcon("Assets/Pictures/HLgrass.jpg"), blockWidth, blockHeight);
+		grassHL = getScaledImage(new ImageIcon("Assets/Pictures/HLgrass.png"), blockWidth, blockHeight);
 	}
 
 	@Override

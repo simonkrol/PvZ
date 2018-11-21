@@ -86,7 +86,7 @@ public class View extends JFrame
 		setVisible(true);
 		setResizable(false);
 		calcBlockSize();
-		
+
 		canvas = new GameCanvas(level, blockWidth, blockHeight);
 		add(canvas, BorderLayout.CENTER);
 
