@@ -15,7 +15,7 @@ public class Projectile extends Entity
 	{
 		super(1, att, 0, lane);
 		this.moveSpeed = moveSpeed;
-		this.offset = (rand.nextDouble()*0.7)-0.35;
+		this.offset = (rand.nextDouble()*0.6)-0.33;
 		this.position = position;
 		exploded = false;
 	}
