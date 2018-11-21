@@ -122,11 +122,17 @@ public class View extends JFrame
 	public void calcBlockSize()
 	{
 		Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		// Get the width of each spot on the grid
-		blockWidth = getWidth() / level.getWidth();
+		blockWidth = (int)(screenSize.getWidth() / level.getWidth());
 		// Get the height of each spot on the grid, not counting the Info and Plant menus or the taskbar
 		// We subtract the info menu twice to also get rid of the top bar from this calculation
-		blockHeight = (getHeight()- scnMax.bottom - 2*information.getHeight() - selections.getHeight()) / level.getHeight();
+		System.out.println(screenSize.getHeight());
+		System.out.println(scnMax.bottom);
+		System.out.println(scnMax.top);
+		System.out.println(information.getHeight());
+		System.out.println(selections.getHeight());
+		blockHeight = (int)(screenSize.getHeight()- scnMax.bottom - scnMax.top - 2*information.getHeight() - selections.getHeight()) / level.getHeight();
 	}
 
 	/**
