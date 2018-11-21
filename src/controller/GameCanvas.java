@@ -26,7 +26,7 @@ public class GameCanvas extends JPanel
 	private final int blockWidth, blockHeight;
 	private Level level;
 	private Graphics g;
-	Image basicZombie, sunflower, peashooter, grassHL;
+	Image basicZombie, sunflower, peashooter, lawnMower;
 	Image grass[];
 	protected boolean highlight = false;
 	protected int hLX = 0, hLY = 0;
@@ -43,6 +43,7 @@ public class GameCanvas extends JPanel
 		this.blockWidth = blockWidth;
 		this.blockHeight = blockHeight;
 		grass = new Image[4];
+		lawnMower = getScaledImage(new ImageIcon("res/assets/Pvz_G/LawnMower.png"), (int)(blockWidth/1.5), (int)(blockHeight/1.5));
 
 		grass[0] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass0.png"), blockWidth, blockHeight);
 		grass[1] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass1.png"), blockWidth, blockHeight);
@@ -89,6 +90,10 @@ public class GameCanvas extends JPanel
 				} else if (spot.getPlant() instanceof Peashooter)
 				{
 					g.drawImage(peashooter, x*blockWidth+(blockWidth/2)-(peashooter.getWidth(this)/2), y*blockHeight, this);
+				}
+				if(x==0 && lane.getEndState()==0)
+				{
+					g.drawImage(lawnMower, x*blockWidth-blockWidth/3, y*blockHeight+(blockHeight/2)-lawnMower.getHeight(this)/2, this);
 				}
 
 				x++;

@@ -216,7 +216,7 @@ public class Lane
 	 * Return the lane's end state
 	 * @return End state
 	 */
-	protected int getEndState()
+	public int getEndState()
 	{
 		return endState;
 	}
