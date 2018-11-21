@@ -86,9 +86,7 @@ public class View extends JFrame
 		setVisible(true);
 		setResizable(false);
 		calcBlockSize();
-
-		System.out.println(blockWidth);
-		System.out.println(blockHeight);
+		
 		canvas = new GameCanvas(level, blockWidth, blockHeight);
 		add(canvas, BorderLayout.CENTER);
 
@@ -127,11 +125,6 @@ public class View extends JFrame
 		blockWidth = (int)(screenSize.getWidth() / level.getWidth());
 		// Get the height of each spot on the grid, not counting the Info and Plant menus or the taskbar
 		// We subtract the info menu twice to also get rid of the top bar from this calculation
-		System.out.println(screenSize.getHeight());
-		System.out.println(scnMax.bottom);
-		System.out.println(scnMax.top);
-		System.out.println(information.getHeight());
-		System.out.println(selections.getHeight());
 		blockHeight = (int)(screenSize.getHeight()- scnMax.bottom - scnMax.top - 2*information.getHeight() - selections.getHeight()) / level.getHeight();
 	}
 
