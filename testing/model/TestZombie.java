@@ -22,7 +22,7 @@ public class TestZombie
 	@Before
 	public void setUp() throws Exception
 	{
-		testLevel = new Level(4, 1, 100, "Assets/levels/nullLevel.txt");
+		testLevel = new Level(4, 1, 100, "res/levels/nullLevel.txt");
 		testLane = testLevel.getLane(0);
 		sunny = new Sunflower();
 		peter = new BasicZombie();

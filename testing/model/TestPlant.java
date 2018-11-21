@@ -23,7 +23,7 @@ public class TestPlant
 	@Before
 	public void setUp() throws Exception
 	{
-		testLevel = new Level(4, 4, 100, "Assets/levels/nullLevel.txt");
+		testLevel = new Level(4, 4, 100, "res/levels/nullLevel.txt");
 		flower = new Sunflower();
 		testLane = testLevel.getLane(0);
 		chad = new BasicZombie();

@@ -20,8 +20,8 @@ public class TestLevel
 	@Before
 	public void setUp() throws Exception
 	{
-		emptyLevel = new Level(5,6,50, "Assets/levels/nullLevel.txt");
-		testLevel = new Level(5, 6, 50, "Assets/levels/Level.txt");
+		emptyLevel = new Level(5,6,50, "res/levels/nullLevel.txt");
+		testLevel = new Level(5, 6, 50, "res/levels/Level.txt");
 		sunny = new Sunflower();
 		
 	}

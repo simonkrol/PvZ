@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 import model.Lane;
 import model.Level;
@@ -18,16 +19,18 @@ import model.Spot;
 import model.Sunflower;
 import model.Zombie;
 
-public class GameCanvas extends Canvas
+public class GameCanvas extends JPanel
 {
 
 	private static final long serialVersionUID = 1L;
 	private final int blockWidth, blockHeight;
 	private Level level;
 	private Graphics g;
-	Image grass, zombie, sunflower, peashooter, grassHL;
+	Image basicZombie, sunflower, peashooter, grassHL;
+	Image grass[];
 	protected boolean highlight = false;
 	protected int hLX = 0, hLY = 0;
+	private int x, y;
 
 	/**
 	 * Create a gamecanvas with given level
@@ -39,60 +42,73 @@ public class GameCanvas extends Canvas
 		level = lvl;
 		this.blockWidth = blockWidth;
 		this.blockHeight = blockHeight;
-		grass = getScaledImage(new ImageIcon("Assets/Pictures/grass.png"), blockWidth, blockHeight);
-		zombie = getScaledImage(new ImageIcon("Assets/Pictures/zombie.png"), blockWidth, blockHeight);
-		sunflower = getScaledImage(new ImageIcon("Assets/Pictures/rsz_unknown.png"), blockWidth, blockHeight);
-		peashooter = getScaledImage(new ImageIcon("Assets/Pictures/peaShooter.png"), blockWidth, blockHeight);
-		grassHL = getScaledImage(new ImageIcon("Assets/Pictures/HLgrass.png"), blockWidth, blockHeight);
+		grass = new Image[4];
+
+		grass[0] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass0.png"), blockWidth, blockHeight);
+		grass[1] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass1.png"), blockWidth, blockHeight);
+		grass[2] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass0H.png"), blockWidth, blockHeight);
+		grass[3] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass1H.png"), blockWidth, blockHeight);
+		basicZombie = getScaledImage(new ImageIcon("res/assets/PvZ_G/BasicZombie.gif"), blockWidth/2, blockHeight);
+		sunflower = getScaledImage(new ImageIcon("res/assets/PvZ_G/Sunflower.gif"), blockWidth/2, blockHeight);
+		peashooter = getScaledImage(new ImageIcon("res/assets/PvZ_G/Peashooter.gif"), blockWidth/2, blockHeight);
+
+//		grass[0] = getScaledImage(new ImageIcon("res/assets/PvZ/grass.jpg"), blockWidth, blockHeight);
+//		grass[1] = getScaledImage(new ImageIcon("res/assets/PvZ/grass.jpg"), blockWidth, blockHeight);
+//		grass[2] = getScaledImage(new ImageIcon("res/assets/PvZ/HLgrass.jpg"), blockWidth, blockHeight);
+//		grass[3] = getScaledImage(new ImageIcon("res/assets/PvZ/HLgrass.jpg"), blockWidth, blockHeight);
+//		basicZombie = getScaledImage(new ImageIcon("res/assets/PvZ/BasicZombie.png"), blockWidth/2, blockHeight);
+//		sunflower = getScaledImage(new ImageIcon("res/assets/PvZ/Sunflower.png"), blockWidth/2, blockHeight);
+//		peashooter = getScaledImage(new ImageIcon("res/assets/PvZ/Peashooter.png"), blockWidth/2, blockHeight);
+
 	}
 
 	@Override
 	/**
 	 * Paint the spots, plants and zombies
 	 */
-	public void paint(Graphics g)
+	public void paintComponent(Graphics g)
 	{
 		this.g = g;
 
-		int x = 0, y = 0;
+		x = 0;
+		y = 0;
+
 		for (Lane lane : level.grid)
 		{
 			for (Spot spot : lane.getSpots()) // draw plants and spots
 			{
-				if (x == hLX * blockWidth && y == hLY * blockHeight && highlight)
-				{
-					g.drawImage(grassHL, x, y, this);
+				int grassIndex=0;
+				if (x == hLX  && y == hLY && highlight) grassIndex+=2;
+				if((x+y)%2!=0)grassIndex++;
+				g.drawImage(grass[grassIndex], x*blockWidth, y*blockHeight, this);
 
-				} else
-				{
-					g.drawImage(grass, x, y, this);
-				}
 
 				if (spot.getPlant() instanceof Sunflower)
 				{
-					g.drawImage(sunflower, x, y, this);
+					g.drawImage(sunflower, x*blockWidth+(blockWidth/2)-(sunflower.getWidth(this)/2), y*blockHeight, this);
 				} else if (spot.getPlant() instanceof Peashooter)
 				{
-					g.drawImage(peashooter, x, y, this);
+					g.drawImage(peashooter, x*blockWidth+(blockWidth/2)-(peashooter.getWidth(this)/2), y*blockHeight, this);
 				}
 
-				x += blockWidth;
+				x++;
 			}
 
 			for (Zombie zmb : lane.getLiveZombies())
 			{
 				int pos = zmb.getPosition();
-				if ((level.getWidth() - zmb.getPosition()) * blockWidth < 0)
+				if ((level.getWidth() - pos) * blockWidth < 0)
 				{
 					pos = 0;
 				} else
 				{
-					pos = (level.getWidth() - zmb.getPosition()) * blockWidth;
+					pos = (level.getWidth() - pos) * blockWidth;
 				}
-				g.drawImage(zombie, pos, y, this);
+				pos += (blockWidth/2) - basicZombie.getWidth(this)/2;
+				g.drawImage(basicZombie, pos, y*blockHeight, this);
 			}
 			x = 0;
-			y += blockHeight;
+			y ++;
 		}
 
 	}
@@ -127,8 +143,7 @@ public class GameCanvas extends Canvas
 	 */
 	private Image getScaledImage(ImageIcon srcImg, int w, int h)
 	{
-		Image image = srcImg.getImage(); // transform it
-		return image.getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+		return srcImg.getImage().getScaledInstance(w, h, Image.SCALE_DEFAULT); // scale it the default way to preserve gifs
 	}
 
 }

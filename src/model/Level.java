@@ -43,6 +43,7 @@ public class Level
 		curInstruction = levelData.readLine();
 	}
 
+
 	/**
 	 * Check the levelData and spawn any zombies intended for the given turn
 	 * @throws IOException If readline fails

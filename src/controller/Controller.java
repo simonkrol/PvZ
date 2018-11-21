@@ -40,7 +40,6 @@ public class Controller implements ActionListener, MouseListener
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		System.out.println(view.canvas.highlight);
 		button = (JButton) e.getSource();
 		if (button.getText().equals("End Turn"))
 		{
@@ -73,9 +72,8 @@ public class Controller implements ActionListener, MouseListener
 		{
 			view.dispatchEvent(new WindowEvent(view, WindowEvent.WINDOW_CLOSING));
 			System.exit(0);
-		} else if (button.getText().equals("Sunflower"))
+		} else if (button.getText().equals("Sunflower(50)"))
 		{
-			System.out.println(view.canvas.highlight);
 			if (view.canvas.highlight)
 			{
 				level.placePlant(new Sunflower(), view.canvas.hLY, view.canvas.hLX);
@@ -84,9 +82,8 @@ public class Controller implements ActionListener, MouseListener
 			}
 		}
 
-		else if (button.getText().equals("Peashooter"))
+		else if (button.getText().equals("Peashooter(40)"))
 		{
-			System.out.println(view.canvas.highlight);
 			if (view.canvas.highlight)
 			{
 				level.placePlant(new Peashooter(), view.canvas.hLY, view.canvas.hLX);
