@@ -6,7 +6,6 @@ package controller;
  * @version Nov 16, 2018
  */
 import java.io.IOException;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -36,6 +35,8 @@ public class Main
 	public static void main(String[] args) throws IOException
 	{
 		startGame();
-		JOptionPane.showMessageDialog(null, "To place a plant: click 'Add plant', then the tile you wish to play on, then the type of plant", "Instructions", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(null,
+				"To place a plant: click the tile you wish to play on, then the type of plant", "Instructions",
+				JOptionPane.PLAIN_MESSAGE);
 	}
 }

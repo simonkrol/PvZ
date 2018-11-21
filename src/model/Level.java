@@ -19,6 +19,7 @@ public class Level
 	private BufferedReader levelData;
 	private String curInstruction;
 	private boolean add = false;
+	private int blockWidth;
 
 	/**
 	 * Construct a level
@@ -93,12 +94,12 @@ public class Level
 	{
 		if (laneI < 0 || laneI > getWidth() - 1 || spotI < 0 || spotI > getHeight() - 1)
 		{
-			System.out.println("Index out of bounds");
+			//System.out.println("Index out of bounds");
 			return false;
 		}
 		if (plant.getValue() > balance) // check if player has enough to purchase the plant
 		{
-			System.out.println("Insufficient funds");
+			//System.out.println("Insufficient funds");
 			return false;
 		}
 		if (getLane(laneI).placePlant(plant, spotI))
@@ -220,5 +221,21 @@ public class Level
 			sum += grid[i].getNumZombies();
 		}
 		return sum;
+	}
+	/**
+	 * Set the new block width for the level
+	 * @param blockWidth New blockwidth
+	 */
+	public void setBlockWidth(int blockWidth)
+	{
+		this.blockWidth = blockWidth;
+	}
+	/**
+	 * Get the level's blockwidth
+	 * @return Level's blockwidth
+	 */
+	public int getBlockWidth()
+	{
+		return blockWidth;
 	}
 }

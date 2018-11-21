@@ -23,8 +23,9 @@ public class View extends JFrame
 	private static final long serialVersionUID = 1L;
 	public GameCanvas canvas;
 	private Level level;
+	private int blockWidth, blockHeight;
 	JLabel info;
-	JPanel information;
+	JPanel information, selections, contentPane;
 
 	/**
 	 * Create a new view for a given level
@@ -32,15 +33,14 @@ public class View extends JFrame
 	 */
 	public View(Level lvl)
 	{
-
 		level = lvl;
-		canvas = new GameCanvas(lvl);
+
 		setLayout(new BorderLayout());
-		setSize(lvl.getWidth() * 127, lvl.getHeight() * 125 + 300);
+
+
+
 		setTitle("Plants Vs Zombies");
-		add("Center", canvas);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
 
 		information = new JPanel();
 		information.setLayout(new FlowLayout());
@@ -49,7 +49,7 @@ public class View extends JFrame
 		information.add(info);
 		add(information, BorderLayout.PAGE_START);
 
-		JPanel selections = new JPanel();
+		selections = new JPanel();
 		selections.setLayout(new BoxLayout(selections, BoxLayout.PAGE_AXIS));
 
 		JPanel plants = new JPanel();
@@ -57,20 +57,16 @@ public class View extends JFrame
 
 		JButton sunflowerBtn = new JButton("Sunflower");
 		sunflowerBtn.setSize(125, 125);
-		sunflowerBtn.setIcon(new ImageIcon("Assets/Pictures/rsz_unknown.png"));
+		sunflowerBtn.setIcon(getScaledImage(new ImageIcon("Assets/Pictures/rsz_unknown.png"), 125, 125));
 		plants.add(sunflowerBtn);
 
 		JButton peashooterBtn = new JButton("Peashooter");
 		peashooterBtn.setSize(125, 125);
-		peashooterBtn.setIcon(new ImageIcon("Assets/Pictures/peaShooter.png"));
+		peashooterBtn.setIcon(getScaledImage(new ImageIcon("Assets/Pictures/peaShooter.png"),125, 125));
 		plants.add(peashooterBtn);
 
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
-
-		JButton add = new JButton("Add plant");
-		add.setSize(50, 100);
-		buttons.add(add);
 
 		JButton end = new JButton("End Turn");
 		end.setSize(50, 100);
@@ -84,15 +80,27 @@ public class View extends JFrame
 		selections.add(plants);
 		add(selections, BorderLayout.PAGE_END);
 
+
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		pack();
+		setVisible(true);
+		setResizable(false);
+		calcBlockSize();
+
+		canvas = new GameCanvas(level, blockWidth, blockHeight);
+		add(canvas, BorderLayout.CENTER);
+
+
 		revalidate();
 
 		// action listeners
 		canvas.addMouseListener(new Controller(level, this));
-		add.addActionListener(new Controller(level, this));
 		end.addActionListener(new Controller(level, this));
 		sunflowerBtn.addActionListener(new Controller(level, this));
 		peashooterBtn.addActionListener(new Controller(level, this));
 		quit.addActionListener(new Controller(level, this));
+
+
 	}
 
 	/**
@@ -103,5 +111,52 @@ public class View extends JFrame
 	{
 		canvas.repaint();
 		info.setText("SUN: " + level.getBalance() + "  Turn: " + level.turn);
+	}
+
+	/**
+	 * Calculate the size of each spot on the grid, setting the 
+	 * blockWidth and blockHeight values
+	 */
+	public void calcBlockSize()
+	{
+		Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		// Get the width of each spot on the grid
+		blockWidth = (int)(screenSize.getWidth() / level.getWidth());
+		// Get the height of each spot on the grid, not counting the Info and Plant menus or the taskbar
+		// We subtract the info menu twice to also get rid of the top bar from this calculation
+		blockHeight = (int)(screenSize.getHeight()- scnMax.bottom - scnMax.top - 2*information.getHeight() - selections.getHeight()) / level.getHeight();
+	}
+
+	/**
+	 * Get a scale ImageIcon of an ImageIcon with the given size values
+	 * @param srcImg The src ImageIcon
+	 * @param w The new Width
+	 * @param h The new Height
+	 * @return Scaled ImageIcon
+	 */
+	private ImageIcon getScaledImage(ImageIcon srcImg, int w, int h)
+	{
+		Image image = srcImg.getImage(); // transform it
+		Image newimg = image.getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+		return new ImageIcon(newimg); // transform it back
+	}
+
+	/**
+	 * Get the blockWidth of the current GUI
+	 * @return width of each spot
+	 */
+	public int getBlockWidth()
+	{
+		return blockWidth;
+	}
+
+	/**
+	 * Get the blockHeight of the current GUI
+	 * @return height of each spot
+	 */
+	public int getBlockHeight()
+	{
+		return blockHeight;
 	}
 }

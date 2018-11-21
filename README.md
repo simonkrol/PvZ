@@ -26,11 +26,12 @@
 - Plants are created regardless of whether they are successfully able to be placed on the board
 - Zombies always attack the front plant, regardless of whether that plant is in front of them.
 - Plants always attack the front zombie, regardless of whether that zombie is in front of them.
-- The method to place plants can be confusing
+- **The method to place plants can be confusing(Fixed)**
 - Plants don't have their costs printed on screen
-- When the size of the gui is changed, the component's sizes don't change and can overlap in strange ways
+- **When the size of the gui is changed, the component's sizes don't change and can overlap in strange ways(Fixed)**
 - No menu exists to give instructions, only a popup at game start
 - Print statements still exist throughout the project and should be removed
+- Win/Lose Dialog Box Doesn't end game 
 
 
 ### How to play:

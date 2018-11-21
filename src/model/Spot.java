@@ -47,7 +47,7 @@ public class Spot
 	{
 		if (!placeable)
 		{
-			System.out.println("You may not place a plant in this column.");
+			//System.out.println("You may not place a plant in this column.");
 			return false;
 		}
 		if (!this.getOccupied())
@@ -55,7 +55,7 @@ public class Spot
 			this.plant = toAdd;
 			return true;
 		}
-		System.out.println("This Spot already has a plant in it.");
+		//System.out.println("This Spot already has a plant in it.");
 		return false;
 
 	}

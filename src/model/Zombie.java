@@ -7,7 +7,7 @@ package model;
  */
 public abstract class Zombie extends Entity
 {
-	protected int moveSpeed;
+	protected double moveSpeed;
 	protected int position;
 
 	/**
@@ -19,7 +19,7 @@ public abstract class Zombie extends Entity
 	 * @param attSp Attack speed
 	 * @param lane Lane the zombie is in
 	 */
-	protected Zombie(int hp, int att, int def, int mov, double attSp, Lane lane)
+	protected Zombie(int hp, int att, int def, double mov, double attSp, Lane lane)
 	{
 		super(hp, att, def, attSp, lane);
 		this.moveSpeed = mov;
@@ -30,7 +30,7 @@ public abstract class Zombie extends Entity
 	 * Return zombies movement speed
 	 * @return Movement speed
 	 */
-	protected int getMoveSpeed()
+	protected double getMoveSpeed()
 	{
 		return moveSpeed;
 	}
@@ -59,12 +59,10 @@ public abstract class Zombie extends Entity
 	protected void move()
 	{
 
-		System.out.println(this.position);
-		System.out.println(lane.checkFrontPlant(this.position));
 		if (lane.checkFrontPlant(this.position))
 			return;
 		position += moveSpeed;
-		if (position > lane.getDistance())
+		if (position > lane.getLength())
 		{
 			lane.hitEnd();
 		}
