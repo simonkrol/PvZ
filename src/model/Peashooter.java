@@ -26,7 +26,8 @@ public class Peashooter extends Plant
 	 */
 	protected void attack(Object toAttack)
 	{
-		lane.createProjectile(new PeaProjectile(attack, this. distance+0.3, lane));
+		if(toAttack instanceof Zombie) lane.createProjectile(new PeaProjectile(attack, this. distance+0.3, lane));
+		else throw new IllegalArgumentException();
 	}
 
 }
