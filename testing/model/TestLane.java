@@ -15,6 +15,7 @@ public class TestLane
 	BasicZombie peter;
 	Sunflower sunny;
 	Peashooter penny;
+	PeaProjectile peaproj;
 
 	@Before
 	public void setUp() throws Exception
@@ -24,6 +25,7 @@ public class TestLane
 		peter = new BasicZombie();
 		sunny = new Sunflower();
 		penny = new Peashooter();
+		peaproj = new PeaProjectile(1, 0, lane2);
 		lane1.addZombie(peter);
 		
 	}
@@ -35,14 +37,15 @@ public class TestLane
 	}
 
 	@Test
-	public void testDamageZombie()
+	public void testGetFrontPlant()
 	{
-		int currentHP = peter.getCurrentHP();
-		int damage = 2;
-		lane1.damageZombie(damage);
-		assertEquals("Peters health should have dropped by damage", currentHP - damage, peter.getCurrentHP());
+		lane1.placePlant(sunny, 0);
+		assertNull("No plant should exist before peter", lane1.getFrontPlant(peter.getPosition()));
+		peter.setPosition(lane1.getLength()-2);
+		assertNull("No plant should exist before peter", lane1.getFrontPlant(peter.getPosition()));
+		peter.setPosition(lane1.getLength()-1);
+		assertEquals("Sunny should be in front of peter", sunny, lane1.getFrontPlant(peter.getPosition()));
 	}
-
 	@Test
 	public void testSpawnZombie()
 	{
@@ -89,6 +92,14 @@ public class TestLane
 		assertTrue("Lane shoud be empty", lane2.noZombies());
 	}
 
+	@Test
+	public void testAttackableZombies()
+	{
+		lane2.addZombie(peter);
+		peter.setPosition(lane2.getLength()-2);
+		assertFalse("Shouldnt be able to attack Peter from 2",lane2.attackableZombies(2));
+		assertTrue("Should be able to attack peter from 1", lane2.attackableZombies(1));
+	}
 
 	@Test
 	public void testKillZombie()
@@ -109,14 +120,16 @@ public class TestLane
 		lane2.spawnZombie();
 		assertEquals("Lane should have 2 zombies", 2, lane2.getNumZombies());
 	}
-	
+
+	@Test
 	public void testTurn()
 	{
 
-		lane2.placePlant(sunny, 1);
-		peter.setPosition(250);
-		peter.move();
-		assertEquals("Current position should not have increased past the plant", 250, peter.getPosition());
+		lane2.addZombie(peter);
+		lane2.placePlant(sunny, 0);
+		peter.setPosition(lane2.getLength()-1);
+		peter.turn(null);
+		assertEquals("Current position should not have increased past the plant", lane2.getLength()-1, (int)peter.getPosition());
 		int numTurn = (int) Math.ceil(1.0/peter.getAttackSpeed());
 		int sunnyHP = sunny.getCurrentHP();
 		while(numTurn>0)
@@ -125,6 +138,16 @@ public class TestLane
 			numTurn--;
 		}
 		assertFalse("Sunny's hp should have dropped", sunnyHP <= sunny.getCurrentHP());
+	}
+	@Test
+	public void testProjZombie()
+	{
+		lane2.createProjectile(peaproj);
+		lane2.addZombie(peter);
+		peter.setPosition(lane2.getLength()-2);
+		assertNull("Projectile should be too far away", lane2.getProjZombie(peaproj));
+		peter.setPosition(lane2.getLength()-1);
+		assertEquals("Projectile should be close enough to peter", peter, lane2.getProjZombie(peaproj));
 	}
 
 }

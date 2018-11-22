@@ -40,15 +40,15 @@ public class TestSpot
 	}
 
 
-	@Test
+	@Test(expected = NullPointerException.class)
 	public void testKillPlant()
 	{
 		assertEquals("Spot is null", null, spot2.getPlant());
-		assertFalse(spot2.killPlant());
 		spot2.addPlant(sunny);
 		assertTrue("Sunny is in spot", sunny.equals(spot2.getPlant()));
-		assertTrue(spot2.killPlant());
+		spot2.killPlant();
 		assertEquals("Spot is null", null, spot2.getPlant());
+		spot2.killPlant();
 	}
 	
 	@Test

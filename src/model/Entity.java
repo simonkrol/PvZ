@@ -18,7 +18,6 @@ public abstract class Entity
 	 * @param maxHP Entities maximum health
 	 * @param lane The lane the entity is in
 	 * @param att The entities attack damage
-	 * @param def The entities defence, currently unused
 	 * @param attSp The entities attack speed
 	 */
 	protected Entity(int maxHP, int att, double attSp, Lane lane)

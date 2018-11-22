@@ -31,7 +31,7 @@ public class Projectile extends Entity
 	protected void turn(Level curLevel)
 	{
 		move();
-		Zombie toAttack = lane.getProjZombie(moveSpeed, position);
+		Zombie toAttack = lane.getProjZombie(this);
 		if(toAttack != null) 
 		{
 			attack(toAttack);
@@ -65,4 +65,5 @@ public class Projectile extends Entity
 	{
 		return exploded;
 	}
+	protected double getMoveSpeed() { return moveSpeed; }
 }

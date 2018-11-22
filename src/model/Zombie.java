@@ -14,7 +14,6 @@ public abstract class Zombie extends Entity
 	 * Create a zombie
 	 * @param hp Zombies current hp
 	 * @param att Attack damage
-	 * @param def Defence (Not implemented)
 	 * @param mov Movement speed
 	 * @param attSp Attack speed
 	 * @param lane Lane the zombie is in
@@ -41,7 +40,7 @@ public abstract class Zombie extends Entity
 	 */
 	protected void turn(Level curLevel)
 	{
-		Plant toAttack = lane.checkFrontPlant(position);
+		Plant toAttack = lane.getFrontPlant(position);
 		if(toAttack == null)
 		{
 			this.move();
@@ -79,18 +78,14 @@ public abstract class Zombie extends Entity
 	}
 
 	/**
-	 * Attack the front plant in the lane
+	 * Attack the given plant
+	 * @param toAttack The object being attacked
 	 */
-	protected void attack(Object toAttack)
-	{
-		if(toAttack instanceof Plant)
-		{
-			
+	protected void attack(Object toAttack) {
+		if (toAttack instanceof Plant) {
 			((Plant) toAttack).takeDamage(attack);
-		}
-
+		} else throw new IllegalArgumentException();
 	}
-
 	/**
 	 * returns the current position of the zombie
 	 * @return returns the position of the zombie
@@ -104,7 +99,7 @@ public abstract class Zombie extends Entity
 	 * Set the position of the zombie
 	 * @param newPosition The zombies new position
 	 */
-	protected void setPosition(int newPosition)
+	protected void setPosition(double newPosition)
 	{
 		position = newPosition;
 	}

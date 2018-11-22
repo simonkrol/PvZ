@@ -16,7 +16,6 @@ public abstract class Plant extends Entity
 	 * Constructor for plant (Only called from subclasses)
 	 * @param maxHP Maximum HP
 	 * @param att Attack Damage
-	 * @param def Defence(Not implemented)
 	 * @param attSp Attack Speed
 	 * @param value Cost to create
 	 * @param delay Delay until you can place another (Not implemented)
