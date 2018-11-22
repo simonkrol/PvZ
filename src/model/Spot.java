@@ -62,15 +62,13 @@ public class Spot
 
 	/**
 	 * Try to Kill the plant in the spot
-	 * @return true if killed, false otherwise
 	 */
-	protected boolean killPlant()
+	protected void killPlant()
 	{
 		if (this.getOccupied())
 		{
 			this.plant = null;
-			return true;
 		}
-		return false;
+		else throw new NullPointerException();
 	}
 }

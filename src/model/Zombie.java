@@ -8,20 +8,19 @@ package model;
 public abstract class Zombie extends Entity
 {
 	protected double moveSpeed;
-	protected int position;
+	protected double position;
 
 	/**
 	 * Create a zombie
 	 * @param hp Zombies current hp
 	 * @param att Attack damage
-	 * @param def Defence (Not implemented)
 	 * @param mov Movement speed
 	 * @param attSp Attack speed
 	 * @param lane Lane the zombie is in
 	 */
-	protected Zombie(int hp, int att, int def, double mov, double attSp, Lane lane)
+	protected Zombie(int hp, int att, double mov, double attSp, Lane lane)
 	{
-		super(hp, att, def, attSp, lane);
+		super(hp, att, attSp, lane);
 		this.moveSpeed = mov;
 		this.position = 0; // Distance from the right side
 	}
@@ -41,13 +40,17 @@ public abstract class Zombie extends Entity
 	 */
 	protected void turn(Level curLevel)
 	{
-		this.move();
-		if (lane.checkFrontPlant(position))
+		Plant toAttack = lane.getFrontPlant(position);
+		if(toAttack == null)
+		{
+			this.move();
+		}
+		else
 		{
 			attackState += this.attackSpeed;
 			while (attackState >= 1)
 			{
-				this.attack(curLevel);
+				this.attack(toAttack);
 				attackState--;
 			}
 		}
@@ -58,9 +61,6 @@ public abstract class Zombie extends Entity
 	 */
 	protected void move()
 	{
-
-		if (lane.checkFrontPlant(this.position))
-			return;
 		position += moveSpeed;
 		if (position > lane.getLength())
 		{
@@ -78,19 +78,19 @@ public abstract class Zombie extends Entity
 	}
 
 	/**
-	 * Attack the front plant in the lane
+	 * Attack the given plant
+	 * @param toAttack The object being attacked
 	 */
-	protected void attack(Level curLevel)
-	{
-		lane.getFrontPlant().takeDamage(attack);
-
+	protected void attack(Object toAttack) {
+		if (toAttack instanceof Plant) {
+			((Plant) toAttack).takeDamage(attack);
+		} else throw new IllegalArgumentException();
 	}
-
 	/**
 	 * returns the current position of the zombie
 	 * @return returns the position of the zombie
 	 */
-	public int getPosition()
+	public double getPosition()
 	{
 		return position;
 	}
@@ -99,7 +99,7 @@ public abstract class Zombie extends Entity
 	 * Set the position of the zombie
 	 * @param newPosition The zombies new position
 	 */
-	protected void setPosition(int newPosition)
+	protected void setPosition(double newPosition)
 	{
 		position = newPosition;
 	}

@@ -22,20 +22,25 @@ public class TestZombie
 	@Before
 	public void setUp() throws Exception
 	{
-		testLevel = new Level(4, 1, 100, "Assets/levels/nullLevel.txt");
+		testLevel = new Level(4, 1, 100, "res/levels/nullLevel.txt");
 		testLane = testLevel.getLane(0);
 		sunny = new Sunflower();
 		peter = new BasicZombie();
 		testLane.addZombie(peter);
 	}
 	@Test
+	public void testGetMoveSpeed()
+	{
+		assertEquals("Peter should be moving at 1 unit per second", 1, (int)peter.getMoveSpeed());
+	}
+	@Test
 	public void testMovement()
 	{
-		assertEquals("Current position should be 0", 0, peter.getPosition());
+		assertEquals("Current position should be 0", 0, (int)peter.getPosition());
 		peter.move();
-		assertEquals("Current position should have increased by 1 movespeed", (int)peter.getMoveSpeed(), peter.getPosition());
+		assertEquals("Current position should have increased by 1 movespeed", (int)peter.getMoveSpeed(),(int) peter.getPosition());
 		peter.move();
-		assertEquals("Current position should have increased by 1 movespeed", (int)(2*peter.getMoveSpeed()), peter.getPosition());
+		assertEquals("Current position should have increased by 1 movespeed", (int)(2*peter.getMoveSpeed()), (int)peter.getPosition());
 	
 	}
 	@Test
@@ -44,14 +49,14 @@ public class TestZombie
 		
 		testLevel.placePlant(sunny, 0, 0);
 		int currentHP = sunny.getCurrentHP();
-		peter.attack(testLevel);
+		peter.attack(sunny);
 		assertEquals("Sunny's HP should have decreased by peters attack", currentHP - peter.getAttack(), sunny.getCurrentHP());
 	}
 	@Test
 	public void testLawnMower()
 	{
-		peter.setPosition(999);
-		assertEquals("Current position should be 999", 999, peter.getPosition());
+		peter.setPosition(4);
+		assertEquals("Current position should be 4", 4,(int) peter.getPosition());
 		assertEquals("EndState should be 0", 0, testLane.getEndState());
 		peter.move();
 		assertEquals("EndState should be 1", 1, testLane.getEndState());
@@ -66,10 +71,20 @@ public class TestZombie
 	@Test 
 	public void testClear() throws IOException
 	{	
-		peter.setPosition(999);
+		peter.setPosition(4);
 		assertEquals("LiveZombies should contain only 1 zombie", 1, testLane.getNumZombies());
 		testLane.allTurn(null);
 		assertEquals("LiveZombies should contain no zombies", 0, testLane.getNumZombies());
+	}
+	@Test
+	public void testSetPosition()
+	{
+		peter.setPosition(3);
+		assertEquals("Peter should be at position 3", 3, (int)peter.getPosition());
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void testInvalidAttack() {
+		peter.attack(testLevel);
 	}
 	
 }

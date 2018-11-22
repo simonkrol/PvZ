@@ -9,8 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Level
-{
+public class Level {
 	public Lane[] grid;
 	private Integer balance;
 	private int width;
@@ -23,17 +22,16 @@ public class Level
 
 	/**
 	 * Construct a level
-	 * @param width The width in spots, of the level
-	 * @param height The height in spots, of the level
-	 * @param balance The player's starting sun balance
+	 *
+	 * @param width    The width in spots, of the level
+	 * @param height   The height in spots, of the level
+	 * @param balance  The player's starting sun balance
 	 * @param fileName The file storing the level's zombie data
 	 * @throws IOException If readline fails
 	 */
-	public Level(int width, int height, int balance, String fileName) throws IOException
-	{
+	public Level(int width, int height, int balance, String fileName) throws IOException {
 		grid = new Lane[height];
-		for (int i = 0; i < height; i++)
-		{
+		for (int i = 0; i < height; i++) {
 			grid[i] = new Lane(width, 2);
 		}
 		this.balance = balance;
@@ -43,19 +41,18 @@ public class Level
 		curInstruction = levelData.readLine();
 	}
 
+
 	/**
 	 * Check the levelData and spawn any zombies intended for the given turn
+	 *
 	 * @throws IOException If readline fails
 	 */
-	public void spawnZombies() throws IOException
-	{
+	public void spawnZombies() throws IOException {
 		if (curInstruction == null)
 			return;
-		if (curInstruction.split("-")[0].equals(Integer.toString(turn)))
-		{
+		if (curInstruction.split("-")[0].equals(Integer.toString(turn))) {
 			String[] lanes = curInstruction.split("-");
-			for (int i = 1; i < lanes.length; i++)
-			{
+			for (int i = 1; i < lanes.length; i++) {
 				grid[Integer.parseInt(lanes[i]) - 1].spawnZombie();
 			}
 			curInstruction = levelData.readLine();
@@ -64,36 +61,24 @@ public class Level
 
 	/**
 	 * Return a given lane
+	 *
 	 * @param laneIndex The index of the lane to be returned
 	 * @return a given Lane
 	 */
-	public Lane getLane(int laneIndex)
-	{
+	public Lane getLane(int laneIndex) {
 		return grid[laneIndex];
 	}
 
 	/**
-	 * Return a given spot
-	 * @param laneIndex The index of the lane the spot is contained within
-	 * @param spotIndex The index of the spot to be returned
-	 * @return a given Spot
-	 */
-	protected Spot getSpot(int laneIndex, int spotIndex)
-	{
-		return getLane(laneIndex).getSpot(spotIndex);
-	}
-
-	/**
 	 * Try to place a plant at the given indices.
+	 *
 	 * @param plant The plant being placed
 	 * @param laneI The lane index of the plants location
 	 * @param spotI The spot index of the plants location
 	 * @return True if successful, false otherwise
 	 */
-	public boolean placePlant(Plant plant, int laneI, int spotI)
-	{
-		if (laneI < 0 || laneI > getWidth() - 1 || spotI < 0 || spotI > getHeight() - 1)
-		{
+	public boolean placePlant(Plant plant, int laneI, int spotI) {
+		if (laneI < 0 || laneI > getWidth() - 1 || spotI < 0 || spotI > getHeight() - 1) {
 			//System.out.println("Index out of bounds");
 			return false;
 		}
@@ -102,8 +87,7 @@ public class Level
 			//System.out.println("Insufficient funds");
 			return false;
 		}
-		if (getLane(laneI).placePlant(plant, spotI))
-		{
+		if (getLane(laneI).placePlant(plant, spotI)) {
 			this.addToBalance(-plant.getValue());
 			return true;
 		}
@@ -112,39 +96,38 @@ public class Level
 
 	/**
 	 * Add sun to the player's balance
+	 *
 	 * @param toAdd The amount fo be added
 	 */
-	protected void addToBalance(int toAdd)
-	{
+	protected void addToBalance(int toAdd) {
 		balance += toAdd;
 	}
 
 	/**
 	 * Return the width in spots, of the level
+	 *
 	 * @return Width of the level
 	 */
-	public int getWidth()
-	{
+	public int getWidth() {
 		return width;
 	}
 
 	/**
 	 * Return the height in spots, of the level
+	 *
 	 * @return Height of the level
 	 */
-	public int getHeight()
-	{
+	public int getHeight() {
 		return height;
 	}
 
 	/**
 	 * Iterate through all lanes in the level and run all their turns, also spawn any new zombies
-	 * @throws IOException  If readline fails
+	 *
+	 * @throws IOException If readline fails
 	 */
-	public void allTurn() throws IOException
-	{
-		for (Lane lane : grid)
-		{
+	public void allTurn() throws IOException {
+		for (Lane lane : grid) {
 			lane.allTurn(this);
 		}
 		turn++;
@@ -153,21 +136,20 @@ public class Level
 
 	/**
 	 * Return the user's current balance
+	 *
 	 * @return Users balance
 	 */
-	public int getBalance()
-	{
+	public int getBalance() {
 		return balance;
 	}
 
 	/**
 	 * Check if the level has been failed. The level has been failed if any lane has failed.
+	 *
 	 * @return true if failed, false otherwise
 	 */
-	public boolean checkFail()
-	{
-		for (int i = 0; i < grid.length; i++)
-		{
+	public boolean checkFail() {
+		for (int i = 0; i < grid.length; i++) {
 			if (grid[i].checkFail())
 				return true;
 		}
@@ -176,14 +158,13 @@ public class Level
 
 	/**
 	 * Check if the player has won
+	 *
 	 * @return true if won, false otherwise
 	 */
-	public boolean checkWin()
-	{
+	public boolean checkWin() {
 		if (curInstruction != null)
 			return false;
-		for (int i = 0; i < grid.length; i++)
-		{
+		for (int i = 0; i < grid.length; i++) {
 			if (!grid[i].noZombies())
 				return false;
 
@@ -192,50 +173,15 @@ public class Level
 	}
 
 	/**
-	 * Get whether the level is primed to place a plant
-	 * @return add
-	 */
-	public boolean getAdd()
-	{
-		return add;
-	}
-
-	/**
-	 * Set whether the level is ready to place a plant
-	 * @param add The new add value
-	 */
-	public void setAdd(boolean add)
-	{
-		this.add = add;
-	}
-
-	/**
 	 * Get the total number of zombies alive in the level
+	 *
 	 * @return Number of live zombies
 	 */
-	public int getNumZombies()
-	{
+	public int getNumZombies() {
 		int sum = 0;
-		for (int i = 0; i < grid.length; i++)
-		{
+		for (int i = 0; i < grid.length; i++) {
 			sum += grid[i].getNumZombies();
 		}
 		return sum;
-	}
-	/**
-	 * Set the new block width for the level
-	 * @param blockWidth New blockwidth
-	 */
-	public void setBlockWidth(int blockWidth)
-	{
-		this.blockWidth = blockWidth;
-	}
-	/**
-	 * Get the level's blockwidth
-	 * @return Level's blockwidth
-	 */
-	public int getBlockWidth()
-	{
-		return blockWidth;
 	}
 }

@@ -21,7 +21,7 @@ public class Main
 	 */
 	private static void startGame() throws IOException
 	{
-		Level lvl = new Level(8, 6, 125, "Assets/Levels/Level.txt");
+		Level lvl = new Level(8, 6, 125, "res/levels/Level.txt");
 		View gui = new View(lvl);
 
 	}

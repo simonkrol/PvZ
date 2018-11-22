@@ -25,7 +25,7 @@ public class View extends JFrame
 	private Level level;
 	private int blockWidth, blockHeight;
 	JLabel info;
-	JPanel information, selections, contentPane;
+	JPanel information, selections;
 
 	/**
 	 * Create a new view for a given level
@@ -55,14 +55,16 @@ public class View extends JFrame
 		JPanel plants = new JPanel();
 		plants.setLayout(new FlowLayout());
 
-		JButton sunflowerBtn = new JButton("Sunflower");
+		JButton sunflowerBtn = new JButton("Sunflower(50)");
 		sunflowerBtn.setSize(125, 125);
-		sunflowerBtn.setIcon(getScaledImage(new ImageIcon("Assets/Pictures/rsz_unknown.png"), 125, 125));
+		sunflowerBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ_G/Sunflower.gif"), 125, 125));
+		//sunflowerBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ/Sunflower.png"), 125, 125));
 		plants.add(sunflowerBtn);
 
-		JButton peashooterBtn = new JButton("Peashooter");
+		JButton peashooterBtn = new JButton("Peashooter(40)");
 		peashooterBtn.setSize(125, 125);
-		peashooterBtn.setIcon(getScaledImage(new ImageIcon("Assets/Pictures/peaShooter.png"),125, 125));
+		peashooterBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ_G/Peashooter.gif"),125, 125));
+		//peashooterBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ/Peashooter.png"),125, 125));
 		plants.add(peashooterBtn);
 
 		JPanel buttons = new JPanel();
@@ -138,7 +140,7 @@ public class View extends JFrame
 	private ImageIcon getScaledImage(ImageIcon srcImg, int w, int h)
 	{
 		Image image = srcImg.getImage(); // transform it
-		Image newimg = image.getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+		Image newimg = image.getScaledInstance(w, h, Image.SCALE_DEFAULT); // scale it the smooth way
 		return new ImageIcon(newimg); // transform it back
 	}
 
