@@ -16,7 +16,7 @@ public class Sunflower extends Plant
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	public static final int DEFAULT_VALUE = 50;
 	private static final int DEFAULT_DELAY = 5;
-	private static Image sprite = new ImageIcon("res/assets/PvZ_G/Sunflower.gif").getImage();
+	public static Image sprite = new ImageIcon("res/assets/PvZ_G/Sunflower.gif").getImage();
 	private static boolean resized = false;
 
 	/**
