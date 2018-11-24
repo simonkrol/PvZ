@@ -73,6 +73,12 @@ public class View extends JFrame
 		wallnutBtn.setActionCommand("Plants/Wallnut");
 		plants.add(wallnutBtn);
 
+		JButton chomperBtn = new JButton("Chomper(60)");
+		chomperBtn.setSize(125, 125);
+		chomperBtn.setIcon(getScaledImage(Chomper.sprite, 125, 125));
+		chomperBtn.setActionCommand("Plants/Chomper");
+		plants.add(chomperBtn);
+
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
 
@@ -109,6 +115,7 @@ public class View extends JFrame
 		sunflowerBtn.addActionListener(new Controller(level, this));
 		peashooterBtn.addActionListener(new Controller(level, this));
 		wallnutBtn.addActionListener(new Controller(level, this));
+		chomperBtn.addActionListener(new Controller(level, this));
 		quit.addActionListener(new Controller(level, this));
 
 

@@ -15,6 +15,8 @@ public abstract class Entity
 	protected Lane lane;
 	protected double attackSpeed;
 	protected double attackState;
+	protected Status status;
+	protected int statusDelay;
 
 	/**
 	 * Entity constructor
@@ -30,6 +32,7 @@ public abstract class Entity
 		this.attack = att;
 		this.attackSpeed = attSp;
 		this.lane = lane;
+		status = Status.NORMAL;
 	}
 
 	/**
