@@ -14,7 +14,7 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-public class Controller implements ActionListener, MouseListener
+public class Controller implements ActionListener, MouseListener, KeyListener
 {
 	Level level;
 	View view;
@@ -153,5 +153,14 @@ public class Controller implements ActionListener, MouseListener
 	public void mouseReleased(MouseEvent arg0)
 	{
 	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {}
 
 }
