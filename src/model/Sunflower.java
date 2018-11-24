@@ -1,5 +1,9 @@
 package model;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 /**
  * The Sunflower class, contains information about the Peashooter plant
  * @author Simon Krol
@@ -12,6 +16,8 @@ public class Sunflower extends Plant
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	public static final int DEFAULT_VALUE = 50;
 	private static final int DEFAULT_DELAY = 5;
+	public static Image sprite = new ImageIcon("res/assets/PvZ_G/Sunflower.gif").getImage();
+	private static boolean resized = false;
 
 	/**
 	 * Creates a sunflower with default values
@@ -45,5 +51,32 @@ public class Sunflower extends Plant
 			this.attack(curLevel);
 			attackState--;
 		}
+	}
+	
+	@Override
+	/**
+	 * Get the classes sprite
+	 */
+	public Image getSprite()
+	{
+		return sprite;
+		
+	}
+	@Override
+	/**
+	 * Get if the sprite has been resized already
+	 */
+	public boolean getResized()
+	{
+		return resized;
+	}
+	@Override
+	/**
+	 * Set the sprite size
+	 */
+	public void setSpriteSize(int blockWidth, int blockHeight)
+	{
+		sprite = sprite.getScaledInstance(blockWidth/2, blockHeight, Image.SCALE_DEFAULT);
+		resized = true;
 	}
 }

@@ -57,15 +57,21 @@ public class View extends JFrame
 
 		JButton sunflowerBtn = new JButton("Sunflower(50)");
 		sunflowerBtn.setSize(125, 125);
-		sunflowerBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ_G/Sunflower.gif"), 125, 125));
+		sunflowerBtn.setIcon(getScaledImage(Sunflower.sprite, 125, 125));
 		//sunflowerBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ/Sunflower.png"), 125, 125));
 		plants.add(sunflowerBtn);
 
 		JButton peashooterBtn = new JButton("Peashooter(40)");
 		peashooterBtn.setSize(125, 125);
-		peashooterBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ_G/Peashooter.gif"),125, 125));
+		peashooterBtn.setIcon(getScaledImage(Peashooter.sprite, 125, 125));
 		//peashooterBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ/Peashooter.png"),125, 125));
 		plants.add(peashooterBtn);
+		
+		JButton wallnutBtn = new JButton("Wallnut(50)");
+		wallnutBtn.setSize(125, 125);
+		wallnutBtn.setIcon(getScaledImage(Wallnut.sprite, 125, 125));
+		//peashooterBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ/Peashooter.png"),125, 125));
+		plants.add(wallnutBtn);
 
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
@@ -100,6 +106,7 @@ public class View extends JFrame
 		end.addActionListener(new Controller(level, this));
 		sunflowerBtn.addActionListener(new Controller(level, this));
 		peashooterBtn.addActionListener(new Controller(level, this));
+		wallnutBtn.addActionListener(new Controller(level, this));
 		quit.addActionListener(new Controller(level, this));
 
 
@@ -137,10 +144,9 @@ public class View extends JFrame
 	 * @param h The new Height
 	 * @return Scaled ImageIcon
 	 */
-	private ImageIcon getScaledImage(ImageIcon srcImg, int w, int h)
+	private ImageIcon getScaledImage(Image srcImg, int w, int h)
 	{
-		Image image = srcImg.getImage(); // transform it
-		Image newimg = image.getScaledInstance(w, h, Image.SCALE_DEFAULT); // scale it the smooth way
+		Image newimg = srcImg.getScaledInstance(w, h, Image.SCALE_DEFAULT); // scale it the smooth way
 		return new ImageIcon(newimg); // transform it back
 	}
 

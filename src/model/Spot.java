@@ -24,7 +24,7 @@ public class Spot
 	 * Return if a spot is occupied by a plant
 	 * @return true if occupied, false otherwise
 	 */
-	protected boolean getOccupied()
+	public boolean getOccupied()
 	{
 		return plant != null;
 	}

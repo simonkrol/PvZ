@@ -5,36 +5,46 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- * The Peashooter class, contains information about the Peashooter plant
+ * The Sunflower class, contains information about the Wallnut plant
  * @author Simon Krol
  * @version Nov 16, 2018
  */
-public class Peashooter extends Plant
+public class Wallnut extends Plant
 {
-	private static final int DEFAULT_HP = 5;
-	private static final int DEFAULT_ATTACK = 2;
-	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
-	public static final int DEFAULT_VALUE = 40;
+	private static final int DEFAULT_HP = 12;
+	private static final int DEFAULT_ATTACK = 0;
+	private static final double DEFAULT_ATTACKSPEED = 0; // Attacks per turn
+	public static final int DEFAULT_VALUE = 50;
 	private static final int DEFAULT_DELAY = 5;
-	public static Image sprite = new ImageIcon("res/assets/PvZ_G/Peashooter.gif").getImage();
+	public static Image sprite = new ImageIcon("res/assets/PvZ_G/Wallnut.gif").getImage();
 	private static boolean resized = false;
 
 	/**
-	 * Creates a peashooter with default values
+	 * Creates a sunflower with default values
 	 */
-	public Peashooter()
+	public Wallnut()
 	{
 		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_ATTACKSPEED, DEFAULT_VALUE, DEFAULT_DELAY);
 	}
 
 	/**
-	 * Shoot a pea at the closest zombie in the lane
+	 * It's a wallnut...it doesnt attack
+	 * @param curLevel The current level
 	 */
-	protected void attack(Object toAttack)
+	protected void attack(Object curLevel)
 	{
-		lane.createProjectile(new PeaProjectile(attack, this. distance+0.3, lane));
+		
 	}
 
+	/**
+	 * Cause the wallnut to perform any required action
+	 * @param curLevel The current level
+	 */
+	protected void turn(Level curLevel)
+	{
+		//Once again, its a wallnut
+	}
+	
 	@Override
 	/**
 	 * Get the classes sprite
@@ -61,6 +71,4 @@ public class Peashooter extends Plant
 		sprite = sprite.getScaledInstance(blockWidth/2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
-	
-
 }

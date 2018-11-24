@@ -2,13 +2,15 @@ package model;
 
 import java.util.Random;
 
-public class Projectile extends Entity
+
+public abstract class Projectile extends Entity
 {
 	private static Random rand = new Random();
 	private double moveSpeed;
 	private double position;
 	private double offset;
 	private boolean exploded;
+
 	
 
 	protected Projectile(int att, Lane lane, double moveSpeed, double position)
@@ -66,4 +68,5 @@ public class Projectile extends Entity
 		return exploded;
 	}
 	protected double getMoveSpeed() { return moveSpeed; }
+	
 }

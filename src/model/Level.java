@@ -17,8 +17,7 @@ public class Level {
 	public int turn;
 	private BufferedReader levelData;
 	private String curInstruction;
-	private boolean add = false;
-	private int blockWidth;
+
 
 	/**
 	 * Construct a level

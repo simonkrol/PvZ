@@ -15,6 +15,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	TestLevel.class,
 	TestSpot.class,
 	TestPlant.class,
+	TestProjectile.class,
 })
 
 public class Tests

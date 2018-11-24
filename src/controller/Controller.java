@@ -93,6 +93,15 @@ public class Controller implements ActionListener, MouseListener
 				view.update();
 			}
 		}
+		else if (button.getText().equals("Wallnut(50)"))
+		{
+			if (view.canvas.highlight)
+			{
+				level.placePlant(new Wallnut(), view.canvas.hLY, view.canvas.hLX);
+				view.canvas.highlight = false;
+				view.update();
+			}
+		}
 		view.canvas.setHighLight(false);
 
 	}
