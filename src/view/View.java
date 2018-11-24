@@ -58,29 +58,31 @@ public class View extends JFrame
 		JButton sunflowerBtn = new JButton("Sunflower(50)");
 		sunflowerBtn.setSize(125, 125);
 		sunflowerBtn.setIcon(getScaledImage(Sunflower.sprite, 125, 125));
-		//sunflowerBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ/Sunflower.png"), 125, 125));
+		sunflowerBtn.setActionCommand("Plants/Sunflower");
 		plants.add(sunflowerBtn);
 
 		JButton peashooterBtn = new JButton("Peashooter(40)");
 		peashooterBtn.setSize(125, 125);
 		peashooterBtn.setIcon(getScaledImage(Peashooter.sprite, 125, 125));
-		//peashooterBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ/Peashooter.png"),125, 125));
+		peashooterBtn.setActionCommand("Plants/Peashooter");
 		plants.add(peashooterBtn);
 		
 		JButton wallnutBtn = new JButton("Wallnut(50)");
 		wallnutBtn.setSize(125, 125);
 		wallnutBtn.setIcon(getScaledImage(Wallnut.sprite, 125, 125));
-		//peashooterBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ/Peashooter.png"),125, 125));
+		wallnutBtn.setActionCommand("Plants/Wallnut");
 		plants.add(wallnutBtn);
 
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
 
 		JButton end = new JButton("End Turn");
+		end.setActionCommand("End");
 		end.setSize(50, 100);
 		buttons.add(end);
 
 		JButton quit = new JButton("Quit Game");
+		quit.setActionCommand("Quit");
 		quit.setSize(50, 100);
 		buttons.add(quit);
 
