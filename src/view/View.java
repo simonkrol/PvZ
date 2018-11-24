@@ -75,7 +75,7 @@ public class View extends JFrame
 
 		JButton chomperBtn = new JButton("Chomper(60)");
 		chomperBtn.setSize(125, 125);
-		chomperBtn.setIcon(getScaledImage(Chomper.sprite, 125, 125));
+		chomperBtn.setIcon(getScaledImage(Chomper.sprite[0], 125, 125));
 		chomperBtn.setActionCommand("Plants/Chomper");
 		plants.add(chomperBtn);
 

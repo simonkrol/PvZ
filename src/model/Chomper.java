@@ -16,7 +16,10 @@ public class Chomper extends Plant
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	public static final int DEFAULT_VALUE = 60;
 	private static final int DEFAULT_DELAY = 5;
-	public static Image sprite = new ImageIcon("res/assets/PvZ_G/Chomper.gif").getImage();
+	public static Image[] sprite = {
+			new ImageIcon("res/assets/PvZ_G/Chomper.gif").getImage(),
+			new ImageIcon("res/assets/PvZ_G/ChomperEating.gif").getImage()
+	};
 	private static boolean resized = false;
 	private Zombie eating;
 
@@ -60,7 +63,11 @@ public class Chomper extends Plant
 	 */
 	public Image getSprite()
 	{
-		return sprite;
+		if(status.equals(Status.EATING))
+		{
+			return sprite[1];
+		}
+		return sprite[0];
 		
 	}
 	@Override
@@ -77,7 +84,10 @@ public class Chomper extends Plant
 	 */
 	public void setSpriteSize(int blockWidth, int blockHeight)
 	{
-		sprite = sprite.getScaledInstance(blockWidth/2, blockHeight, Image.SCALE_DEFAULT);
+		for(int i=0; i< sprite.length; i++)
+		{
+			sprite[i] = sprite[i].getScaledInstance(blockWidth/2, blockHeight, Image.SCALE_DEFAULT);
+		}
 		resized = true;
 	}
 	
