@@ -41,28 +41,34 @@ public class View extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		information = new JPanel();
-		information.setLayout(new FlowLayout());
+		information.setLayout(new BorderLayout());
 		info = new JLabel();
 		info.setText("SUN: " + level.getBalance() + "  Turn: " + level.turn);
-		information.add(info);
+		info.setFont(new Font(info.getName(), Font.PLAIN, 20));
+		information.add(info, BorderLayout.CENTER);
 		add(information, BorderLayout.PAGE_START);
-
+		
 		// Menu
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("Menu");
-		menu.setMnemonic(KeyEvent.VK_A);
+		menu.setMnemonic(KeyEvent.VK_M);
 		menuBar.add(menu);
-		add(menuBar);
+		information.add(menuBar, BorderLayout.PAGE_START);
 
 		JMenuItem  quitItem = new JMenuItem("Quit", KeyEvent.VK_Q);
-		quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+		quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.ALT_MASK));
+		quitItem.setActionCommand("Quit");
 		menu.add(quitItem);
 
 		JMenuItem  undoItem = new JMenuItem("Undo", KeyEvent.VK_Z);
-		undoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+		undoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.ALT_MASK));
+		undoItem.setActionCommand("Undo");
 		menu.add(undoItem);
 		
-		
+		JMenuItem  redoItem = new JMenuItem("Redo", KeyEvent.VK_Z);
+		redoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.ALT_MASK));
+		redoItem.setActionCommand("Redo");
+		menu.add(redoItem);		
 		
 		selections = new JPanel();
 		selections.setLayout(new BoxLayout(selections, BoxLayout.PAGE_AXIS));
@@ -124,7 +130,9 @@ public class View extends JFrame {
 		peashooterBtn.addActionListener(new Controller(level, this));
 		wallnutBtn.addActionListener(new Controller(level, this));
 		quit.addActionListener(new Controller(level, this));
-
+		quitItem.addActionListener(new MenuController(level, this));
+		undoItem.addActionListener(new MenuController(level, this));
+		redoItem.addActionListener(new MenuController(level, this));
 	}
 
 	/**
