@@ -98,7 +98,12 @@ public class Level {
 		}
 		return false;
 	}
-	
+	/**
+	 * Undo last plant placement.
+	 *
+	 * 
+	 * @return True if successful, false otherwise
+	 */
 	public boolean undo(){
 		for(Lane l: grid){
 			for(Spot s: l.getSpots()){
@@ -114,7 +119,12 @@ public class Level {
 		}
 		return false;		
 	}
-	
+	/**
+	 * Redo last undone plant placement.
+	 *
+	 * 
+	 * @return True if successful, false otherwise
+	 */
 	public boolean redo(){
 		if(undoneList.isEmpty()){
 			return false;
@@ -131,7 +141,10 @@ public class Level {
 		}
 		return false;
 	}
-	
+	/**
+	 * Clears the done and undone structures.
+	 * 
+	 */
 	public void wipeTurnHist(){
 		this.doneList = new LinkedList<Plant>();
 		this.undoneList = new LinkedList<Plant>();
