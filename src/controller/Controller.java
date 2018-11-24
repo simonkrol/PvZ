@@ -12,9 +12,10 @@ import java.awt.event.*;
 import java.io.IOException;
 
 import javax.swing.JButton;
+import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 
-public class Controller implements ActionListener, MouseListener, KeyListener
+public class Controller implements ActionListener, MouseListener
 {
 	Level level;
 	View view;
@@ -40,7 +41,7 @@ public class Controller implements ActionListener, MouseListener, KeyListener
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		button = (JButton) e.getSource();
+		button = (JButton) e.getSource(); 
 		if (button.getText().equals("End Turn"))
 		{
 			try
@@ -103,7 +104,6 @@ public class Controller implements ActionListener, MouseListener, KeyListener
 			}
 		}
 		view.canvas.setHighLight(false);
-
 	}
 
 	@Override
@@ -147,20 +147,7 @@ public class Controller implements ActionListener, MouseListener, KeyListener
 	}
 
 	@Override
-	/**
-	 * Overridden event method, not being used
-	 */
-	public void mouseReleased(MouseEvent arg0)
-	{
+	public void mouseReleased(MouseEvent arg0) {
+		
 	}
-
-	@Override
-	public void keyPressed(KeyEvent arg0) {}
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {}
-
 }
