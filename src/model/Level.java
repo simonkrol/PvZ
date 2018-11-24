@@ -2,12 +2,13 @@ package model;
 
 /**
  * The level class, contains all info about the current game being played
- * @author Boyan Siromahov and Simon Krol
- * @version Nov 16, 2018
+ * @author Boyan Siromahov, Simon Krol, Gordon MacDonald
+ * @version Nov 24, 2018
  */
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class Level {
 	public Lane[] grid;
@@ -17,6 +18,8 @@ public class Level {
 	public int turn;
 	private BufferedReader levelData;
 	private String curInstruction;
+	LinkedList<Plant> doneList;
+	LinkedList<Plant> undoneList;
 
 
 	/**
@@ -29,6 +32,8 @@ public class Level {
 	 * @throws IOException If readline fails
 	 */
 	public Level(int width, int height, int balance, String fileName) throws IOException {
+		doneList = new LinkedList<Plant>();
+		undoneList = new LinkedList<Plant>();
 		grid = new Lane[height];
 		for (int i = 0; i < height; i++) {
 			grid[i] = new Lane(width, 2);
@@ -88,9 +93,48 @@ public class Level {
 		}
 		if (getLane(laneI).placePlant(plant, spotI)) {
 			this.addToBalance(-plant.getValue());
+			this.doneList.add(plant);//update done action list
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean undo(){
+		for(Lane l: grid){
+			for(Spot s: l.getSpots()){
+				if(doneList.getFirst().location == s){
+					s.killPlant();
+					undoneList.push(doneList.pop()); //save undone in undone action list					
+					return true;
+				}else{
+					return false;
+				}
+			}
+			
+		}
+		return false;		
+	}
+	
+	public boolean redo(){
+		if(undoneList.isEmpty()){
+			return false;
+		}else{
+			for(Lane l: grid){
+				for(Spot s: l.getSpots()){
+					if(undoneList.pop().getLocation() == s){
+						s.addPlant(undoneList.removeLast()); //place last undone plant, remove from undone actions list
+						doneList.add(s.getPlant()); //update done actions list with redone action
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	public void wipeTurnHist(){
+		this.doneList = new LinkedList<Plant>();
+		this.undoneList = new LinkedList<Plant>();
 	}
 
 	/**

@@ -42,11 +42,13 @@ public class Controller implements ActionListener, MouseListener
 	{
 		button = (JButton) e.getSource();
 		if (button.getText().equals("End Turn"))
-		{
+		{	
+			
 			try
 			{
 				level.allTurn();
 				level.spawnZombies();
+				level.wipeTurnHist(); //clear the previous recorded actions at the end of each turn
 			} catch (IOException e1)
 			{
 			}
