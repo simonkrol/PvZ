@@ -78,6 +78,12 @@ public class View extends JFrame
 		chomperBtn.setIcon(getScaledImage(Chomper.sprite[0], 125, 125));
 		chomperBtn.setActionCommand("Plants/Chomper");
 		plants.add(chomperBtn);
+		
+		JButton torchwoodBtn = new JButton("Torchwood(60)");
+		torchwoodBtn.setSize(125, 125);
+		torchwoodBtn.setIcon(getScaledImage(Torchwood.sprite, 125, 125));
+		torchwoodBtn.setActionCommand("Plants/Torchwood");
+		plants.add(torchwoodBtn);
 
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
@@ -116,6 +122,7 @@ public class View extends JFrame
 		peashooterBtn.addActionListener(new Controller(level, this));
 		wallnutBtn.addActionListener(new Controller(level, this));
 		chomperBtn.addActionListener(new Controller(level, this));
+		torchwoodBtn.addActionListener(new Controller(level, this));
 		quit.addActionListener(new Controller(level, this));
 
 

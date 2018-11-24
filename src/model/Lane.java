@@ -266,5 +266,14 @@ public class Lane
 	{
 		projectiles.add(toCreate);
 	}
+	
+	protected Plant getLocationPlant(double distance)
+	{
+		if(distance>0 && distance < length)
+		{
+			return spots[(int)Math.floor(distance)].getPlant();
+		}
+		return null;
+	}
 
 }

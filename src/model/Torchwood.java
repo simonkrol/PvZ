@@ -9,65 +9,44 @@ import javax.swing.ImageIcon;
  * @author Simon Krol
  * @version Nov 16, 2018
  */
-public class Chomper extends Plant
+public class Torchwood extends Plant
 {
 	private static final int DEFAULT_HP = 5;
-	private static final int DEFAULT_ATTACK = 2;
+	private static final int DEFAULT_ATTACK = 3;
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	public static final int DEFAULT_VALUE = 60;
 	private static final int DEFAULT_DELAY = 5;
-	public static Image[] sprite = {
-			new ImageIcon("res/assets/PvZ_G/Chomper.gif").getImage(),
-			new ImageIcon("res/assets/PvZ_G/ChomperEating.gif").getImage()
-	};
+	public static Image sprite = new ImageIcon("res/assets/PvZ_G/Torchwood.gif").getImage();
 	private static boolean resized = false;
-	private Zombie eating;
 
 	/**
-	 * Creates a chomper with default values
+	 * Creates a Torchwood with default values
 	 */
-	public Chomper()
+	public Torchwood()
 	{
 		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_ATTACKSPEED, DEFAULT_VALUE, DEFAULT_DELAY);
 	}
 
 	/**
-	 * Try to eat the closest zombie in the lane
+	 * Its a stump...
 	 */
 	protected void attack(Object toAttack)
 	{
-		if(status.equals(Status.EATING))
-		{
-			statusDelay--;
-			if(statusDelay<=0)status = Status.NORMAL;
-			return;
-		}
-		if(toAttack instanceof Zombie)
-		{
-			status = Status.EATING;
-			eating = (Zombie)toAttack;
-			statusDelay = eating.getCurrentHP()/attack;
-			lane.killZombie(eating);
-		}
-	}
-
-	protected void turn(Level curLevel)
-	{
-		Zombie closest = lane.closeZombies(distance, 1.2);
-		this.attack(closest);
+		//Do nothing
 	}
 	
+	protected void turn(Level curLevel)
+	{
+		//Do nothing
+	}
+
 	@Override
 	/**
 	 * Get the classes sprite
 	 */
 	public Image getSprite()
 	{
-		if(status.equals(Status.EATING))
-		{
-			return sprite[1];
-		}
-		return sprite[0];
+		return sprite;
 		
 	}
 	@Override
@@ -84,10 +63,7 @@ public class Chomper extends Plant
 	 */
 	public void setSpriteSize(int blockWidth, int blockHeight)
 	{
-		for(int i=0; i< sprite.length; i++)
-		{
-			sprite[i] = sprite[i].getScaledInstance(blockWidth/2, blockHeight, Image.SCALE_DEFAULT);
-		}
+		sprite = sprite.getScaledInstance(blockWidth/2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
 	
