@@ -56,17 +56,17 @@ public class View extends JFrame {
 		information.add(menuBar, BorderLayout.PAGE_START);
 
 		JMenuItem  quitItem = new JMenuItem("Quit", KeyEvent.VK_Q);
-		quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.ALT_MASK));
+		quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
 		quitItem.setActionCommand("Quit");
 		menu.add(quitItem);
 
 		JMenuItem  undoItem = new JMenuItem("Undo", KeyEvent.VK_Z);
-		undoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.ALT_MASK));
+		undoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 		undoItem.setActionCommand("Undo");
 		menu.add(undoItem);
 		
-		JMenuItem  redoItem = new JMenuItem("Redo", KeyEvent.VK_Z);
-		redoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.ALT_MASK));
+		JMenuItem  redoItem = new JMenuItem("Redo", KeyEvent.VK_Y);
+		redoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
 		redoItem.setActionCommand("Redo");
 		menu.add(redoItem);		
 		

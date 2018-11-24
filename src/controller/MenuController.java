@@ -31,13 +31,17 @@ public class MenuController implements ActionListener{
 		case "Quit" :
 			view.dispatchEvent(new WindowEvent(view, WindowEvent.WINDOW_CLOSING));
 			System.exit(0);
+			break;
 			
 		case "Undo" :
-			//add undo function
+			level.undo();
+			view.update();
+			break;
 			
 		case "Redo" :
-			//add redo function
-			
+			level.redo();
+			view.update();
+			break;
 		}
 			
 	}
