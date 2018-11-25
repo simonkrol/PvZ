@@ -41,10 +41,9 @@ public class Controller implements ActionListener, MouseListener
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		button = (JButton) e.getSource(); 
-		if (button.getText().equals("End Turn"))
-		{	
-			
+		button = (JButton) e.getSource();
+		if (button.getActionCommand().equals("End"))
+		{
 			try
 			{
 				level.allTurn();
@@ -73,40 +72,34 @@ public class Controller implements ActionListener, MouseListener
 			{
 				view.update();
 			}
-		} else if (button.getText().equals("Quit Game"))
+		} else if (button.getActionCommand().equals("Quit"))
 		{
 			view.dispatchEvent(new WindowEvent(view, WindowEvent.WINDOW_CLOSING));
 			System.exit(0);
-		} else if (button.getText().equals("Sunflower(50)"))
+		} else if (button.getActionCommand().startsWith("Plants"))
 		{
 			if (view.canvas.highlight)
 			{
-				level.placePlant(new Sunflower(), view.canvas.hLY, view.canvas.hLX);
-				view.canvas.highlight = false;
-				view.update();
+				String plantType = button.getActionCommand().split("/")[1];
+				System.out.println(plantType);
+				try
+				{
+					Class cls = Class.forName("model."+plantType);
+					Plant newPlant = (Plant) cls.newInstance();
+					level.placePlant(newPlant, view.canvas.hLY, view.canvas.hLX);
+					view.canvas.highlight = false;
+					view.update();
+				} catch (Exception e1)
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 
-		else if (button.getText().equals("Peashooter(40)"))
-		{
-			if (view.canvas.highlight)
-			{
-				level.placePlant(new Peashooter(), view.canvas.hLY, view.canvas.hLX);
-				view.canvas.highlight = false;
-				view.update();
-			}
-		}
-		else if (button.getText().equals("Wallnut(50)"))
-		{
-			if (view.canvas.highlight)
-			{
-				level.placePlant(new Wallnut(), view.canvas.hLY, view.canvas.hLX);
-				view.canvas.highlight = false;
-				view.update();
-			}
-		}
 		view.canvas.setHighLight(false);
 	}
+	
 
 	@Override
 	/**

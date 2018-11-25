@@ -91,6 +91,7 @@ public class Level {
 		}
 		if (getLane(laneI).placePlant(plant, spotI)) {
 			this.addToBalance(-plant.getValue());
+			undoneList.clear();
 			this.doneList.add(plant);// update done action list
 			return true;
 		}
@@ -134,8 +135,8 @@ public class Level {
 	 * 
 	 */
 	public void wipeTurnHist() {
-		this.doneList = new LinkedList<Plant>();
-		this.undoneList = new LinkedList<Plant>();
+		doneList.clear();
+		undoneList.clear();
 	}
 
 	/**
