@@ -76,31 +76,31 @@ public class View extends JFrame {
 		JPanel plants = new JPanel();
 		plants.setLayout(new FlowLayout());
 
-		JButton sunflowerBtn = new JButton("Sunflower(50)");
+		JButton sunflowerBtn = new JButton("Sunflower(" + Sunflower.DEFAULT_VALUE+")");
 		sunflowerBtn.setSize(125, 125);
 		sunflowerBtn.setIcon(getScaledImage(Sunflower.sprite, 125, 125));
 		sunflowerBtn.setActionCommand("Plants/Sunflower");
 		plants.add(sunflowerBtn);
 
-		JButton peashooterBtn = new JButton("Peashooter(40)");
+		JButton peashooterBtn = new JButton("Peashooter(" + Peashooter.DEFAULT_VALUE+")");
 		peashooterBtn.setSize(125, 125);
 		peashooterBtn.setIcon(getScaledImage(Peashooter.sprite, 125, 125));
 		peashooterBtn.setActionCommand("Plants/Peashooter");
 		plants.add(peashooterBtn);
 
-		JButton wallnutBtn = new JButton("Wallnut(50)");
+		JButton wallnutBtn = new JButton("Wallnut("+ Wallnut.DEFAULT_VALUE+")");
 		wallnutBtn.setSize(125, 125);
 		wallnutBtn.setIcon(getScaledImage(Wallnut.sprite, 125, 125));
 		wallnutBtn.setActionCommand("Plants/Wallnut");
 		plants.add(wallnutBtn);
 
-		JButton chomperBtn = new JButton("Chomper(60)");
+		JButton chomperBtn = new JButton("Chomper("+Chomper.DEFAULT_VALUE+")");
 		chomperBtn.setSize(125, 125);
 		chomperBtn.setIcon(getScaledImage(Chomper.sprite[0], 125, 125));
 		chomperBtn.setActionCommand("Plants/Chomper");
 		plants.add(chomperBtn);
 		
-		JButton torchwoodBtn = new JButton("Torchwood(60)");
+		JButton torchwoodBtn = new JButton("Torchwood("+Torchwood.DEFAULT_VALUE+")");
 		torchwoodBtn.setSize(125, 125);
 		torchwoodBtn.setIcon(getScaledImage(Torchwood.sprite, 125, 125));
 		torchwoodBtn.setActionCommand("Plants/Torchwood");
