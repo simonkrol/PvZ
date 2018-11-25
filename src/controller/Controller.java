@@ -12,7 +12,6 @@ import java.awt.event.*;
 import java.io.IOException;
 
 import javax.swing.JButton;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 
 public class Controller implements ActionListener, MouseListener
@@ -84,7 +83,7 @@ public class Controller implements ActionListener, MouseListener
 				System.out.println(plantType);
 				try
 				{
-					Class cls = Class.forName("model."+plantType);
+					Class<?> cls = Class.forName("model."+plantType);
 					Plant newPlant = (Plant) cls.newInstance();
 					level.placePlant(newPlant, view.canvas.hLY, view.canvas.hLX);
 					view.canvas.highlight = false;
