@@ -3,7 +3,7 @@ package controller;
 /**
  * The Controller Class
  * @author Boyan Siromahov and Gordon MacDonald
- * @version Nov 16, 2018
+ * @version Nov 24, 2018
  */
 import model.*;
 import view.*;
@@ -12,6 +12,7 @@ import java.awt.event.*;
 import java.io.IOException;
 
 import javax.swing.JButton;
+import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 
 public class Controller implements ActionListener, MouseListener
@@ -47,6 +48,7 @@ public class Controller implements ActionListener, MouseListener
 			{
 				level.allTurn();
 				level.spawnZombies();
+				level.wipeTurnHist(); //clear the previous recorded actions at the end of each turn
 			} catch (IOException e1)
 			{
 			}
@@ -96,7 +98,6 @@ public class Controller implements ActionListener, MouseListener
 		}
 
 		view.canvas.setHighLight(false);
-
 	}
 	
 
@@ -141,11 +142,7 @@ public class Controller implements ActionListener, MouseListener
 	}
 
 	@Override
-	/**
-	 * Overridden event method, not being used
-	 */
-	public void mouseReleased(MouseEvent arg0)
-	{
+	public void mouseReleased(MouseEvent arg0) {
+		
 	}
-
 }

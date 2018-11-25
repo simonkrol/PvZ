@@ -6,6 +6,8 @@ package view;
  * @version Nov 16, 2018
  */
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
@@ -18,8 +20,7 @@ import model.*;
  * @author Boyan Siromahov
  * @version Nov 16, 2019
  */
-public class View extends JFrame
-{
+public class View extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public GameCanvas canvas;
 	private Level level;
@@ -29,26 +30,46 @@ public class View extends JFrame
 
 	/**
 	 * Create a new view for a given level
+	 * 
 	 * @param lvl The level the view is created for
 	 */
-	public View(Level lvl)
-	{
+	public View(Level lvl) {
 		level = lvl;
 
 		setLayout(new BorderLayout());
-
-
-
 		setTitle("Plants Vs Zombies");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		information = new JPanel();
-		information.setLayout(new FlowLayout());
+		information.setLayout(new BorderLayout());
 		info = new JLabel();
 		info.setText("SUN: " + level.getBalance() + "  Turn: " + level.turn);
-		information.add(info);
+		info.setFont(new Font(info.getName(), Font.PLAIN, 20));
+		information.add(info, BorderLayout.CENTER);
 		add(information, BorderLayout.PAGE_START);
+		
+		// Menu
+		JMenuBar menuBar = new JMenuBar();
+		JMenu menu = new JMenu("Menu");
+		menu.setMnemonic(KeyEvent.VK_M);
+		menuBar.add(menu);
+		information.add(menuBar, BorderLayout.PAGE_START);
 
+		JMenuItem  quitItem = new JMenuItem("Quit", KeyEvent.VK_Q);
+		quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+		quitItem.setActionCommand("Quit");
+		menu.add(quitItem);
+
+		JMenuItem  undoItem = new JMenuItem("Undo", KeyEvent.VK_Z);
+		undoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+		undoItem.setActionCommand("Undo");
+		menu.add(undoItem);
+		
+		JMenuItem  redoItem = new JMenuItem("Redo", KeyEvent.VK_Y);
+		redoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
+		redoItem.setActionCommand("Redo");
+		menu.add(redoItem);		
+		
 		selections = new JPanel();
 		selections.setLayout(new BoxLayout(selections, BoxLayout.PAGE_AXIS));
 
@@ -66,7 +87,7 @@ public class View extends JFrame
 		peashooterBtn.setIcon(getScaledImage(Peashooter.sprite, 125, 125));
 		peashooterBtn.setActionCommand("Plants/Peashooter");
 		plants.add(peashooterBtn);
-		
+
 		JButton wallnutBtn = new JButton("Wallnut(50)");
 		wallnutBtn.setSize(125, 125);
 		wallnutBtn.setIcon(getScaledImage(Wallnut.sprite, 125, 125));
@@ -102,7 +123,6 @@ public class View extends JFrame
 		selections.add(plants);
 		add(selections, BorderLayout.PAGE_END);
 
-
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		pack();
 		setVisible(true);
@@ -111,7 +131,6 @@ public class View extends JFrame
 
 		canvas = new GameCanvas(level, blockWidth, blockHeight);
 		add(canvas, BorderLayout.CENTER);
-
 
 		revalidate();
 
@@ -124,63 +143,65 @@ public class View extends JFrame
 		chomperBtn.addActionListener(new Controller(level, this));
 		torchwoodBtn.addActionListener(new Controller(level, this));
 		quit.addActionListener(new Controller(level, this));
-
-
+		quitItem.addActionListener(new MenuController(level, this));
+		undoItem.addActionListener(new MenuController(level, this));
+		redoItem.addActionListener(new MenuController(level, this));
 	}
 
 	/**
-	 * Repaint the canvas with the new model information
-	 * Reset the text showing the players balance and the turn number
+	 * Repaint the canvas with the new model information Reset the text showing the
+	 * players balance and the turn number
 	 */
-	public void update()
-	{
+	public void update() {
 		canvas.repaint();
 		info.setText("SUN: " + level.getBalance() + "  Turn: " + level.turn);
 	}
 
 	/**
-	 * Calculate the size of each spot on the grid, setting the 
-	 * blockWidth and blockHeight values
+	 * Calculate the size of each spot on the grid, setting the blockWidth and
+	 * blockHeight values
 	 */
-	public void calcBlockSize()
-	{
+	public void calcBlockSize() {
 		Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		// Get the width of each spot on the grid
-		blockWidth = (int)(screenSize.getWidth() / level.getWidth());
-		// Get the height of each spot on the grid, not counting the Info and Plant menus or the taskbar
-		// We subtract the info menu twice to also get rid of the top bar from this calculation
-		blockHeight = (int)(screenSize.getHeight()- scnMax.bottom - scnMax.top - 2*information.getHeight() - selections.getHeight()) / level.getHeight();
+		blockWidth = (int) (screenSize.getWidth() / level.getWidth());
+		// Get the height of each spot on the grid, not counting the Info and Plant
+		// menus or the taskbar
+		// We subtract the info menu twice to also get rid of the top bar from this
+		// calculation
+		blockHeight = (int) (screenSize.getHeight() - scnMax.bottom - scnMax.top - 2 * information.getHeight()
+				- selections.getHeight()) / level.getHeight();
 	}
 
 	/**
 	 * Get a scale ImageIcon of an ImageIcon with the given size values
+	 * 
 	 * @param srcImg The src ImageIcon
-	 * @param w The new Width
-	 * @param h The new Height
+	 * @param w      The new Width
+	 * @param h      The new Height
 	 * @return Scaled ImageIcon
 	 */
-	private ImageIcon getScaledImage(Image srcImg, int w, int h)
-	{
+	private ImageIcon getScaledImage(Image srcImg, int w, int h) {
 		Image newimg = srcImg.getScaledInstance(w, h, Image.SCALE_DEFAULT); // scale it the smooth way
 		return new ImageIcon(newimg); // transform it back
 	}
 
 	/**
 	 * Get the blockWidth of the current GUI
+	 * 
 	 * @return width of each spot
 	 */
-	public int getBlockWidth()
-	{
+	public int getBlockWidth() {
 		return blockWidth;
 	}
 
 	/**
 	 * Get the blockHeight of the current GUI
+	 * 
 	 * @return height of each spot
 	 */
-	public int getBlockHeight()
-	{
+	public int getBlockHeight() {
 		return blockHeight;
 	}
 }

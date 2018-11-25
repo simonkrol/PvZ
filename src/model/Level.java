@@ -2,12 +2,13 @@ package model;
 
 /**
  * The level class, contains all info about the current game being played
- * @author Boyan Siromahov and Simon Krol
- * @version Nov 16, 2018
+ * @author Boyan Siromahov, Simon Krol, Gordon MacDonald
+ * @version Nov 24, 2018
  */
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class Level {
 	public Lane[] grid;
@@ -17,7 +18,8 @@ public class Level {
 	public int turn;
 	private BufferedReader levelData;
 	private String curInstruction;
-
+	LinkedList<Plant> doneList;
+	LinkedList<Plant> undoneList;
 
 	/**
 	 * Construct a level
@@ -29,6 +31,8 @@ public class Level {
 	 * @throws IOException If readline fails
 	 */
 	public Level(int width, int height, int balance, String fileName) throws IOException {
+		doneList = new LinkedList<Plant>();
+		undoneList = new LinkedList<Plant>();
 		grid = new Lane[height];
 		for (int i = 0; i < height; i++) {
 			grid[i] = new Lane(width, 2);
@@ -39,7 +43,6 @@ public class Level {
 		levelData = new BufferedReader(new FileReader(fileName));
 		curInstruction = levelData.readLine();
 	}
-
 
 	/**
 	 * Check the levelData and spawn any zombies intended for the given turn
@@ -78,19 +81,61 @@ public class Level {
 	 */
 	public boolean placePlant(Plant plant, int laneI, int spotI) {
 		if (laneI < 0 || laneI > getWidth() - 1 || spotI < 0 || spotI > getHeight() - 1) {
-			//System.out.println("Index out of bounds");
+			// System.out.println("Index out of bounds");
 			return false;
 		}
 		if (plant.getValue() > balance) // check if player has enough to purchase the plant
 		{
-			//System.out.println("Insufficient funds");
+			// System.out.println("Insufficient funds");
 			return false;
 		}
 		if (getLane(laneI).placePlant(plant, spotI)) {
 			this.addToBalance(-plant.getValue());
+			this.doneList.add(plant);// update done action list
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Undo last plant placement.
+	 *
+	 * 
+	 * @return True if successful, false otherwise
+	 */
+	public void undo() {
+		if (doneList.size() >= 1) 
+		{
+			Plant p = doneList.removeLast();
+			p.getLocation().killPlant();
+			balance += p.getValue();
+			undoneList.push(p);
+		}
+	}
+
+	/**
+	 * Redo last undone plant placement.
+	 *
+	 * 
+	 * @return True if successful, false otherwise
+	 */
+	public void redo() {
+		if (undoneList.size() >= 1) 
+		{
+			Plant p = undoneList.pop();
+			p.getLocation().addPlant(p);
+			balance -= p.getValue();
+			doneList.add(p);
+		}
+	}
+
+	/**
+	 * Clears the done and undone structures.
+	 * 
+	 */
+	public void wipeTurnHist() {
+		this.doneList = new LinkedList<Plant>();
+		this.undoneList = new LinkedList<Plant>();
 	}
 
 	/**
@@ -121,7 +166,8 @@ public class Level {
 	}
 
 	/**
-	 * Iterate through all lanes in the level and run all their turns, also spawn any new zombies
+	 * Iterate through all lanes in the level and run all their turns, also spawn
+	 * any new zombies
 	 *
 	 * @throws IOException If readline fails
 	 */
@@ -143,7 +189,8 @@ public class Level {
 	}
 
 	/**
-	 * Check if the level has been failed. The level has been failed if any lane has failed.
+	 * Check if the level has been failed. The level has been failed if any lane has
+	 * failed.
 	 *
 	 * @return true if failed, false otherwise
 	 */
