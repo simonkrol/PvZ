@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import controller.LevelLoader;
 /**
  * Tests Level class
  * @author Simon Krol
@@ -13,6 +15,7 @@ import org.junit.Test;
  */
 public class TestLevel
 {
+	LevelLoader load;
 	Level testLevel;
 	Level emptyLevel;
 	Sunflower sunny;
@@ -20,8 +23,9 @@ public class TestLevel
 	@Before
 	public void setUp() throws Exception
 	{
-		emptyLevel = new Level(5,6,50, "res/levels/nullLevel.txt");
-		testLevel = new Level(5, 6, 50, "res/levels/Level.txt");
+		load = new LevelLoader();
+		emptyLevel = load.getLevel("nullLevel.json");
+		testLevel = load.getLevel("Level1.json");
 		sunny = new Sunflower();
 		
 	}
@@ -32,7 +36,7 @@ public class TestLevel
 		assertEquals("No zombies should be present", 0, testLevel.getNumZombies());
 		testLevel.turn=5;
 		testLevel.spawnZombies();
-		assertEquals("3 zombies should be present", 3, testLevel.getNumZombies());
+		assertEquals("4 zombies should be present", 4, testLevel.getNumZombies());
 		
 		
 	}
@@ -40,7 +44,7 @@ public class TestLevel
 	@Test
 	public void testPlacePlant()
 	{
-		assertFalse("Sunny is out of bounds be placed", testLevel.placePlant(sunny, 3, 3));
+		assertFalse("Sunny is out of bounds be placed", testLevel.placePlant(sunny, 5, 7));
 		assertTrue("Sunny can be placed", testLevel.placePlant(sunny, 0, 0));
 		assertFalse("No money left", testLevel.placePlant(sunny, 0, 0));
 		
@@ -49,15 +53,15 @@ public class TestLevel
 	@Test
 	public void testAddToBalance()
 	{
-		assertEquals("Should have 50 money", 50, testLevel.getBalance());
+		assertEquals("Should have 100 money", 100, testLevel.getBalance());
 		testLevel.addToBalance(16);
-		assertEquals("Should have 66 money", 66, testLevel.getBalance());
+		assertEquals("Should have 116 money", 116, testLevel.getBalance());
 	}
 
 	@Test
 	public void testGetWidth()
 	{
-		assertEquals("Width is 5", 5, testLevel.getWidth());
+		assertEquals("Width is 8", 8, testLevel.getWidth());
 	}
 
 	@Test

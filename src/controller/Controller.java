@@ -43,14 +43,8 @@ public class Controller implements ActionListener, MouseListener
 		button = (JButton) e.getSource();
 		if (button.getActionCommand().equals("End"))
 		{
-			try
-			{
-				level.allTurn();
-				level.spawnZombies();
-				level.wipeTurnHist(); //clear the previous recorded actions at the end of each turn
-			} catch (IOException e1)
-			{
-			}
+			level.allTurn();
+			level.wipeTurnHist(); //clear the previous recorded actions at the end of each turn
 			if (level.checkWin())
 			{
 				view.update();

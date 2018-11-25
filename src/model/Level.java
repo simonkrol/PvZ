@@ -10,14 +10,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 public class Level {
 	public Lane[] grid;
-	private Integer balance;
+	private String name;
+	private int balance;
 	private int width;
 	private int height;
+	private int numTurns;
+	private String[] availablePlants;
+	private JsonObject zombieSpawns;
 	public int turn;
-	private BufferedReader levelData;
-	private String curInstruction;
 	LinkedList<Plant> doneList;
 	LinkedList<Plant> undoneList;
 
@@ -30,35 +36,59 @@ public class Level {
 	 * @param fileName The file storing the level's zombie data
 	 * @throws IOException If readline fails
 	 */
-	public Level(int width, int height, int balance, String fileName) throws IOException {
-		doneList = new LinkedList<Plant>();
-		undoneList = new LinkedList<Plant>();
+	public Level(String name, int width, int height, int balance, String[] plants, JsonObject turns, int numTurns) {
+		this.name = name;
+		this.width = width;
+		this.height = height;
+		this.balance = balance;
+		this.availablePlants = plants;
+		this.zombieSpawns = turns;
+		this.numTurns = numTurns;
+		
 		grid = new Lane[height];
 		for (int i = 0; i < height; i++) {
 			grid[i] = new Lane(width, 2);
 		}
-		this.balance = balance;
-		this.width = width;
-		this.height = height;
-		levelData = new BufferedReader(new FileReader(fileName));
-		curInstruction = levelData.readLine();
+
+		doneList = new LinkedList<Plant>();
+		undoneList = new LinkedList<Plant>();
 	}
 
 	/**
 	 * Check the levelData and spawn any zombies intended for the given turn
-	 *
-	 * @throws IOException If readline fails
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 */
-	public void spawnZombies() throws IOException {
-		if (curInstruction == null)
-			return;
-		if (curInstruction.split("-")[0].equals(Integer.toString(turn))) {
-			String[] lanes = curInstruction.split("-");
-			for (int i = 1; i < lanes.length; i++) {
-				grid[Integer.parseInt(lanes[i]) - 1].spawnZombie();
+	public void spawnZombies() {
+		
+		JsonElement curTurn = zombieSpawns.get(Integer.toString(turn));
+		if(curTurn == null)return;
+		System.out.println(curTurn);
+		for (int lane = 0; lane< height; lane++)
+		{
+			JsonArray curLane = curTurn.getAsJsonObject().getAsJsonArray(Integer.toString(lane));
+			if(curLane == null) continue;
+			for(int i = 0; i < curLane.size(); i++)
+			{
+				try {
+					Class<?> cls = Class.forName("model."+curLane.get(i).getAsString());
+					Zombie newZombie = (Zombie) cls.newInstance();
+					if(newZombie instanceof Zombie)
+					{
+						grid[lane].addZombie(newZombie);
+					}
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+				
+				
 			}
-			curInstruction = levelData.readLine();
+			
 		}
+		
 	}
 
 	/**
@@ -172,12 +202,18 @@ public class Level {
 	 *
 	 * @throws IOException If readline fails
 	 */
-	public void allTurn() throws IOException {
+	public void allTurn() {
 		for (Lane lane : grid) {
 			lane.allTurn(this);
 		}
 		turn++;
+		try {
 		spawnZombies();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -209,7 +245,7 @@ public class Level {
 	 * @return true if won, false otherwise
 	 */
 	public boolean checkWin() {
-		if (curInstruction != null)
+		if (turn < numTurns)
 			return false;
 		for (int i = 0; i < grid.length; i++) {
 			if (!grid[i].noZombies())

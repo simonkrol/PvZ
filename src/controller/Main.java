@@ -14,18 +14,6 @@ import view.View;
 
 public class Main
 {
-	/**
-	 * Start the game
-	 * 
-	 * @throws IOException If reading from the file fails
-	 */
-	private static void startGame() throws IOException
-	{
-		Level lvl = new Level(8, 6, 125, "res/levels/Level.txt");
-		@SuppressWarnings("unused")
-		View gui = new View(lvl);
-
-	}
 
 	/**
 	 * Main method, accept user input and start the game
@@ -35,7 +23,9 @@ public class Main
 	 */
 	public static void main(String[] args) throws IOException
 	{
-		startGame();
+		LevelLoader levels = new LevelLoader();
+		Level level = levels.getLevel("Level1.json");
+		View levelGui = new View(level);
 		JOptionPane.showMessageDialog(null,
 				"To place a plant: click the tile you wish to play on, then the type of plant", "Instructions",
 				JOptionPane.PLAIN_MESSAGE);
