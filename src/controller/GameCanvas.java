@@ -127,6 +127,11 @@ public class GameCanvas extends JPanel
 	{
 		this.highlight = highlight;
 	}
+	
+	public Boolean getHighLight()
+	{
+		return highlight;
+	}
 
 	/**
 	 * Get a scale Image of an ImageIcon with the given size values
@@ -135,7 +140,7 @@ public class GameCanvas extends JPanel
 	 * @param h The new Height
 	 * @return Scaled Image
 	 */
-	private Image getScaledImage(ImageIcon srcImg, int w, int h)
+	protected Image getScaledImage(ImageIcon srcImg, int w, int h)
 	{
 		return srcImg.getImage().getScaledInstance(w, h, Image.SCALE_DEFAULT); // scale it the default way to preserve gifs
 	}
