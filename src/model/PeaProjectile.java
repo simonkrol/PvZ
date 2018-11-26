@@ -7,7 +7,10 @@ import javax.swing.ImageIcon;
 public class PeaProjectile extends Projectile
 {
 	private static final double DEFAULT_MOVESPEED = 1;
-	private static Image sprite = new ImageIcon("res/assets/PvZ_G/Pea.png").getImage();
+	public static Image[] sprite = {
+			new ImageIcon("res/assets/PvZ_G/Pea.png").getImage(),
+			new ImageIcon("res/assets/PvZ_G/PeaFire.png").getImage()
+	};
 	private static boolean resized = false;
 
 	protected PeaProjectile(int att, double position, Lane lane)
@@ -21,7 +24,8 @@ public class PeaProjectile extends Projectile
 	 */
 	public Image getSprite()
 	{
-		return sprite;
+		if(status.equals(Status.FIRE))return sprite[1];
+		return sprite[0];
 		
 	}
 	@Override
@@ -38,7 +42,10 @@ public class PeaProjectile extends Projectile
 	 */
 	public void setSpriteSize(int blockWidth, int blockHeight)
 	{
-		sprite = sprite.getScaledInstance(blockWidth/4, blockWidth/4, Image.SCALE_DEFAULT);
+		for(int i=0; i< sprite.length; i++)
+		{
+			sprite[i] = sprite[i].getScaledInstance(blockWidth/4, blockWidth/4, Image.SCALE_DEFAULT);
+		}
 		resized = true;
 	}
 

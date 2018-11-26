@@ -139,6 +139,22 @@ public class Lane
 		}
 		return false;
 	}
+	protected Zombie closeZombies(double distance, double within)
+	{
+		
+		double dist;
+		Zombie closest=null;
+		for (Zombie z:liveZombies)
+		{
+			dist = (int) ((length-distance)-z.getPosition());
+			if(dist>0 && dist < within)
+			{
+				closest = z;
+				within = dist;
+			}
+		}
+		return closest;
+	}
 	protected boolean noZombies()
 	{
 		return liveZombies.size()==0;
@@ -249,6 +265,15 @@ public class Lane
 	protected void createProjectile(Projectile toCreate)
 	{
 		projectiles.add(toCreate);
+	}
+	
+	protected Plant getLocationPlant(double distance)
+	{
+		if(distance>0 && distance < length)
+		{
+			return spots[(int)Math.floor(distance)].getPlant();
+		}
+		return null;
 	}
 
 }

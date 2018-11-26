@@ -54,6 +54,12 @@ public abstract class Projectile extends Entity
 	protected void move()
 	{
 		position += moveSpeed;
+		Plant onPlant = lane.getLocationPlant(position);
+		if(lane.getLocationPlant(position) instanceof Torchwood)
+		{
+			status = Status.FIRE;
+			attack+=onPlant.getAttack();
+		}
 	}
 	public double getOffset()
 	{
