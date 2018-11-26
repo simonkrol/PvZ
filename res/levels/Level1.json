@@ -2,7 +2,7 @@
   "balance": 100,
   "height": 6,
   "name": "Level 1",
-  "numturns": 8,
+  "numturns": 19,
   "plants": [
     "Sunflower",
     "Peashooter",
@@ -11,28 +11,156 @@
     "Torchwood"
   ],
   "turns": {
-    "5": {
+    "10": {
       "1": [
         "BasicZombie"
       ],
       "3": [
+        "BasicZombie"
+      ],
+      "4": [
+        "BucketZombie"
+      ]
+    },
+    "11": {
+      "1": [
         "ImpZombie"
       ],
+      "2": [
+        "BasicZombie"
+      ],
+      "3": [
+        "BasicZombie"
+      ]
+    },
+    "12": {
+      "1": [
+        "BasicZombie"
+      ],
       "5": [
-        "BucketZombie",
+        "BasicZombie",
         "ImpZombie"
       ]
     },
-    "8": {
+    "15": {
+      "0": [
+        "BasicZombie",
+        "BasicZombie"
+      ],
+      "1": [
+        "BasicZombie"
+      ],
       "2": [
         "BucketZombie"
+      ]
+    },
+    "16": {
+      "0": [
+        "ImpZombie"
+      ],
+      "1": [
+        "BucketZombie"
+      ],
+      "2": [
+        "BasicZombie",
+        "ImpZombie"
+      ],
+      "3": [
+        "BasicZombie",
+        "BasicZombie"
+      ],
+      "4": [
+        "ImpZombie"
+      ],
+      "5": [
+        "BucketZombie"
+      ]
+    },
+    "17": {
+      "0": [
+        "BasicZombie"
+      ],
+      "1": [
+        "BasicZombie"
+      ],
+      "2": [
+        "BasicZombie"
+      ],
+      "3": [
+        "BasicZombie"
+      ],
+      "4": [
+        "BasicZombie"
+      ],
+      "5": [
+        "BasicZombie"
+      ]
+    },
+    "18": {
+      "0": [
+        "ImpZombie"
+      ],
+      "1": [
+        "ImpZombie"
+      ],
+      "2": [
+        "ImpZombie"
       ],
       "3": [
         "ImpZombie"
       ],
+      "4": [
+        "ImpZombie"
+      ],
       "5": [
-        "ImpZombie",
+        "ImpZombie"
+      ]
+    },
+    "19": {
+      "0": [
         "BucketZombie"
+      ],
+      "1": [
+        "BucketZombie"
+      ],
+      "2": [
+        "BucketZombie"
+      ],
+      "3": [
+        "BucketZombie"
+      ],
+      "4": [
+        "BucketZombie"
+      ],
+      "5": [
+        "BucketZombie"
+      ]
+    },
+    "5": {
+      "0": [
+        "BasicZombie"
+      ],
+      "2": [
+        "ImpZombie"
+      ],
+      "4": [
+        "BucketZombie"
+      ]
+    },
+    "6": {
+      "0": [
+        "BasicZombie"
+      ]
+    },
+    "7": {
+      "0": [
+        "BasicZombie"
+      ],
+      "2": [
+        "ImpZombie"
+      ],
+      "3": [
+        "ImpZombie"
       ]
     }
   },
