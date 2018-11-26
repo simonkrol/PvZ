@@ -4,6 +4,7 @@ import java.awt.*;
 import org.junit.Test;
 
 import controller.Controller;
+import controller.LevelLoader;
 import model.Level;
 
 import static org.junit.Assert.*;
@@ -17,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 public class TestView
 {
+	LevelLoader load;
 	View testView;
 	Level testLevel;
 	Controller testController;
@@ -24,7 +26,8 @@ public class TestView
 	@Before
 	public void setUp() throws Exception
 	{
-		testLevel = new Level(5,6,100, "res/levels/nullLevel.txt");
+		load = new LevelLoader();
+		testLevel = load.getLevel("nullLevel.json");
 		testView = new View(testLevel);
 		testController = new Controller(testLevel, testView);
 	}
