@@ -1,5 +1,9 @@
 package controller;
-
+/**
+ * Class tests classes in controller package
+ * @author Shaun Gordon
+ * @version Nov 25, 2018
+ */
 import java.awt.Image;
 import javax.swing.JButton;
 import org.junit.Before;
@@ -38,10 +42,25 @@ public class TestController{
 		assertFalse("Highlight should be false", testCanvas.getHighLight());
 	}
 	@Test
+	public void testEndButton()
+	{
+		flower = new Sunflower();
+		testButton = new JButton();
+		testButton.setActionCommand("End");
+		testButton.addActionListener(new Controller(testLevel, testView));
+		testLevel.placePlant(flower, 2, 2);
+		testButton.doClick();
+		int balance = testLevel.getBalance();
+		assertEquals("Balance should be 62", 62, balance);
+		
+	}
+	@Test
 	public void testSunflowerButton()
 	{
 		flower = new Sunflower();
-		testButton = testView.getSunflowerBtn();
+		testButton = new JButton();
+		testButton.setActionCommand("Plants/Sunflower");
+		testButton.addActionListener(new Controller(testLevel, testView));
 		testView.canvas.highLight(2, 2);
 		testButton.doClick();
 		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
@@ -52,7 +71,9 @@ public class TestController{
 	public void testWallnutButton()
 	{
 		flower = new Sunflower();
-		testButton = testView.getWallnutBtn();
+		testButton = new JButton();
+		testButton.setActionCommand("Plants/Wallnut");
+		testButton.addActionListener(new Controller(testLevel, testView));
 		testView.canvas.highLight(2, 2);
 		testButton.doClick();
 		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
@@ -64,7 +85,9 @@ public class TestController{
 	public void testPeashooterButton()
 	{
 		flower = new Sunflower();
-		testButton = testView.getPeashooterBtn();
+		testButton = new JButton();
+		testButton.setActionCommand("Plants/Peashooter");
+		testButton.addActionListener(new Controller(testLevel, testView));
 		testView.canvas.highLight(2, 2);
 		testButton.doClick();
 		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
@@ -73,22 +96,40 @@ public class TestController{
 		
 	}
 	@Test
-	public void testEndButton()
+	public void testChomperButton()
 	{
 		flower = new Sunflower();
-		testLevel.placePlant(flower, 2, 2);
-		testButton = testView.getEndBtn();
+		testButton = new JButton();
+		testButton.setActionCommand("Plants/Chomper");
+		testButton.addActionListener(new Controller(testLevel, testView));
+		testView.canvas.highLight(2, 2);
 		testButton.doClick();
+		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
 		int balance = testLevel.getBalance();
-		assertEquals("Balance should be 62", 62, balance);
+		assertEquals("Balance should be 40", 40, balance);
+		
+	}
+	@Test
+	public void testTorchwoodButton()
+	{
+		flower = new Sunflower();
+		testButton = new JButton();
+		testButton.setActionCommand("Plants/Torchwood");
+		testButton.addActionListener(new Controller(testLevel, testView));
+		testView.canvas.highLight(2, 2);
+		testButton.doClick();
+		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
+		int balance = testLevel.getBalance();
+		assertEquals("Balance should be 40", 40, balance);
 		
 	}
 	@Test
 	public void testQuitButton()
 	{
-		testButton = testView.getQuitBtn();
+		testButton = new JButton();
+		testButton.setActionCommand("Quit");
 		testButton.doClick();
-		assertEquals("Controller should be null", null, testController);
+		assertEquals("Controller should be null", null, testController.x);
 		
 	}
 
