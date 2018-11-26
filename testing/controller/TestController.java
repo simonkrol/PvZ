@@ -11,6 +11,7 @@ import view.View;
 
 public class TestController{
 	View testView;
+	LevelLoader load;
 	Level testLevel;
 	Image testImage;
 	GameCanvas testCanvas;
@@ -20,14 +21,17 @@ public class TestController{
 	@Before
 	public void setUp() throws Exception
 	{
-		testLevel = new Level(5,6,100, "res/levels/nullLevel.txt");
+		load = new LevelLoader();
+		testLevel = load.getLevel("nullLevel.json");
 		testView = new View(testLevel);
+		testView.setVisible(false);
 		testController = new Controller(testLevel, testView);
 	}
 	@Test
 	public void testHighLight()
 	{
 		testCanvas = new GameCanvas(testLevel, 5, 5);
+		assertFalse("Highlight should be false", testCanvas.getHighLight());
 		testCanvas.highLight(3,4);
 		assertTrue("Highlight should be true", testCanvas.getHighLight());
 		testCanvas.setHighLight(false);
@@ -41,8 +45,7 @@ public class TestController{
 		testView.canvas.highLight(2, 2);
 		testButton.doClick();
 		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
-		int balance = testLevel.getBalance();
-		assertEquals("Balance should be 50", 50, balance);
+		assertEquals("Balance should be 50", 50, testLevel.getBalance());
 		
 	}
 	@Test

@@ -6,6 +6,9 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 
 import org.junit.Test;
+
+import controller.LevelLoader;
+
 import org.junit.Before;
 /**
  * Tests Zombie class
@@ -14,6 +17,7 @@ import org.junit.Before;
  */
 public class TestZombie
 {
+	LevelLoader load;
 	Level testLevel;
 	BasicZombie peter;
 	Lane testLane;
@@ -22,7 +26,8 @@ public class TestZombie
 	@Before
 	public void setUp() throws Exception
 	{
-		testLevel = new Level(4, 1, 100, "res/levels/nullLevel.txt");
+		load = new LevelLoader();
+		testLevel = load.getLevel("nullLevel.json");
 		testLane = testLevel.getLane(0);
 		sunny = new Sunflower();
 		peter = new BasicZombie();
@@ -55,8 +60,8 @@ public class TestZombie
 	@Test
 	public void testLawnMower()
 	{
-		peter.setPosition(4);
-		assertEquals("Current position should be 4", 4,(int) peter.getPosition());
+		peter.setPosition(testLane.getLength());
+		assertEquals("Current position should be 8", testLane.getLength(),(int) peter.getPosition());
 		assertEquals("EndState should be 0", 0, testLane.getEndState());
 		peter.move();
 		assertEquals("EndState should be 1", 1, testLane.getEndState());
@@ -71,7 +76,7 @@ public class TestZombie
 	@Test 
 	public void testClear() throws IOException
 	{	
-		peter.setPosition(4);
+		peter.setPosition(testLane.getLength());
 		assertEquals("LiveZombies should contain only 1 zombie", 1, testLane.getNumZombies());
 		testLane.allTurn(null);
 		assertEquals("LiveZombies should contain no zombies", 0, testLane.getNumZombies());

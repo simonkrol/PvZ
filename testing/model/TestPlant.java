@@ -2,6 +2,9 @@ package model;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import controller.LevelLoader;
+
 import org.junit.Before;
 
 /**
@@ -11,6 +14,7 @@ import org.junit.Before;
  */
 public class TestPlant 
 {
+	LevelLoader load;
 	Level testLevel;
 	BasicZombie chad;
 	Lane testLane;
@@ -23,7 +27,8 @@ public class TestPlant
 	@Before
 	public void setUp() throws Exception
 	{
-		testLevel = new Level(4, 4, 100, "res/levels/nullLevel.txt");
+		load = new LevelLoader();
+		testLevel = load.getLevel("nullLevel.json");
 		flower = new Sunflower();
 		testLane = testLevel.getLane(0);
 		chad = new BasicZombie();

@@ -1,0 +1,38 @@
+{
+  "balance": 100,
+  "height": 6,
+  "name": "Level 1",
+  "numturns": 8,
+  "plants": [
+    "Sunflower",
+    "Peashooter",
+    "Wallnut"
+  ],
+  "turns": {
+    "5": {
+      "1": [
+        "BasicZombie"
+      ],
+      "3": [
+        "ImpZombie"
+      ],
+      "5": [
+        "BucketZombie",
+        "ImpZombie"
+      ]
+    },
+    "8": {
+      "2": [
+        "BucketZombie"
+      ],
+      "3": [
+        "ImpZombie"
+      ],
+      "5": [
+        "ImpZombie",
+        "BucketZombie"
+      ]
+    }
+  },
+  "width": 8
+}
