@@ -1,4 +1,5 @@
 package controller;
+
 /**
  * The menu controller, controls the menu.
  * @author Boyan Siromahov
