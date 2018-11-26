@@ -126,6 +126,7 @@ public class Lane
 
 	/**
 	 * Return if zombies exist in the lane on the right of the given index
+	 * @param distance The given index
 	 * @return True if zombies, false otherwise
 	 */
 	protected boolean attackableZombies(int distance)

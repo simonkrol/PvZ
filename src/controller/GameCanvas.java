@@ -31,6 +31,8 @@ public class GameCanvas extends JPanel
 	 * Create a gamecanvas with given level
 	 * 
 	 * @param lvl The current level
+	 * @param blockWidth The width of each block in pixels
+	 * @param blockHeight The heigh of each block in pixels
 	 */
 	public GameCanvas(Level lvl, int blockWidth, int blockHeight)
 	{
