@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 /**
  * The Peashooter class, contains information about the Peashooter plant
  * @author Simon Krol
- * @version Nov 16, 2018
+ * @version Nov 25, 2018
  */
 public class Peashooter extends Plant
 {
@@ -16,7 +16,7 @@ public class Peashooter extends Plant
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	private static final int DEFAULT_VALUE = 40;
 	private static final int DEFAULT_DELAY = 5;
-	public static Image sprite = new ImageIcon("res/assets/PvZ_G/Peashooter.gif").getImage();
+	private static Image sprite = new ImageIcon("res/assets/PvZ_G/Peashooter.gif").getImage();
 	private static boolean resized = false;
 
 	/**

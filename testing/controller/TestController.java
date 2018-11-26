@@ -35,11 +35,11 @@ public class TestController{
 	public void testHighLight()
 	{
 		testCanvas = new GameCanvas(testLevel, 5, 5);
-		assertFalse("Highlight should be false", testCanvas.getHighLight());
+		assertFalse("Highlight should be false", testCanvas.getHighlight());
 		testCanvas.highLight(3,4);
-		assertTrue("Highlight should be true", testCanvas.getHighLight());
-		testCanvas.setHighLight(false);
-		assertFalse("Highlight should be false", testCanvas.getHighLight());
+		assertTrue("Highlight should be true", testCanvas.getHighlight());
+		testCanvas.setHighlight(false);
+		assertFalse("Highlight should be false", testCanvas.getHighlight());
 	}
 	@Test
 	public void testEndButton()
@@ -61,7 +61,7 @@ public class TestController{
 		testButton = new JButton();
 		testButton.setActionCommand("Plants/Sunflower");
 		testButton.addActionListener(new Controller(testLevel, testView));
-		testView.canvas.highLight(2, 2);
+		testView.getCanvas().highLight(2, 2);
 		testButton.doClick();
 		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
 		assertEquals("Balance should be 50", 50, testLevel.getBalance());
@@ -74,7 +74,7 @@ public class TestController{
 		testButton = new JButton();
 		testButton.setActionCommand("Plants/Wallnut");
 		testButton.addActionListener(new Controller(testLevel, testView));
-		testView.canvas.highLight(2, 2);
+		testView.getCanvas().highLight(2, 2);
 		testButton.doClick();
 		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
 		int balance = testLevel.getBalance();
@@ -88,7 +88,7 @@ public class TestController{
 		testButton = new JButton();
 		testButton.setActionCommand("Plants/Peashooter");
 		testButton.addActionListener(new Controller(testLevel, testView));
-		testView.canvas.highLight(2, 2);
+		testView.getCanvas().highLight(2, 2);
 		testButton.doClick();
 		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
 		int balance = testLevel.getBalance();
@@ -102,7 +102,7 @@ public class TestController{
 		testButton = new JButton();
 		testButton.setActionCommand("Plants/Chomper");
 		testButton.addActionListener(new Controller(testLevel, testView));
-		testView.canvas.highLight(2, 2);
+		testView.getCanvas().highLight(2, 2);
 		testButton.doClick();
 		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
 		int balance = testLevel.getBalance();
@@ -116,7 +116,7 @@ public class TestController{
 		testButton = new JButton();
 		testButton.setActionCommand("Plants/Torchwood");
 		testButton.addActionListener(new Controller(testLevel, testView));
-		testView.canvas.highLight(2, 2);
+		testView.getCanvas().highLight(2, 2);
 		testButton.doClick();
 		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
 		int balance = testLevel.getBalance();

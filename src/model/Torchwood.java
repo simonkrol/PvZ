@@ -16,7 +16,7 @@ public class Torchwood extends Plant
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	private static final int DEFAULT_VALUE = 60;
 	private static final int DEFAULT_DELAY = 5;
-	public static Image sprite = new ImageIcon("res/assets/PvZ_G/Torchwood.gif").getImage();
+	private static Image sprite = new ImageIcon("res/assets/PvZ_G/Torchwood.gif").getImage();
 	private static boolean resized = false;
 
 	/**
@@ -32,12 +32,12 @@ public class Torchwood extends Plant
 	 */
 	protected void attack(Object toAttack)
 	{
-		//Do nothing
+		// Do nothing
 	}
-	
+
 	protected void turn(Level curLevel)
 	{
-		//Do nothing
+		// Do nothing
 	}
 
 	@Override
@@ -47,8 +47,9 @@ public class Torchwood extends Plant
 	public Image getSprite()
 	{
 		return sprite;
-		
+
 	}
+
 	@Override
 	/**
 	 * Get if the sprite has been resized already
@@ -57,15 +58,15 @@ public class Torchwood extends Plant
 	{
 		return resized;
 	}
+
 	@Override
 	/**
 	 * Set the sprite size
 	 */
 	public void setSpriteSize(int blockWidth, int blockHeight)
 	{
-		sprite = sprite.getScaledInstance(blockWidth/2, blockHeight, Image.SCALE_DEFAULT);
+		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
-	
 
 }

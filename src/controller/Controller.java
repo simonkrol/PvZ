@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
 
 public class Controller implements ActionListener, MouseListener
 {
-	Level level;
-	View view;
-	JButton button;
-	protected int x, y;
+	private Level level;
+	private View view;
+	private JButton button;
+	private int x, y;
 	private int posY;
 	private int posX;
 
@@ -43,11 +43,10 @@ public class Controller implements ActionListener, MouseListener
 		if (button.getActionCommand().equals("End"))
 		{
 			level.allTurn();
-			level.wipeTurnHist(); //clear the previous recorded actions at the end of each turn
+			level.wipeTurnHist(); // clear the previous recorded actions at the end of each turn
 			if (level.checkWin())
 			{
 				view.update();
-				System.out.println("You Killed all the zombies! \n Congratulations you won!");
 				JOptionPane.showMessageDialog(null, "You killed them all!", "WIN", JOptionPane.PLAIN_MESSAGE);
 				button.setEnabled(false);
 				return;
@@ -55,7 +54,6 @@ public class Controller implements ActionListener, MouseListener
 			if (level.checkFail())
 			{
 				view.update();
-				System.out.println("Zombies have gotten past! \nGame over! ");
 				JOptionPane.showMessageDialog(null, "Zombies have gotten past!  Game over", "LOSS",
 						JOptionPane.PLAIN_MESSAGE);
 				button.setEnabled(false);
@@ -70,15 +68,15 @@ public class Controller implements ActionListener, MouseListener
 			System.exit(0);
 		} else if (button.getActionCommand().startsWith("Plants"))
 		{
-			if (view.canvas.highlight)
+			if (view.getCanvas().getHighlight())
 			{
 				String plantType = button.getActionCommand().split("/")[1];
 				try
 				{
-					Class<?> cls = Class.forName("model."+plantType);
+					Class<?> cls = Class.forName("model." + plantType);
 					Plant newPlant = (Plant) cls.newInstance();
-					level.placePlant(newPlant, view.canvas.hLY, view.canvas.hLX);
-					view.canvas.highlight = false;
+					level.placePlant(newPlant, view.getCanvas().getHLY(), view.getCanvas().getHLX());
+					view.getCanvas().setHighlight(false);
 					view.update();
 				} catch (Exception e1)
 				{
@@ -88,9 +86,8 @@ public class Controller implements ActionListener, MouseListener
 			}
 		}
 
-		view.canvas.setHighLight(false);
+		view.getCanvas().setHighlight(false);
 	}
-	
 
 	@Override
 	/**
@@ -104,7 +101,7 @@ public class Controller implements ActionListener, MouseListener
 		y = m.y - s.y - 50;
 		posY = (int) Math.floor(y / view.getBlockHeight());
 		posX = (int) Math.floor(x / view.getBlockWidth());
-		view.canvas.highLight(posX, posY);
+		view.getCanvas().highLight(posX, posY);
 		view.update();
 	}
 
@@ -133,7 +130,8 @@ public class Controller implements ActionListener, MouseListener
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		
+	public void mouseReleased(MouseEvent arg0)
+	{
+
 	}
 }

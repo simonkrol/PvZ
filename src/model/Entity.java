@@ -59,19 +59,20 @@ public abstract class Entity
 	 * This method should only be run after the sprite has been resized
 	 */
 	public abstract Image getSprite();
-	
+
 	/**
 	 * Get whether the sprite has already been resized
 	 * @return True if resized, false otherwise
 	 */
 	public abstract boolean getResized();
-	
+
 	/**
 	 * Method to be initialized within each subclass to set the size of the sprite, this should only be run once and 
 	 * @param blockWidth The new width of our sprite
 	 * @param blockHeight The new height of our sprite
 	 */
 	public abstract void setSpriteSize(int blockWidth, int blockHeight);
+
 	/**
 	 * Reduce the entities HP, if at 0 or below, the entity will die
 	 * @param damage The amount of damage to take

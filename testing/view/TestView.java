@@ -33,6 +33,6 @@ public class TestView
 	{
 		testLabel = new JLabel();
 		testLabel.setText("SUN: " + 100 + "  Turn: " + 0);
-		assertEquals("Labels should be the same", testLabel.getText(), testView.info.getText());
+		assertEquals("Labels should be the same", testLabel.getText(), testView.getInfo().getText());
 	}
 }

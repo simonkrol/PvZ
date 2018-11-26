@@ -16,7 +16,7 @@ public class Wallnut extends Plant
 	private static final double DEFAULT_ATTACKSPEED = 0; // Attacks per turn
 	private static final int DEFAULT_VALUE = 50;
 	private static final int DEFAULT_DELAY = 5;
-	public static Image sprite = new ImageIcon("res/assets/PvZ_G/Wallnut.gif").getImage();
+	private static Image sprite = new ImageIcon("res/assets/PvZ_G/Wallnut.gif").getImage();
 	private static boolean resized = false;
 
 	/**
@@ -33,7 +33,7 @@ public class Wallnut extends Plant
 	 */
 	protected void attack(Object curLevel)
 	{
-		
+
 	}
 
 	/**
@@ -42,9 +42,9 @@ public class Wallnut extends Plant
 	 */
 	protected void turn(Level curLevel)
 	{
-		//Once again, its a wallnut
+		// Once again, its a wallnut
 	}
-	
+
 	@Override
 	/**
 	 * Get the classes sprite
@@ -52,8 +52,9 @@ public class Wallnut extends Plant
 	public Image getSprite()
 	{
 		return sprite;
-		
+
 	}
+
 	@Override
 	/**
 	 * Get if the sprite has been resized already
@@ -62,13 +63,14 @@ public class Wallnut extends Plant
 	{
 		return resized;
 	}
+
 	@Override
 	/**
 	 * Set the sprite size
 	 */
 	public void setSpriteSize(int blockWidth, int blockHeight)
 	{
-		sprite = sprite.getScaledInstance(blockWidth/2, blockHeight, Image.SCALE_DEFAULT);
+		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
 }

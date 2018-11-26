@@ -5,7 +5,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- * The Basic Zombie class
+ * The Bucket Zombie class, they have more health than regular zombies
  * @author Simon Krol
  * @version Nov 16, 2018
  */
@@ -34,7 +34,7 @@ public class BucketZombie extends Zombie
 	{
 		super(DEFAULT_HP, DEFAULT_ATTACK, DEFAULT_MOVESPEED, DEFAULT_ATTACKSPEED, lane);
 	}
-	
+
 	@Override
 	/**
 	 * Get the classes sprite
@@ -42,8 +42,9 @@ public class BucketZombie extends Zombie
 	public Image getSprite()
 	{
 		return sprite;
-		
+
 	}
+
 	@Override
 	/**
 	 * Get if the sprite has been resized already
@@ -52,13 +53,14 @@ public class BucketZombie extends Zombie
 	{
 		return resized;
 	}
+
 	@Override
 	/**
 	 * Set the sprite size
 	 */
 	public void setSpriteSize(int blockWidth, int blockHeight)
 	{
-		sprite = sprite.getScaledInstance(blockWidth/2, blockHeight, Image.SCALE_DEFAULT);
+		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
 }

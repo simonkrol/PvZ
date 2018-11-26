@@ -14,7 +14,7 @@ public class Lane
 	private boolean triggered = false;
 	private Spot[] spots;
 	private ArrayList<Zombie> liveZombies = new ArrayList<Zombie>();
-	private ArrayList<Projectile> projectiles  = new ArrayList<Projectile>();
+	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 
 	/**
 	 * Construct a default lane of length 8, where the last 2 spots can not host plants
@@ -66,12 +66,11 @@ public class Lane
 	 */
 	protected Plant getFrontPlant(double position)
 	{
-		int index =(int) (length - Math.round(position)) - 1;
+		int index = (int) (length - Math.round(position)) - 1;
 		if (index < 0 || index >= spots.length)
 			return null;
 		return spots[index].getPlant();
 	}
-
 
 	/**
 	 * Iterates through all plants and zombies in the lane and causes them to update
@@ -85,7 +84,7 @@ public class Lane
 				spot.getPlant().turn(curLevel);
 
 		}
-		for (Projectile proj: projectiles)
+		for (Projectile proj : projectiles)
 		{
 			proj.turn(curLevel);
 		}
@@ -106,15 +105,16 @@ public class Lane
 	 */
 	protected void clearUsedProj()
 	{
-		for(int i = 0; i < projectiles.size(); i++)
+		for (int i = 0; i < projectiles.size(); i++)
 		{
-			if(projectiles.get(i).getExploded())
+			if (projectiles.get(i).getExploded())
 			{
 				projectiles.remove(i);
 				i--;
 			}
 		}
 	}
+
 	/**
 	 * Check to see if the player has lost
 	 * @return True if lost, false otherwise
@@ -130,24 +130,31 @@ public class Lane
 	 */
 	protected boolean attackableZombies(int distance)
 	{
-		for (Zombie z: liveZombies)
+		for (Zombie z : liveZombies)
 		{
-			if((length - distance)>z.getPosition())
+			if ((length - distance) > z.getPosition())
 			{
 				return true;
 			}
 		}
 		return false;
 	}
+
+	/**
+	 * Return the closest zombie to the right of distance and within within blocks
+	 * @param distance The index we search to the right of
+	 * @param within How far we search
+	 * @return The closest zombie, null if none exist close enough
+	 */
 	protected Zombie closeZombies(double distance, double within)
 	{
-		
+
 		double dist;
-		Zombie closest=null;
-		for (Zombie z:liveZombies)
+		Zombie closest = null;
+		for (Zombie z : liveZombies)
 		{
-			dist = (int) ((length-distance)-z.getPosition());
-			if(dist>0 && dist < within)
+			dist = (int) ((length - distance) - z.getPosition());
+			if (dist > 0 && dist < within)
 			{
 				closest = z;
 				within = dist;
@@ -155,9 +162,14 @@ public class Lane
 		}
 		return closest;
 	}
+
+	/**
+	 * Return if no zombies exist in the lane
+	 * @return True if no zombies, false otherwise
+	 */
 	protected boolean noZombies()
 	{
-		return liveZombies.size()==0;
+		return liveZombies.size() == 0;
 	}
 
 	/**
@@ -214,6 +226,11 @@ public class Lane
 	{
 		return liveZombies;
 	}
+
+	/**
+	 * Return the list of projectiles in the lane
+	 * @return The lane's projectiles
+	 */
 	public ArrayList<Projectile> getProjectiles()
 	{
 		return projectiles;
@@ -237,6 +254,7 @@ public class Lane
 		}
 		return false;
 	}
+
 	/**
 	 * Get the number of spots in the lane
 	 * @return Length of lane
@@ -245,16 +263,22 @@ public class Lane
 	{
 		return length;
 	}
-	
+
+	/**
+	 * Get the zombie that a projectile should collide with
+	 * @param toProject The projectile in question
+	 * @return The zombie collided with, null if none selected
+	 */
 	protected Zombie getProjZombie(Projectile toProject)
 	{
 		Zombie closest = null;
-		double cDistance = toProject.getMoveSpeed()/2;
+		double cDistance = toProject.getMoveSpeed() / 2;
 		double distance;
-		for (Zombie z: liveZombies)
+		for (Zombie z : liveZombies)
 		{
 			distance = (length - toProject.getPosition()) - z.getPosition();
-			if(distance < cDistance +z.getMoveSpeed() && distance >= -toProject.getMoveSpeed()/2 && distance <= toProject.getMoveSpeed()/2 + z.getMoveSpeed())
+			if (distance < cDistance + z.getMoveSpeed() && distance >= -toProject.getMoveSpeed() / 2
+					&& distance <= toProject.getMoveSpeed() / 2 + z.getMoveSpeed())
 			{
 				cDistance = distance - z.getMoveSpeed();
 				closest = z;
@@ -262,16 +286,26 @@ public class Lane
 		}
 		return closest;
 	}
+
+	/**
+	 * Add a projectile to the lane
+	 * @param toCreate The projectile being added
+	 */
 	protected void createProjectile(Projectile toCreate)
 	{
 		projectiles.add(toCreate);
 	}
-	
+
+	/**
+	 * Get the plant directly underneath the given distance
+	 * @param distance The location being searched
+	 * @return The given plant, null if invalid input or no plant exists on location
+	 */
 	protected Plant getLocationPlant(double distance)
 	{
-		if(distance>0 && distance < length)
+		if (distance > 0 && distance < length)
 		{
-			return spots[(int)Math.floor(distance)].getPlant();
+			return spots[(int) Math.floor(distance)].getPlant();
 		}
 		return null;
 	}

@@ -3,7 +3,7 @@ package model;
 /**
  * The Spot class, used to split lanes
  * @author Boyan Siromahov and Simon Krol
- * @version Nov 16, 2018
+ * @version Nov 25, 2018
  */
 public class Spot
 {
@@ -47,7 +47,6 @@ public class Spot
 	{
 		if (!placeable)
 		{
-			//System.out.println("You may not place a plant in this column.");
 			return false;
 		}
 		if (!this.getOccupied())
@@ -55,7 +54,6 @@ public class Spot
 			this.plant = toAdd;
 			return true;
 		}
-		//System.out.println("This Spot already has a plant in it.");
 		return false;
 
 	}

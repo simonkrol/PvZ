@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 /**
  * The Sunflower class, contains information about the Peashooter plant
  * @author Simon Krol
- * @version Nov 16, 2018
+ * @version Nov 25, 2018
  */
 public class Sunflower extends Plant
 {
@@ -16,7 +16,7 @@ public class Sunflower extends Plant
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	private static final int DEFAULT_VALUE = 50;
 	private static final int DEFAULT_DELAY = 5;
-	public static Image sprite = new ImageIcon("res/assets/PvZ_G/Sunflower.gif").getImage();
+	private static Image sprite = new ImageIcon("res/assets/PvZ_G/Sunflower.gif").getImage();
 	private static boolean resized = false;
 
 	/**
@@ -33,7 +33,7 @@ public class Sunflower extends Plant
 	 */
 	protected void attack(Object curLevel)
 	{
-		if(curLevel instanceof Level)
+		if (curLevel instanceof Level)
 		{
 			((Level) curLevel).addToBalance(this.attack);
 		}
@@ -52,7 +52,7 @@ public class Sunflower extends Plant
 			attackState--;
 		}
 	}
-	
+
 	@Override
 	/**
 	 * Get the classes sprite
@@ -60,8 +60,9 @@ public class Sunflower extends Plant
 	public Image getSprite()
 	{
 		return sprite;
-		
+
 	}
+
 	@Override
 	/**
 	 * Get if the sprite has been resized already
@@ -70,13 +71,14 @@ public class Sunflower extends Plant
 	{
 		return resized;
 	}
+
 	@Override
 	/**
 	 * Set the sprite size
 	 */
 	public void setSpriteSize(int blockWidth, int blockHeight)
 	{
-		sprite = sprite.getScaledInstance(blockWidth/2, blockHeight, Image.SCALE_DEFAULT);
+		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
 }

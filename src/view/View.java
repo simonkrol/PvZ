@@ -20,13 +20,14 @@ import model.*;
  * @author Boyan Siromahov
  * @version Nov 16, 2019
  */
-public class View extends JFrame {
+public class View extends JFrame
+{
 	private static final long serialVersionUID = 1L;
-	public GameCanvas canvas;
+	private GameCanvas canvas;
 	private Level level;
 	private int blockWidth, blockHeight;
-	JLabel info;
-	JPanel information, selections;
+	private JLabel info;
+	private JPanel information, selections;
 	private JButton end;
 	private JButton quit;
 
@@ -35,7 +36,8 @@ public class View extends JFrame {
 	 * 
 	 * @param lvl The level the view is created for
 	 */
-	public View(Level lvl) {
+	public View(Level lvl)
+	{
 		level = lvl;
 
 		setLayout(new BorderLayout());
@@ -45,11 +47,11 @@ public class View extends JFrame {
 		information = new JPanel();
 		information.setLayout(new BorderLayout());
 		info = new JLabel();
-		info.setText("SUN: " + level.getBalance() + "  Turn: " + level.turn);
+		info.setText("SUN: " + level.getBalance() + "  Turn: " + level.getTurn());
 		info.setFont(new Font(info.getName(), Font.PLAIN, 20));
 		information.add(info, BorderLayout.CENTER);
 		add(information, BorderLayout.PAGE_START);
-		
+
 		// Menu
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("Menu");
@@ -57,42 +59,45 @@ public class View extends JFrame {
 		menuBar.add(menu);
 		information.add(menuBar, BorderLayout.PAGE_START);
 
-		JMenuItem  quitItem = new JMenuItem("Quit", KeyEvent.VK_Q);
+		JMenuItem quitItem = new JMenuItem("Quit", KeyEvent.VK_Q);
 		quitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
 		quitItem.setActionCommand("Quit");
 		menu.add(quitItem);
 
-		JMenuItem  undoItem = new JMenuItem("Undo", KeyEvent.VK_Z);
+		JMenuItem undoItem = new JMenuItem("Undo", KeyEvent.VK_Z);
 		undoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 		undoItem.setActionCommand("Undo");
 		menu.add(undoItem);
-		
-		JMenuItem  redoItem = new JMenuItem("Redo", KeyEvent.VK_Y);
+
+		JMenuItem redoItem = new JMenuItem("Redo", KeyEvent.VK_Y);
 		redoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
 		redoItem.setActionCommand("Redo");
-		menu.add(redoItem);		
-		
+		menu.add(redoItem);
+
 		selections = new JPanel();
 		selections.setLayout(new BoxLayout(selections, BoxLayout.PAGE_AXIS));
 
 		JPanel plants = new JPanel();
 		plants.setLayout(new FlowLayout());
 
-		for(String plantName: lvl.getAvailablePlants())
+		/*
+		 * Create buttons for all plants available in the current level
+		 */
+		for (String plantName : lvl.getAvailablePlants())
 		{
 			try
 			{
-				Class<?> cls = Class.forName("model."+plantName);
+				Class<?> cls = Class.forName("model." + plantName);
 				Plant plant = (Plant) cls.newInstance();
-				JButton plantButton = new JButton(plantName+"("+plant.getValue()+")");
-				plantButton.setSize(125,125);
+				JButton plantButton = new JButton(plantName + "(" + plant.getValue() + ")");
+				plantButton.setSize(125, 125);
 				plantButton.setIcon(getScaledImage(plant.getSprite(), 125, 125));
-				plantButton.setActionCommand("Plants/"+plantName);
+				plantButton.setActionCommand("Plants/" + plantName);
 				plants.add(plantButton);
 				plantButton.addActionListener(new Controller(level, this));
 			} catch (Exception e)
 			{
-				System.err.println(plantName+":Could not create plant button");
+				System.err.println(plantName + ":Could not create plant button");
 			}
 		}
 
@@ -137,16 +142,18 @@ public class View extends JFrame {
 	 * Repaint the canvas with the new model information Reset the text showing the
 	 * players balance and the turn number
 	 */
-	public void update() {
+	public void update()
+	{
 		canvas.repaint();
-		info.setText("SUN: " + level.getBalance() + "  Turn: " + level.turn);
+		info.setText("SUN: " + level.getBalance() + "  Turn: " + level.getTurn());
 	}
 
 	/**
 	 * Calculate the size of each spot on the grid, setting the blockWidth and
 	 * blockHeight values
 	 */
-	public void calcBlockSize() {
+	public void calcBlockSize()
+	{
 		Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		// Get the width of each spot on the grid
@@ -167,7 +174,8 @@ public class View extends JFrame {
 	 * @param h      The new Height
 	 * @return Scaled ImageIcon
 	 */
-	private ImageIcon getScaledImage(Image srcImg, int w, int h) {
+	private ImageIcon getScaledImage(Image srcImg, int w, int h)
+	{
 		Image newimg = srcImg.getScaledInstance(w, h, Image.SCALE_DEFAULT); // scale it the smooth way
 		return new ImageIcon(newimg); // transform it back
 	}
@@ -177,7 +185,8 @@ public class View extends JFrame {
 	 * 
 	 * @return width of each spot
 	 */
-	public int getBlockWidth() {
+	public int getBlockWidth()
+	{
 		return blockWidth;
 	}
 
@@ -186,15 +195,26 @@ public class View extends JFrame {
 	 * 
 	 * @return height of each spot
 	 */
-	public int getBlockHeight() {
+	public int getBlockHeight()
+	{
 		return blockHeight;
 	}
-	public JButton getEndBtn()
+
+	/**
+	 * Get the View's GameCanvas
+	 * @return The canvas
+	 */
+	public GameCanvas getCanvas()
 	{
-		return end;
+		return canvas;
 	}
-	public JButton getQuitBtn()
+
+	/**
+	 * Get the view's information JLabel
+	 * @return The info JLabel
+	 */
+	public JLabel getInfo()
 	{
-		return quit;
+		return info;
 	}
 }

@@ -34,7 +34,7 @@ public class TestLevel
 	public void testSpawnZombies() throws IOException
 	{
 		assertEquals("No zombies should be present", 0, testLevel.getNumZombies());
-		testLevel.turn=5;
+		testLevel.setTurn(5);
 		testLevel.spawnZombies();
 		assertEquals("4 zombies should be present", 4, testLevel.getNumZombies());
 		

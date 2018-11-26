@@ -16,10 +16,8 @@ public class Chomper extends Plant
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	private static final int DEFAULT_VALUE = 60;
 	private static final int DEFAULT_DELAY = 5;
-	public static Image[] sprite = {
-			new ImageIcon("res/assets/PvZ_G/Chomper.gif").getImage(),
-			new ImageIcon("res/assets/PvZ_G/ChomperEating.gif").getImage()
-	};
+	public static Image[] sprite = { new ImageIcon("res/assets/PvZ_G/Chomper.gif").getImage(),
+			new ImageIcon("res/assets/PvZ_G/ChomperEating.gif").getImage() };
 	private static boolean resized = false;
 	private Zombie eating;
 
@@ -36,17 +34,18 @@ public class Chomper extends Plant
 	 */
 	protected void attack(Object toAttack)
 	{
-		if(status.equals(Status.EATING))
+		if (status.equals(Status.EATING))
 		{
 			statusDelay--;
-			if(statusDelay<=0)status = Status.NORMAL;
+			if (statusDelay <= 0)
+				status = Status.NORMAL;
 			return;
 		}
-		if(toAttack instanceof Zombie)
+		if (toAttack instanceof Zombie)
 		{
 			status = Status.EATING;
-			eating = (Zombie)toAttack;
-			statusDelay = eating.getCurrentHP()/attack;
+			eating = (Zombie) toAttack;
+			statusDelay = eating.getCurrentHP() / attack;
 			lane.killZombie(eating);
 		}
 	}
@@ -56,20 +55,21 @@ public class Chomper extends Plant
 		Zombie closest = lane.closeZombies(distance, 1.2);
 		this.attack(closest);
 	}
-	
+
 	@Override
 	/**
 	 * Get the classes sprite
 	 */
 	public Image getSprite()
 	{
-		if(status.equals(Status.EATING))
+		if (status.equals(Status.EATING))
 		{
 			return sprite[1];
 		}
 		return sprite[0];
-		
+
 	}
+
 	@Override
 	/**
 	 * Get if the sprite has been resized already
@@ -78,18 +78,18 @@ public class Chomper extends Plant
 	{
 		return resized;
 	}
+
 	@Override
 	/**
 	 * Set the sprite size
 	 */
 	public void setSpriteSize(int blockWidth, int blockHeight)
 	{
-		for(int i=0; i< sprite.length; i++)
+		for (int i = 0; i < sprite.length; i++)
 		{
-			sprite[i] = sprite[i].getScaledInstance(blockWidth/2, blockHeight, Image.SCALE_DEFAULT);
+			sprite[i] = sprite[i].getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		}
 		resized = true;
 	}
-	
 
 }

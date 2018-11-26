@@ -7,8 +7,8 @@ package model;
  */
 public abstract class Zombie extends Entity
 {
-	protected double moveSpeed;
-	protected double position;
+	private double moveSpeed;
+	private double position;
 
 	/**
 	 * Create a zombie
@@ -41,11 +41,10 @@ public abstract class Zombie extends Entity
 	protected void turn(Level curLevel)
 	{
 		Plant toAttack = lane.getFrontPlant(position);
-		if(toAttack == null)
+		if (toAttack == null)
 		{
 			this.move();
-		}
-		else
+		} else
 		{
 			attackState += this.attackSpeed;
 			while (attackState >= 1)
@@ -81,11 +80,15 @@ public abstract class Zombie extends Entity
 	 * Attack the given plant
 	 * @param toAttack The object being attacked
 	 */
-	protected void attack(Object toAttack) {
-		if (toAttack instanceof Plant) {
+	protected void attack(Object toAttack)
+	{
+		if (toAttack instanceof Plant)
+		{
 			((Plant) toAttack).takeDamage(attack);
-		} else throw new IllegalArgumentException();
+		} else
+			throw new IllegalArgumentException();
 	}
+
 	/**
 	 * returns the current position of the zombie
 	 * @return returns the position of the zombie

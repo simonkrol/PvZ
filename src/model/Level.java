@@ -13,8 +13,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-public class Level {
-	public Lane[] grid;
+public class Level
+{
+	private Lane[] grid;
 	private String name;
 	private int balance;
 	private int width;
@@ -22,7 +23,7 @@ public class Level {
 	private int numTurns;
 	private String[] availablePlants;
 	private JsonObject zombieSpawns;
-	public int turn;
+	private int turn;
 	LinkedList<Plant> doneList;
 	LinkedList<Plant> undoneList;
 
@@ -35,7 +36,8 @@ public class Level {
 	 * @param fileName The file storing the level's zombie data
 	 * @throws IOException If readline fails
 	 */
-	public Level(String name, int width, int height, int balance, String[] plants, JsonObject turns, int numTurns) {
+	public Level(String name, int width, int height, int balance, String[] plants, JsonObject turns, int numTurns)
+	{
 		this.name = name;
 		this.width = width;
 		this.height = height;
@@ -43,9 +45,10 @@ public class Level {
 		this.availablePlants = plants;
 		this.zombieSpawns = turns;
 		this.numTurns = numTurns;
-		
+
 		grid = new Lane[height];
-		for (int i = 0; i < height; i++) {
+		for (int i = 0; i < height; i++)
+		{
 			grid[i] = new Lane(width, 2);
 		}
 
@@ -59,34 +62,36 @@ public class Level {
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
 	 */
-	public void spawnZombies() {
-		
+	public void spawnZombies()
+	{
+
 		JsonElement curTurn = zombieSpawns.get(Integer.toString(turn));
-		if(curTurn == null)return;
-		for (int lane = 0; lane< height; lane++)
+		if (curTurn == null)
+			return;
+		for (int lane = 0; lane < height; lane++)
 		{
 			JsonArray curLane = curTurn.getAsJsonObject().getAsJsonArray(Integer.toString(lane));
-			if(curLane == null) continue;
-			for(int i = 0; i < curLane.size(); i++)
+			if (curLane == null)
+				continue;
+			for (int i = 0; i < curLane.size(); i++)
 			{
-				try {
-					Class<?> cls = Class.forName("model."+curLane.get(i).getAsString());
+				try
+				{
+					Class<?> cls = Class.forName("model." + curLane.get(i).getAsString());
 					Zombie newZombie = (Zombie) cls.newInstance();
-					if(newZombie instanceof Zombie)
+					if (newZombie instanceof Zombie)
 					{
 						grid[lane].addZombie(newZombie);
 					}
-				}
-				catch(Exception e)
+				} catch (Exception e)
 				{
 					e.printStackTrace();
 				}
-				
-				
+
 			}
-			
+
 		}
-		
+
 	}
 
 	/**
@@ -95,8 +100,36 @@ public class Level {
 	 * @param laneIndex The index of the lane to be returned
 	 * @return a given Lane
 	 */
-	public Lane getLane(int laneIndex) {
+	public Lane getLane(int laneIndex)
+	{
 		return grid[laneIndex];
+	}
+
+	/**
+	 * Return all the lanes
+	 * @return The level's lanes
+	 */
+	public Lane[] getLanes()
+	{
+		return grid;
+	}
+
+	/**
+	 * Get the current turn
+	 * @return The current turn
+	 */
+	public int getTurn()
+	{
+		return turn;
+	}
+
+	/**
+	 * Set the current turn
+	 * @param newTurn The new turn
+	 */
+	public void setTurn(int newTurn)
+	{
+		turn = newTurn;
 	}
 
 	/**
@@ -107,17 +140,18 @@ public class Level {
 	 * @param spotI The spot index of the plants location
 	 * @return True if successful, false otherwise
 	 */
-	public boolean placePlant(Plant plant, int laneI, int spotI) {
-		if (laneI < 0 || laneI > getWidth() - 1 || spotI < 0 || spotI > getHeight() - 1) {
-			// System.out.println("Index out of bounds");
+	public boolean placePlant(Plant plant, int laneI, int spotI)
+	{
+		if (laneI < 0 || laneI > getWidth() - 1 || spotI < 0 || spotI > getHeight() - 1)
+		{
 			return false;
 		}
 		if (plant.getValue() > balance) // check if player has enough to purchase the plant
 		{
-			// System.out.println("Insufficient funds");
 			return false;
 		}
-		if (getLane(laneI).placePlant(plant, spotI)) {
+		if (getLane(laneI).placePlant(plant, spotI))
+		{
 			this.addToBalance(-plant.getValue());
 			undoneList.clear();
 			this.doneList.add(plant);// update done action list
@@ -132,8 +166,9 @@ public class Level {
 	 * 
 	 * @return True if successful, false otherwise
 	 */
-	public void undo() {
-		if (doneList.size() >= 1) 
+	public void undo()
+	{
+		if (doneList.size() >= 1)
 		{
 			Plant p = doneList.removeLast();
 			p.getLocation().killPlant();
@@ -148,8 +183,9 @@ public class Level {
 	 * 
 	 * @return True if successful, false otherwise
 	 */
-	public void redo() {
-		if (undoneList.size() >= 1) 
+	public void redo()
+	{
+		if (undoneList.size() >= 1)
 		{
 			Plant p = undoneList.pop();
 			p.getLocation().addPlant(p);
@@ -162,7 +198,8 @@ public class Level {
 	 * Clears the done and undone structures.
 	 * 
 	 */
-	public void wipeTurnHist() {
+	public void wipeTurnHist()
+	{
 		doneList.clear();
 		undoneList.clear();
 	}
@@ -172,7 +209,8 @@ public class Level {
 	 *
 	 * @param toAdd The amount fo be added
 	 */
-	protected void addToBalance(int toAdd) {
+	protected void addToBalance(int toAdd)
+	{
 		balance += toAdd;
 	}
 
@@ -181,7 +219,8 @@ public class Level {
 	 *
 	 * @return Width of the level
 	 */
-	public int getWidth() {
+	public int getWidth()
+	{
 		return width;
 	}
 
@@ -190,7 +229,8 @@ public class Level {
 	 *
 	 * @return Height of the level
 	 */
-	public int getHeight() {
+	public int getHeight()
+	{
 		return height;
 	}
 
@@ -200,15 +240,17 @@ public class Level {
 	 *
 	 * @throws IOException If readline fails
 	 */
-	public void allTurn() {
-		for (Lane lane : grid) {
+	public void allTurn()
+	{
+		for (Lane lane : grid)
+		{
 			lane.allTurn(this);
 		}
 		turn++;
-		try {
-		spawnZombies();
-		}
-		catch(Exception e)
+		try
+		{
+			spawnZombies();
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -219,7 +261,8 @@ public class Level {
 	 *
 	 * @return Users balance
 	 */
-	public int getBalance() {
+	public int getBalance()
+	{
 		return balance;
 	}
 
@@ -229,8 +272,10 @@ public class Level {
 	 *
 	 * @return true if failed, false otherwise
 	 */
-	public boolean checkFail() {
-		for (int i = 0; i < grid.length; i++) {
+	public boolean checkFail()
+	{
+		for (int i = 0; i < grid.length; i++)
+		{
 			if (grid[i].checkFail())
 				return true;
 		}
@@ -242,10 +287,12 @@ public class Level {
 	 *
 	 * @return true if won, false otherwise
 	 */
-	public boolean checkWin() {
+	public boolean checkWin()
+	{
 		if (turn < numTurns)
 			return false;
-		for (int i = 0; i < grid.length; i++) {
+		for (int i = 0; i < grid.length; i++)
+		{
 			if (!grid[i].noZombies())
 				return false;
 
@@ -258,19 +305,29 @@ public class Level {
 	 *
 	 * @return Number of live zombies
 	 */
-	public int getNumZombies() {
+	public int getNumZombies()
+	{
 		int sum = 0;
-		for (int i = 0; i < grid.length; i++) {
+		for (int i = 0; i < grid.length; i++)
+		{
 			sum += grid[i].getNumZombies();
 		}
 		return sum;
 	}
-	
+
+	/**
+	 * Return all the plants available to the player in this level
+	 * @return A list of available plants
+	 */
 	public String[] getAvailablePlants()
 	{
 		return availablePlants;
 	}
-	
+
+	/**
+	 * Get the levels name
+	 * @return The level's name
+	 */
 	public String getName()
 	{
 		return name;
