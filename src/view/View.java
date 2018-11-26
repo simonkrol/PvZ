@@ -26,6 +26,11 @@ public class View extends JFrame
 	private int blockWidth, blockHeight;
 	JLabel info;
 	JPanel information, selections;
+	private JButton sunflowerBtn;
+	private JButton peashooterBtn;
+	private JButton wallnutBtn;
+	private JButton end;
+	private JButton quit;
 
 	/**
 	 * Create a new view for a given level
@@ -55,19 +60,19 @@ public class View extends JFrame
 		JPanel plants = new JPanel();
 		plants.setLayout(new FlowLayout());
 
-		JButton sunflowerBtn = new JButton("Sunflower(50)");
+		sunflowerBtn = new JButton("Sunflower(50)");
 		sunflowerBtn.setSize(125, 125);
 		sunflowerBtn.setIcon(getScaledImage(Sunflower.sprite, 125, 125));
 		//sunflowerBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ/Sunflower.png"), 125, 125));
 		plants.add(sunflowerBtn);
 
-		JButton peashooterBtn = new JButton("Peashooter(40)");
+		peashooterBtn = new JButton("Peashooter(40)");
 		peashooterBtn.setSize(125, 125);
 		peashooterBtn.setIcon(getScaledImage(Peashooter.sprite, 125, 125));
 		//peashooterBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ/Peashooter.png"),125, 125));
 		plants.add(peashooterBtn);
 		
-		JButton wallnutBtn = new JButton("Wallnut(50)");
+		wallnutBtn = new JButton("Wallnut(50)");
 		wallnutBtn.setSize(125, 125);
 		wallnutBtn.setIcon(getScaledImage(Wallnut.sprite, 125, 125));
 		//peashooterBtn.setIcon(getScaledImage(new ImageIcon("res/assets/PvZ/Peashooter.png"),125, 125));
@@ -76,11 +81,11 @@ public class View extends JFrame
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
 
-		JButton end = new JButton("End Turn");
+		end = new JButton("End Turn");
 		end.setSize(50, 100);
 		buttons.add(end);
 
-		JButton quit = new JButton("Quit Game");
+		quit = new JButton("Quit Game");
 		quit.setSize(50, 100);
 		buttons.add(quit);
 
@@ -166,5 +171,25 @@ public class View extends JFrame
 	public int getBlockHeight()
 	{
 		return blockHeight;
+	}
+	public JButton getSunflowerBtn()
+	{
+		return sunflowerBtn;
+	}
+	public JButton getPeashooterBtn()
+	{
+		return peashooterBtn;
+	}
+	public JButton getWallnutBtn()
+	{
+		return wallnutBtn;
+	}
+	public JButton getEndBtn()
+	{
+		return end;
+	}
+	public JButton getQuitBtn()
+	{
+		return quit;
 	}
 }
