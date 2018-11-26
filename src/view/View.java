@@ -27,11 +27,6 @@ public class View extends JFrame {
 	private int blockWidth, blockHeight;
 	JLabel info;
 	JPanel information, selections;
-	private JButton sunflowerBtn;
-	private JButton peashooterBtn;
-	private JButton wallnutBtn;
-	private JButton chomperBtn;
-	private JButton torchwoodBtn;
 	private JButton end;
 	private JButton quit;
 
@@ -83,35 +78,23 @@ public class View extends JFrame {
 		JPanel plants = new JPanel();
 		plants.setLayout(new FlowLayout());
 
-		sunflowerBtn = new JButton("Sunflower(" + Sunflower.DEFAULT_VALUE+")");
-		sunflowerBtn.setSize(125, 125);
-		sunflowerBtn.setIcon(getScaledImage(Sunflower.sprite, 125, 125));
-		sunflowerBtn.setActionCommand("Plants/Sunflower");
-		plants.add(sunflowerBtn);
-
-		peashooterBtn = new JButton("Peashooter(" + Peashooter.DEFAULT_VALUE+")");
-		peashooterBtn.setSize(125, 125);
-		peashooterBtn.setIcon(getScaledImage(Peashooter.sprite, 125, 125));
-		peashooterBtn.setActionCommand("Plants/Peashooter");
-		plants.add(peashooterBtn);
-
-		wallnutBtn = new JButton("Wallnut("+ Wallnut.DEFAULT_VALUE+")");
-		wallnutBtn.setSize(125, 125);
-		wallnutBtn.setIcon(getScaledImage(Wallnut.sprite, 125, 125));
-		wallnutBtn.setActionCommand("Plants/Wallnut");
-		plants.add(wallnutBtn);
-
-		chomperBtn = new JButton("Chomper("+Chomper.DEFAULT_VALUE+")");
-		chomperBtn.setSize(125, 125);
-		chomperBtn.setIcon(getScaledImage(Chomper.sprite[0], 125, 125));
-		chomperBtn.setActionCommand("Plants/Chomper");
-		plants.add(chomperBtn);
-		
-		torchwoodBtn = new JButton("Torchwood("+Torchwood.DEFAULT_VALUE+")");
-		torchwoodBtn.setSize(125, 125);
-		torchwoodBtn.setIcon(getScaledImage(Torchwood.sprite, 125, 125));
-		torchwoodBtn.setActionCommand("Plants/Torchwood");
-		plants.add(torchwoodBtn);
+		for(String plantName: lvl.getAvailablePlants())
+		{
+			try
+			{
+				Class<?> cls = Class.forName("model."+plantName);
+				Plant plant = (Plant) cls.newInstance();
+				JButton plantButton = new JButton(plantName+"("+plant.getValue()+")");
+				plantButton.setSize(125,125);
+				plantButton.setIcon(getScaledImage(plant.getSprite(), 125, 125));
+				plantButton.setActionCommand("Plants/"+plantName);
+				plants.add(plantButton);
+				plantButton.addActionListener(new Controller(level, this));
+			} catch (Exception e)
+			{
+				System.err.println(plantName+":Could not create plant button");
+			}
+		}
 
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
@@ -144,11 +127,6 @@ public class View extends JFrame {
 		// action listeners
 		canvas.addMouseListener(new Controller(level, this));
 		end.addActionListener(new Controller(level, this));
-		sunflowerBtn.addActionListener(new Controller(level, this));
-		peashooterBtn.addActionListener(new Controller(level, this));
-		wallnutBtn.addActionListener(new Controller(level, this));
-		chomperBtn.addActionListener(new Controller(level, this));
-		torchwoodBtn.addActionListener(new Controller(level, this));
 		quit.addActionListener(new Controller(level, this));
 		quitItem.addActionListener(new MenuController(level, this));
 		undoItem.addActionListener(new MenuController(level, this));
@@ -210,28 +188,6 @@ public class View extends JFrame {
 	 */
 	public int getBlockHeight() {
 		return blockHeight;
-	}
-  
-  
-  public JButton getSunflowerBtn()
-	{
-		return sunflowerBtn;
-	}
-	public JButton getPeashooterBtn()
-	{
-		return peashooterBtn;
-	}
-	public JButton getWallnutBtn()
-	{
-		return wallnutBtn;
-	}
-	public JButton getChomperBtn()
-	{
-		return chomperBtn;
-	}
-  	public JButton getTorchwoodBtn()
-	{
-		return torchwoodBtn;
 	}
 	public JButton getEndBtn()
 	{

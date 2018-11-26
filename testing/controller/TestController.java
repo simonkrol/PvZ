@@ -37,42 +37,7 @@ public class TestController{
 		testCanvas.setHighLight(false);
 		assertFalse("Highlight should be false", testCanvas.getHighLight());
 	}
-	@Test
-	public void testSunflowerButton()
-	{
-		flower = new Sunflower();
-		testButton = testView.getSunflowerBtn();
-		testView.canvas.highLight(2, 2);
-		testButton.doClick();
-		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
-		assertEquals("Balance should be 50", 50, testLevel.getBalance());
-		
-	}
-	@Test
-	public void testWallnutButton()
-	{
-		flower = new Sunflower();
-		testButton = testView.getWallnutBtn();
-		testView.canvas.highLight(2, 2);
-		testButton.doClick();
-		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
-		int balance = testLevel.getBalance();
-		assertEquals("Balance should be 50", 50, balance);
-		
-	}
-	@Test
-	public void testPeashooterButton()
-	{
-		flower = new Sunflower();
-		testButton = testView.getPeashooterBtn();
-		testView.canvas.highLight(2, 2);
-		testButton.doClick();
-		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
-		int balance = testLevel.getBalance();
-		assertEquals("Balance should be 60", 60, balance);
-		
-	}
-	@Test
+
 	public void testEndButton()
 	{
 		flower = new Sunflower();

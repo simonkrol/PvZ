@@ -1,6 +1,6 @@
 package view;
 import org.junit.Before;
-import java.awt.*;
+//import java.awt.*;
 import org.junit.Test;
 
 import controller.Controller;
@@ -9,12 +9,12 @@ import model.Level;
 
 import static org.junit.Assert.*;
 
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Toolkit;
-
-import javax.swing.ImageIcon;
+//import java.awt.Dimension;
+//import java.awt.Image;
+//import java.awt.Insets;
+//import java.awt.Toolkit;
+//
+//import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 public class TestView
 {

@@ -5,8 +5,7 @@ package model;
  * @author Boyan Siromahov, Simon Krol, Gordon MacDonald
  * @version Nov 24, 2018
  */
-import java.io.BufferedReader;
-import java.io.FileReader;
+
 import java.io.IOException;
 import java.util.LinkedList;
 
@@ -265,5 +264,10 @@ public class Level {
 			sum += grid[i].getNumZombies();
 		}
 		return sum;
+	}
+	
+	public String[] getAvailablePlants()
+	{
+		return availablePlants;
 	}
 }
