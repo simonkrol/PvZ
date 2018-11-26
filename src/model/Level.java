@@ -64,7 +64,6 @@ public class Level {
 		
 		JsonElement curTurn = zombieSpawns.get(Integer.toString(turn));
 		if(curTurn == null)return;
-		System.out.println(curTurn);
 		for (int lane = 0; lane< height; lane++)
 		{
 			JsonArray curLane = curTurn.getAsJsonObject().getAsJsonArray(Integer.toString(lane));

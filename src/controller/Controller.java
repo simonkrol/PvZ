@@ -74,7 +74,6 @@ public class Controller implements ActionListener, MouseListener
 			if (view.canvas.highlight)
 			{
 				String plantType = button.getActionCommand().split("/")[1];
-				System.out.println(plantType);
 				try
 				{
 					Class<?> cls = Class.forName("model."+plantType);
