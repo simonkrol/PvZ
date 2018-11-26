@@ -168,12 +168,12 @@ public class Level
 	 */
 	public void undo()
 	{
-		if (doneList.size() >= 1)
+		if (doneList.size() >= 1)//make sure there is something to undo
 		{
-			Plant p = doneList.removeLast();
-			p.getLocation().killPlant();
+			Plant p = doneList.removeLast(); //get last move done
+			p.getLocation().killPlant(); //reverse last move done
 			balance += p.getValue();
-			undoneList.push(p);
+			undoneList.push(p); //add to redo list 
 		}
 	}
 
@@ -185,12 +185,12 @@ public class Level
 	 */
 	public void redo()
 	{
-		if (undoneList.size() >= 1)
+		if (undoneList.size() >= 1) //make sure there is something to redo
 		{
-			Plant p = undoneList.pop();
-			p.getLocation().addPlant(p);
+			Plant p = undoneList.pop(); //get last undo done
+			p.getLocation().addPlant(p); //redo the last undo
 			balance -= p.getValue();
-			doneList.add(p);
+			doneList.add(p);//add to actions done
 		}
 	}
 
