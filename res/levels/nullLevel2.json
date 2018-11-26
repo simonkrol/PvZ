@@ -1,0 +1,15 @@
+{
+  "balance": 100,
+  "height": 6,
+  "name": "Level 1",
+  "numturns": 2,
+  "plants": [
+    "Sunflower",
+    "Peashooter",
+    "Wallnut"
+  ],
+  "turns": {
+
+  },
+  "width": 8
+}

@@ -8,7 +8,7 @@ import controller.LevelLoader;
 import org.junit.Before;
 
 /**
- * Tests Spot class
+ * Tests Plants class
  * @author Shaun Gordon
  * @version Nov 16, 2018
  */

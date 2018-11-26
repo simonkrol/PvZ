@@ -1,6 +1,6 @@
 package model;
 /**
- * Class calls all JUnit tests
+ * Class calls all JUnit model tests
  * @author Simon Krol, Shaun Gordon
  * @version Nov 16, 2018
  */
