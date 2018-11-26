@@ -27,6 +27,13 @@ public class View extends JFrame {
 	private int blockWidth, blockHeight;
 	JLabel info;
 	JPanel information, selections;
+	private JButton sunflowerBtn;
+	private JButton peashooterBtn;
+	private JButton wallnutBtn;
+	private JButton chomperBtn;
+	private JButton torchwoodBtn;
+	private JButton end;
+	private JButton quit;
 
 	/**
 	 * Create a new view for a given level
@@ -76,31 +83,31 @@ public class View extends JFrame {
 		JPanel plants = new JPanel();
 		plants.setLayout(new FlowLayout());
 
-		JButton sunflowerBtn = new JButton("Sunflower(" + Sunflower.DEFAULT_VALUE+")");
+		sunflowerBtn = new JButton("Sunflower(" + Sunflower.DEFAULT_VALUE+")");
 		sunflowerBtn.setSize(125, 125);
 		sunflowerBtn.setIcon(getScaledImage(Sunflower.sprite, 125, 125));
 		sunflowerBtn.setActionCommand("Plants/Sunflower");
 		plants.add(sunflowerBtn);
 
-		JButton peashooterBtn = new JButton("Peashooter(" + Peashooter.DEFAULT_VALUE+")");
+		peashooterBtn = new JButton("Peashooter(" + Peashooter.DEFAULT_VALUE+")");
 		peashooterBtn.setSize(125, 125);
 		peashooterBtn.setIcon(getScaledImage(Peashooter.sprite, 125, 125));
 		peashooterBtn.setActionCommand("Plants/Peashooter");
 		plants.add(peashooterBtn);
 
-		JButton wallnutBtn = new JButton("Wallnut("+ Wallnut.DEFAULT_VALUE+")");
+		wallnutBtn = new JButton("Wallnut("+ Wallnut.DEFAULT_VALUE+")");
 		wallnutBtn.setSize(125, 125);
 		wallnutBtn.setIcon(getScaledImage(Wallnut.sprite, 125, 125));
 		wallnutBtn.setActionCommand("Plants/Wallnut");
 		plants.add(wallnutBtn);
 
-		JButton chomperBtn = new JButton("Chomper("+Chomper.DEFAULT_VALUE+")");
+		chomperBtn = new JButton("Chomper("+Chomper.DEFAULT_VALUE+")");
 		chomperBtn.setSize(125, 125);
 		chomperBtn.setIcon(getScaledImage(Chomper.sprite[0], 125, 125));
 		chomperBtn.setActionCommand("Plants/Chomper");
 		plants.add(chomperBtn);
 		
-		JButton torchwoodBtn = new JButton("Torchwood("+Torchwood.DEFAULT_VALUE+")");
+		torchwoodBtn = new JButton("Torchwood("+Torchwood.DEFAULT_VALUE+")");
 		torchwoodBtn.setSize(125, 125);
 		torchwoodBtn.setIcon(getScaledImage(Torchwood.sprite, 125, 125));
 		torchwoodBtn.setActionCommand("Plants/Torchwood");
@@ -109,12 +116,12 @@ public class View extends JFrame {
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
 
-		JButton end = new JButton("End Turn");
+		end = new JButton("End Turn");
 		end.setActionCommand("End");
 		end.setSize(50, 100);
 		buttons.add(end);
 
-		JButton quit = new JButton("Quit Game");
+		quit = new JButton("Quit Game");
 		quit.setActionCommand("Quit");
 		quit.setSize(50, 100);
 		buttons.add(quit);
@@ -203,5 +210,35 @@ public class View extends JFrame {
 	 */
 	public int getBlockHeight() {
 		return blockHeight;
+	}
+  
+  
+  public JButton getSunflowerBtn()
+	{
+		return sunflowerBtn;
+	}
+	public JButton getPeashooterBtn()
+	{
+		return peashooterBtn;
+	}
+	public JButton getWallnutBtn()
+	{
+		return wallnutBtn;
+	}
+	public JButton getChomperBtn()
+	{
+		return chomperBtn;
+	}
+  	public JButton getTorchwoodBtn()
+	{
+		return torchwoodBtn;
+	}
+	public JButton getEndBtn()
+	{
+		return end;
+	}
+	public JButton getQuitBtn()
+	{
+		return quit;
 	}
 }
