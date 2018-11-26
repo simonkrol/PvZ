@@ -270,4 +270,9 @@ public class Level {
 	{
 		return availablePlants;
 	}
+	
+	public String getName()
+	{
+		return name;
+	}
 }

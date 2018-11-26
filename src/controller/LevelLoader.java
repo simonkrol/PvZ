@@ -30,7 +30,6 @@ public class LevelLoader
 		JsonObject turns;
 		try
 		{	
-			JsonParser test = new JsonParser();
 			JsonObject jsonObject = new JsonParser().parse(readFile(folder+fileName, Charset.defaultCharset())).getAsJsonObject();
 			name = jsonObject.get("name").getAsString();
 			width = jsonObject.get("width").getAsInt();
