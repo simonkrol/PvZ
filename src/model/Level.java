@@ -30,11 +30,13 @@ public class Level
 	/**
 	 * Construct a level
 	 *
+	 * @param name 	   The level's name
 	 * @param width    The width in spots, of the level
 	 * @param height   The height in spots, of the level
 	 * @param balance  The player's starting sun balance
-	 * @param fileName The file storing the level's zombie data
-	 * @throws IOException If readline fails
+	 * @param plants   The plant's the player may use during this level
+	 * @param turns	   The zombies that are set to spawn
+	 * @param numTurns The number of turns until all zombies have spawned
 	 */
 	public Level(String name, int width, int height, int balance, String[] plants, JsonObject turns, int numTurns)
 	{
@@ -58,9 +60,6 @@ public class Level
 
 	/**
 	 * Check the levelData and spawn any zombies intended for the given turn
-	 * @throws ClassNotFoundException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
 	 */
 	public void spawnZombies()
 	{
@@ -162,9 +161,6 @@ public class Level
 
 	/**
 	 * Undo last plant placement.
-	 *
-	 * 
-	 * @return True if successful, false otherwise
 	 */
 	public void undo()
 	{
@@ -179,9 +175,6 @@ public class Level
 
 	/**
 	 * Redo last undone plant placement.
-	 *
-	 * 
-	 * @return True if successful, false otherwise
 	 */
 	public void redo()
 	{
@@ -237,8 +230,6 @@ public class Level
 	/**
 	 * Iterate through all lanes in the level and run all their turns, also spawn
 	 * any new zombies
-	 *
-	 * @throws IOException If readline fails
 	 */
 	public void allTurn()
 	{

@@ -57,6 +57,7 @@ public abstract class Entity
 	/**
 	 * Method to be initialized in each subclass that returns an the image representing that class.
 	 * This method should only be run after the sprite has been resized
+	 * @return The sprite representing the current class
 	 */
 	public abstract Image getSprite();
 

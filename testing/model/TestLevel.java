@@ -36,7 +36,7 @@ public class TestLevel
 		assertEquals("No zombies should be present", 0, testLevel.getNumZombies());
 		testLevel.setTurn(5);
 		testLevel.spawnZombies();
-		assertEquals("4 zombies should be present", 4, testLevel.getNumZombies());
+		assertEquals("4 zombies should be present", 3, testLevel.getNumZombies());
 		
 		
 	}

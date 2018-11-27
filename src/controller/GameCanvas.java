@@ -2,7 +2,7 @@ package controller;
 
 /**
  * The GameCanvas classed, used to display images to the gui
- * @author Boyan Siromahov and Gordon MacDonald
+ * @author Boyan Siromahov, Gordon MacDonald and Simon Krol
  * @version Nov 16, 2018
  */
 import java.awt.Graphics;
@@ -31,6 +31,8 @@ public class GameCanvas extends JPanel
 	 * Create a gamecanvas with given level
 	 * 
 	 * @param lvl The current level
+	 * @param blockWidth The width of each block in pixels
+	 * @param blockHeight The heigh of each block in pixels
 	 */
 	public GameCanvas(Level lvl, int blockWidth, int blockHeight)
 	{
@@ -105,7 +107,7 @@ public class GameCanvas extends JPanel
 				g.drawImage(sprite, (int) pos, y * blockHeight, this);
 			}
 			/*
-			 * Paint all the projectiels on the lane
+			 * Paint all the projectiles on the lane
 			 */
 			for (Projectile proj : lane.getProjectiles())
 			{

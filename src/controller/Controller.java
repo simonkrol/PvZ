@@ -2,8 +2,8 @@ package controller;
 
 /**
  * The Controller Class
- * @author Boyan Siromahov and Gordon MacDonald
- * @version Nov 24, 2018
+ * @author Boyan Siromahov, Gordon MacDonald, Simon Krol and Shaun Gordon
+ * @version Nov 25, 2018
  */
 import model.*;
 import view.*;
