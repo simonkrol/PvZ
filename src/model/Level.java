@@ -20,6 +20,7 @@ public class Level
 	private int width;
 	private int height;
 	private int numTurns;
+	private int passiveGeneration;
 	private String[] availablePlants;
 	private JsonObject zombieSpawns;
 	private int turn;
@@ -37,7 +38,7 @@ public class Level
 	 * @param turns	   The zombies that are set to spawn
 	 * @param numTurns The number of turns until all zombies have spawned
 	 */
-	public Level(String name, int width, int height, int balance, String[] plants, JsonObject turns, int numTurns)
+	public Level(String name, int width, int height, int balance, String[] plants, JsonObject turns, int numTurns, int passiveGen)
 	{
 		this.name = name;
 		this.width = width;
@@ -46,6 +47,7 @@ public class Level
 		this.availablePlants = plants;
 		this.zombieSpawns = turns;
 		this.numTurns = numTurns;
+		this.passiveGeneration = passiveGen;
 
 		grid = new Lane[height];
 		for (int i = 0; i < height; i++)
@@ -237,6 +239,7 @@ public class Level
 			lane.allTurn(this);
 		}
 		turn++;
+		balance += passiveGeneration;
 		try
 		{
 			spawnZombies();

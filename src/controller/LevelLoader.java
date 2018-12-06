@@ -37,7 +37,7 @@ public class LevelLoader
 	{
 		curLevel = null;
 		String name;
-		int width, height, balance, numTurns;
+		int width, height, balance, numTurns, passiveGen;
 		String[] plants;
 		JsonObject turns;
 		try
@@ -49,6 +49,7 @@ public class LevelLoader
 			height = jsonObject.get("height").getAsInt();
 			balance = jsonObject.get("balance").getAsInt();
 			numTurns = jsonObject.get("numturns").getAsInt();
+			passiveGen = jsonObject.get("passiveGen").getAsInt();
 
 			JsonArray arrJson = jsonObject.getAsJsonArray("plants");
 			plants = new String[arrJson.size()];
@@ -56,7 +57,7 @@ public class LevelLoader
 				plants[i] = arrJson.get(i).getAsString();
 			turns = jsonObject.get("turns").getAsJsonObject();
 
-			curLevel = new Level(name, width, height, balance, plants, turns, numTurns);
+			curLevel = new Level(name, width, height, balance, plants, turns, numTurns, passiveGen);
 
 		} catch (IOException e)
 		{

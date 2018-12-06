@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 public class Sunflower extends Plant
 {
 	private static final int DEFAULT_HP = 4;
-	private static final int DEFAULT_ATTACK = 12;
+	private static final int DEFAULT_ATTACK = 13;
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	private static final int DEFAULT_VALUE = 50;
 	private static final int DEFAULT_DELAY = 5;
