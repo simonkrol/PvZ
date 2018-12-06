@@ -7,11 +7,7 @@ package controller;
  */
 import java.io.IOException;
 
-import javax.swing.JOptionPane;
-
-import model.Level;
 import view.MainMenu;
-import view.View;
 
 public class Main
 {
@@ -24,13 +20,6 @@ public class Main
 	 */
 	public static void main(String[] args) throws IOException
 	{
-		LevelLoader levels = new LevelLoader();
-		Level level = levels.getLevel("Level1.json");
 		new MainMenu();
-		//@SuppressWarnings("unused")
-		//View levelGui = new View(level);
-		//JOptionPane.showMessageDialog(null,
-		//		"To place a plant: click the tile you wish to play on, then the type of plant\n. Undo/Redo can be found in the menu",
-		//		"Instructions", JOptionPane.PLAIN_MESSAGE);
 	}
 }

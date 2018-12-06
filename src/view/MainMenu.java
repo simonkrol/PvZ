@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -11,35 +10,14 @@ import controller.LevelLoader;
 import controller.MainMenuController;
 import model.Level;
 
-import java.awt.Label;
 import java.awt.Button;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.ActionEvent;
 import java.awt.Choice;
 
 public class MainMenu {
 
 	private JFrame frame;
 	private Level level;
-	private static MainMenu window;
 	public Choice saveChoice;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					window = new MainMenu();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -55,14 +33,13 @@ public class MainMenu {
 
 	public void startGame() {
 
-		@SuppressWarnings("unused")
 		LevelLoader levels = new LevelLoader();
 		level = levels.getLevel("Level1.json");
+		@SuppressWarnings("unused")
 		View levelGui = new View(level);
 		JOptionPane.showMessageDialog(null,
 				"To place a plant: click the tile you wish to play on, then the type of plant\n. Undo/Redo can be found in the menu",
 				"Instructions", JOptionPane.PLAIN_MESSAGE);
-		window.frame.setVisible(false);
 		frame.dispose();
 	}
 
@@ -103,5 +80,7 @@ public class MainMenu {
 		JLabel background = new JLabel(backgroundGif);
 		background.setBounds(0, 0, 624, 441);
 		frame.getContentPane().add(background);
+		
+		frame.setVisible(true);
 	}
 }

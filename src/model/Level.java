@@ -6,7 +6,6 @@ package model;
  * @version Nov 24, 2018
  */
 
-import java.io.IOException;
 import java.util.LinkedList;
 
 import com.google.gson.JsonArray;
