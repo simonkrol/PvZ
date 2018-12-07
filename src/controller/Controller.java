@@ -9,6 +9,7 @@ import model.*;
 import view.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -20,13 +21,37 @@ import com.google.gson.GsonBuilder;
 
 public class Controller implements ActionListener, MouseListener
 {
-	private Level level;
-	private View view;
+	protected Level level;
+	protected View view;
 	private JButton button;
 	private int x, y;
 	private int posY;
 	private int posX;
 	
+	protected static String lastSave = "";
+	protected final static String saveLocation = "res/saves/";
+	private static RuntimeTypeAdapterFactory<Plant> plantAdapter = 
+            RuntimeTypeAdapterFactory
+           .of(Plant.class)
+           .registerSubtype(Sunflower.class)
+           .registerSubtype(Peashooter.class)
+           .registerSubtype(Chomper.class)
+           .registerSubtype(Torchwood.class)
+           .registerSubtype(Wallnut.class);
+	private static RuntimeTypeAdapterFactory<Zombie> zombieAdapter = 
+            RuntimeTypeAdapterFactory
+           .of(Zombie.class)
+           .registerSubtype(BasicZombie.class)
+           .registerSubtype(ImpZombie.class)
+           .registerSubtype(BucketZombie.class);
+	private static RuntimeTypeAdapterFactory<Projectile> projectileAdapter =
+			RuntimeTypeAdapterFactory
+			.of(Projectile.class)
+			.registerSubtype(PeaProjectile.class);
+	protected static Gson gson = new GsonBuilder().setPrettyPrinting()
+			.registerTypeAdapterFactory(plantAdapter)
+			.registerTypeAdapterFactory(zombieAdapter)
+			.registerTypeAdapterFactory(projectileAdapter).create();
 
 
 	/**
@@ -141,5 +166,45 @@ public class Controller implements ActionListener, MouseListener
 	public void mouseReleased(MouseEvent arg0)
 	{
 
+	}
+	
+	protected void saveGame(String gameName)
+	{
+		lastSave = gameName;
+		FileWriter fileW;
+		String jLvl = gson.toJson(level);
+		try
+		{
+			fileW = new FileWriter(saveLocation + gameName+".json");
+			fileW.write(jLvl.toString());
+			fileW.close();
+		} catch (IOException e)
+		{
+			System.out.println("error on update LL - 120");
+		}
+	}
+	protected void loadGame(String gameName)
+	{
+		
+		FileReader fileR;
+		try
+		{
+			fileR = new FileReader(saveLocation + gameName);
+
+	        String json = "{";
+	        int i = fileR.read();
+	        while( (i = fileR.read()) != -1) {  
+	            json += (char)i;
+	        }
+	        fileR.close();
+	        level = gson.fromJson(json, Level.class);
+	        if(view instanceof View)view.dispose();
+	        view = new View(level);
+	        
+		} catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -78,6 +78,11 @@ public class View extends JFrame
 		redoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		redoItem.setActionCommand("Save");
 		menu.add(saveItem);
+		
+		JMenuItem loadItem = new JMenuItem("Load", KeyEvent.VK_O);
+		redoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
+		redoItem.setActionCommand("Load");
+		menu.add(loadItem);
 
 		selections = new JPanel();
 		selections.setLayout(new BoxLayout(selections, BoxLayout.PAGE_AXIS));
@@ -142,6 +147,7 @@ public class View extends JFrame
 		undoItem.addActionListener(new MenuController(level, this));
 		redoItem.addActionListener(new MenuController(level, this));
 		saveItem.addActionListener(new MenuController(level, this));
+		loadItem.addActionListener(new MenuController(level, this));
 	}
 
 	/**
@@ -222,5 +228,13 @@ public class View extends JFrame
 	public JLabel getInfo()
 	{
 		return info;
+	}
+	
+	public void setLevel(Level newLevel)
+	{
+		if(newLevel instanceof Level)
+		{
+			level = newLevel;
+		}
 	}
 }

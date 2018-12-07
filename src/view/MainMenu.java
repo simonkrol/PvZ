@@ -19,7 +19,7 @@ import java.io.FileReader;
 
 public class MainMenu {
 
-	private JFrame frame;
+	public JFrame frame;
 	private Level level;
 	public Choice saveChoice;
 
@@ -30,53 +30,6 @@ public class MainMenu {
 		initialize();
 	}
 
-    public void LoadGame(String path) {
-		RuntimeTypeAdapterFactory<Plant> plantAdapter = 
-                RuntimeTypeAdapterFactory
-               .of(Plant.class)
-               .registerSubtype(Sunflower.class)
-               .registerSubtype(Peashooter.class)
-               .registerSubtype(Chomper.class)
-               .registerSubtype(Torchwood.class)
-               .registerSubtype(Wallnut.class);
-		RuntimeTypeAdapterFactory<Zombie> zombieAdapter = 
-                RuntimeTypeAdapterFactory
-               .of(Zombie.class)
-               .registerSubtype(BasicZombie.class)
-               .registerSubtype(ImpZombie.class)
-               .registerSubtype(BucketZombie.class);
-		RuntimeTypeAdapterFactory<Projectile> projectileAdapter =
-				RuntimeTypeAdapterFactory
-				.of(Projectile.class)
-				.registerSubtype(PeaProjectile.class);
-
-    		Gson gson=new GsonBuilder().setPrettyPrinting()
-    				.registerTypeAdapterFactory(plantAdapter)
-    				.registerTypeAdapterFactory(zombieAdapter)
-    				.registerTypeAdapterFactory(projectileAdapter)
-    				.create();
-
-    		
-        FileReader fileR;
-		try
-		{
-			fileR = new FileReader(path);
-
-	        String json = "{";
-	        int i = fileR.read();
-	        while( (i = fileR.read()) != -1) {  
-	            json += (char)i;
-	        }
-	        fileR.close();
-	        Level lvl = gson.fromJson(json, Level.class);
-	        View levelGui = new View(lvl);
-		} catch (Exception e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-    }
 
 	public void startGame() {
 
@@ -112,10 +65,10 @@ public class MainMenu {
 		
 		
 		
-		//Need to populate the list 
-		saveChoice = new Choice();
-		saveChoice.setBounds(392, 345, 132, 20);
-		frame.getContentPane().add(saveChoice);
+//		//Need to populate the list 
+//		saveChoice = new Choice();
+//		saveChoice.setBounds(392, 345, 132, 20);
+//		frame.getContentPane().add(saveChoice);
 		
 		
 		ImageIcon logo = new ImageIcon("res/assets/PvZ/logo.png");

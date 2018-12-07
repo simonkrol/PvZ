@@ -1,15 +1,17 @@
 package controller;
 
+import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import view.MainMenu;
 
-public class MainMenuController implements ActionListener{
+public class MainMenuController extends Controller implements ActionListener{
 
 	private MainMenu mm;
 	
 	public MainMenuController(MainMenu mm) {
+		super(null, null);
 		this.mm = mm;
 	}
 	
@@ -20,9 +22,13 @@ public class MainMenuController implements ActionListener{
 			mm.startGame();
 		}
 		else if (e.getActionCommand().equals("Load Game")){
-			mm.LoadGame("res/saves/game.json");
-//			String levelSave = mm.saveChoice.getSelectedItem();
-//			mm.loadGame(levelSave);
+			FileDialog fd = new FileDialog(mm.frame, "Choose a file", FileDialog.LOAD);
+			fd.setDirectory("res/saves");
+			fd.setFile("*.json");
+			fd.setVisible(true);
+			String filename = fd.getFile();
+			if (filename != null)
+				loadGame(filename);
 		}
 		
 	}
