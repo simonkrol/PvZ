@@ -310,5 +310,17 @@ public class Lane
 		}
 		return null;
 	}
+	
+	public void setReferences()
+	{
+		for (Zombie zombie: liveZombies)
+		{
+			zombie.setLane(this);
+		}
+		for(Spot spot: spots)
+		{
+			spot.setReferences(this);
+		}
+	}
 
 }

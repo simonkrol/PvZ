@@ -7,11 +7,16 @@ package model;
  */
 public abstract class Plant extends Entity
 {
-	protected Spot location;
+	transient protected Spot location;
 	protected int distance;
 	protected int value;
 	protected int delay;
 
+	
+	public Plant()
+	{
+		super();
+	}
 	/**
 	 * Constructor for plant (Only called from subclasses)
 	 * @param maxHP Maximum HP

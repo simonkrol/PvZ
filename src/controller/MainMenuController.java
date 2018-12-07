@@ -20,8 +20,9 @@ public class MainMenuController implements ActionListener{
 			mm.startGame();
 		}
 		else if (e.getActionCommand().equals("Load Game")){
-			String levelSave = mm.saveChoice.getSelectedItem();
-			mm.loadGame(levelSave);
+			mm.LoadGame("res/saves/game.json");
+//			String levelSave = mm.saveChoice.getSelectedItem();
+//			mm.loadGame(levelSave);
 		}
 		
 	}

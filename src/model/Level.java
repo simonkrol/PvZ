@@ -1,5 +1,8 @@
 package model;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * The level class, contains all info about the current game being played
  * @author Boyan Siromahov, Simon Krol, Gordon MacDonald
@@ -8,9 +11,13 @@ package model;
 
 import java.util.LinkedList;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import view.RuntimeTypeAdapterFactory;
 
 public class Level
 {
@@ -234,6 +241,7 @@ public class Level
 	 */
 	public void allTurn()
 	{
+		
 		for (Lane lane : grid)
 		{
 			lane.allTurn(this);
@@ -325,4 +333,13 @@ public class Level
 	{
 		return name;
 	}
+	
+	public void setReferences()
+	{
+		for(Lane lane: grid)
+		{
+			lane.setReferences();
+		}
+	}
+	
 }

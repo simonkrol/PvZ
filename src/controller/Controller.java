@@ -9,9 +9,14 @@ import model.*;
 import view.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class Controller implements ActionListener, MouseListener
 {
@@ -21,6 +26,8 @@ public class Controller implements ActionListener, MouseListener
 	private int x, y;
 	private int posY;
 	private int posX;
+	
+
 
 	/**
 	 * Create a controller for the current level
@@ -104,6 +111,7 @@ public class Controller implements ActionListener, MouseListener
 		view.getCanvas().highLight(posX, posY);
 		view.update();
 	}
+	
 
 	@Override
 	/**

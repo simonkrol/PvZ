@@ -1,0 +1,593 @@
+{
+  "grid": [
+    {
+      "endState": 0,
+      "length": 8,
+      "triggered": false,
+      "spots": [
+        {
+          "plant": {
+            "type": "Sunflower",
+            "distance": 0,
+            "value": 50,
+            "delay": 5,
+            "currentHP": 4,
+            "maxHP": 4,
+            "attack": 13,
+            "attackSpeed": 1.0,
+            "attackState": 0.0,
+            "status": "NORMAL",
+            "statusDelay": 0
+          },
+          "placeable": true
+        },
+        {
+          "plant": {
+            "type": "Peashooter",
+            "distance": 1,
+            "value": 100,
+            "delay": 5,
+            "currentHP": 5,
+            "maxHP": 5,
+            "attack": 2,
+            "attackSpeed": 1.0,
+            "attackState": 0.0,
+            "status": "NORMAL",
+            "statusDelay": 0
+          },
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "plant": {
+            "type": "Torchwood",
+            "distance": 3,
+            "value": 60,
+            "delay": 5,
+            "currentHP": 5,
+            "maxHP": 5,
+            "attack": 3,
+            "attackSpeed": 1.0,
+            "attackState": 0.0,
+            "status": "NORMAL",
+            "statusDelay": 0
+          },
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": false
+        },
+        {
+          "placeable": false
+        }
+      ],
+      "liveZombies": [
+        {
+          "type": "BasicZombie",
+          "moveSpeed": 1.0,
+          "position": 3.0,
+          "currentHP": 5,
+          "maxHP": 5,
+          "attack": 1,
+          "attackSpeed": 0.8,
+          "attackState": 0.0,
+          "status": "NORMAL",
+          "statusDelay": 0
+        }
+      ],
+      "projectiles": [
+        {
+          "type": "PeaProjectile",
+          "moveSpeed": 1.0,
+          "position": 3.3,
+          "offset": 0.18883606220788224,
+          "exploded": false,
+          "currentHP": 1,
+          "maxHP": 1,
+          "attack": 5,
+          "attackSpeed": 0.0,
+          "attackState": 0.0,
+          "status": "FIRE",
+          "statusDelay": 0
+        },
+        {
+          "type": "PeaProjectile",
+          "moveSpeed": 1.0,
+          "position": 2.3,
+          "offset": 0.1821643281116489,
+          "exploded": false,
+          "currentHP": 1,
+          "maxHP": 1,
+          "attack": 2,
+          "attackSpeed": 0.0,
+          "attackState": 0.0,
+          "status": "NORMAL",
+          "statusDelay": 0
+        }
+      ]
+    },
+    {
+      "endState": 0,
+      "length": 8,
+      "triggered": false,
+      "spots": [
+        {
+          "plant": {
+            "type": "Sunflower",
+            "distance": 0,
+            "value": 50,
+            "delay": 5,
+            "currentHP": 4,
+            "maxHP": 4,
+            "attack": 13,
+            "attackSpeed": 1.0,
+            "attackState": 0.0,
+            "status": "NORMAL",
+            "statusDelay": 0
+          },
+          "placeable": true
+        },
+        {
+          "plant": {
+            "type": "Wallnut",
+            "distance": 1,
+            "value": 50,
+            "delay": 5,
+            "currentHP": 12,
+            "maxHP": 12,
+            "attack": 0,
+            "attackSpeed": 0.0,
+            "attackState": 0.0,
+            "status": "NORMAL",
+            "statusDelay": 0
+          },
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": false
+        },
+        {
+          "placeable": false
+        }
+      ],
+      "liveZombies": [
+        {
+          "type": "BasicZombie",
+          "moveSpeed": 1.0,
+          "position": 0.0,
+          "currentHP": 5,
+          "maxHP": 5,
+          "attack": 1,
+          "attackSpeed": 0.8,
+          "attackState": 0.0,
+          "status": "NORMAL",
+          "statusDelay": 0
+        }
+      ],
+      "projectiles": []
+    },
+    {
+      "endState": 0,
+      "length": 8,
+      "triggered": false,
+      "spots": [
+        {
+          "plant": {
+            "type": "Sunflower",
+            "distance": 0,
+            "value": 50,
+            "delay": 5,
+            "currentHP": 4,
+            "maxHP": 4,
+            "attack": 13,
+            "attackSpeed": 1.0,
+            "attackState": 0.0,
+            "status": "NORMAL",
+            "statusDelay": 0
+          },
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "plant": {
+            "type": "Chomper",
+            "eating": {
+              "type": "ImpZombie",
+              "moveSpeed": 1.0,
+              "position": 4.0,
+              "currentHP": 4,
+              "maxHP": 4,
+              "attack": 1,
+              "attackSpeed": 0.8,
+              "attackState": 0.0,
+              "status": "NORMAL",
+              "statusDelay": 0
+            },
+            "distance": 3,
+            "value": 60,
+            "delay": 5,
+            "currentHP": 5,
+            "maxHP": 5,
+            "attack": 2,
+            "attackSpeed": 1.0,
+            "attackState": 0.0,
+            "status": "EATING",
+            "statusDelay": 2
+          },
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": false
+        },
+        {
+          "placeable": false
+        }
+      ],
+      "liveZombies": [
+        {
+          "type": "ImpZombie",
+          "moveSpeed": 1.0,
+          "position": 3.0,
+          "currentHP": 4,
+          "maxHP": 4,
+          "attack": 1,
+          "attackSpeed": 0.8,
+          "attackState": 0.0,
+          "status": "NORMAL",
+          "statusDelay": 0
+        }
+      ],
+      "projectiles": []
+    },
+    {
+      "endState": 0,
+      "length": 8,
+      "triggered": false,
+      "spots": [
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": false
+        },
+        {
+          "placeable": false
+        }
+      ],
+      "liveZombies": [
+        {
+          "type": "ImpZombie",
+          "moveSpeed": 1.0,
+          "position": 3.0,
+          "currentHP": 4,
+          "maxHP": 4,
+          "attack": 1,
+          "attackSpeed": 0.8,
+          "attackState": 0.0,
+          "status": "NORMAL",
+          "statusDelay": 0
+        },
+        {
+          "type": "BasicZombie",
+          "moveSpeed": 1.0,
+          "position": 0.0,
+          "currentHP": 5,
+          "maxHP": 5,
+          "attack": 1,
+          "attackSpeed": 0.8,
+          "attackState": 0.0,
+          "status": "NORMAL",
+          "statusDelay": 0
+        }
+      ],
+      "projectiles": []
+    },
+    {
+      "endState": 0,
+      "length": 8,
+      "triggered": false,
+      "spots": [
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": false
+        },
+        {
+          "placeable": false
+        }
+      ],
+      "liveZombies": [
+        {
+          "type": "BucketZombie",
+          "moveSpeed": 1.0,
+          "position": 5.0,
+          "currentHP": 12,
+          "maxHP": 12,
+          "attack": 1,
+          "attackSpeed": 0.8,
+          "attackState": 0.0,
+          "status": "NORMAL",
+          "statusDelay": 0
+        },
+        {
+          "type": "BucketZombie",
+          "moveSpeed": 1.0,
+          "position": 0.0,
+          "currentHP": 12,
+          "maxHP": 12,
+          "attack": 1,
+          "attackSpeed": 0.8,
+          "attackState": 0.0,
+          "status": "NORMAL",
+          "statusDelay": 0
+        }
+      ],
+      "projectiles": []
+    },
+    {
+      "endState": 0,
+      "length": 8,
+      "triggered": false,
+      "spots": [
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": false
+        },
+        {
+          "placeable": false
+        }
+      ],
+      "liveZombies": [],
+      "projectiles": []
+    }
+  ],
+  "name": "Level 1",
+  "balance": 174,
+  "width": 8,
+  "height": 6,
+  "numTurns": 19,
+  "passiveGeneration": 13,
+  "availablePlants": [
+    "Sunflower",
+    "Peashooter",
+    "Wallnut",
+    "Chomper",
+    "Torchwood"
+  ],
+  "zombieSpawns": {
+    "10": {
+      "1": [
+        "BasicZombie"
+      ],
+      "3": [
+        "BasicZombie"
+      ],
+      "4": [
+        "BucketZombie"
+      ]
+    },
+    "11": {
+      "1": [
+        "ImpZombie"
+      ],
+      "2": [
+        "BasicZombie"
+      ],
+      "3": [
+        "BasicZombie"
+      ]
+    },
+    "12": {
+      "1": [
+        "BasicZombie"
+      ],
+      "5": [
+        "BasicZombie",
+        "ImpZombie"
+      ]
+    },
+    "15": {
+      "0": [
+        "BasicZombie",
+        "BasicZombie"
+      ],
+      "1": [
+        "BasicZombie"
+      ],
+      "2": [
+        "BucketZombie"
+      ]
+    },
+    "16": {
+      "0": [
+        "ImpZombie"
+      ],
+      "1": [
+        "BucketZombie"
+      ],
+      "2": [
+        "BasicZombie",
+        "ImpZombie"
+      ],
+      "3": [
+        "BasicZombie",
+        "BasicZombie"
+      ],
+      "4": [
+        "ImpZombie"
+      ],
+      "5": [
+        "BucketZombie"
+      ]
+    },
+    "17": {
+      "0": [
+        "BasicZombie"
+      ],
+      "1": [
+        "BasicZombie"
+      ],
+      "2": [
+        "BasicZombie"
+      ],
+      "3": [
+        "BasicZombie"
+      ],
+      "4": [
+        "BasicZombie"
+      ],
+      "5": [
+        "BasicZombie"
+      ]
+    },
+    "18": {
+      "0": [
+        "ImpZombie"
+      ],
+      "1": [
+        "ImpZombie"
+      ],
+      "2": [
+        "ImpZombie"
+      ],
+      "3": [
+        "ImpZombie"
+      ],
+      "4": [
+        "ImpZombie"
+      ],
+      "5": [
+        "ImpZombie"
+      ]
+    },
+    "19": {
+      "0": [
+        "BucketZombie"
+      ],
+      "1": [
+        "BucketZombie"
+      ],
+      "2": [
+        "BucketZombie"
+      ],
+      "3": [
+        "BucketZombie"
+      ],
+      "4": [
+        "BucketZombie"
+      ],
+      "5": [
+        "BucketZombie"
+      ]
+    },
+    "5": {
+      "0": [
+        "BasicZombie"
+      ],
+      "2": [
+        "ImpZombie"
+      ],
+      "4": [
+        "BucketZombie"
+      ]
+    },
+    "6": {
+      "0": [
+        "BasicZombie"
+      ]
+    },
+    "7": {
+      "0": [
+        "BasicZombie"
+      ],
+      "2": [
+        "ImpZombie"
+      ],
+      "3": [
+        "ImpZombie"
+      ]
+    }
+  },
+  "turn": 10,
+  "doneList": [],
+  "undoneList": []
+}

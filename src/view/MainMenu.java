@@ -6,12 +6,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import controller.LevelLoader;
 import controller.MainMenuController;
-import model.Level;
+import model.*;
 
 import java.awt.Button;
 import java.awt.Choice;
+import java.io.FileReader;
 
 public class MainMenu {
 
@@ -26,10 +30,53 @@ public class MainMenu {
 		initialize();
 	}
 
-	public void loadGame(String levelSave) {
-		LevelLoader levels = new LevelLoader();
-		level = levels.getLevel(levelSave);
-	}
+    public void LoadGame(String path) {
+		RuntimeTypeAdapterFactory<Plant> plantAdapter = 
+                RuntimeTypeAdapterFactory
+               .of(Plant.class)
+               .registerSubtype(Sunflower.class)
+               .registerSubtype(Peashooter.class)
+               .registerSubtype(Chomper.class)
+               .registerSubtype(Torchwood.class)
+               .registerSubtype(Wallnut.class);
+		RuntimeTypeAdapterFactory<Zombie> zombieAdapter = 
+                RuntimeTypeAdapterFactory
+               .of(Zombie.class)
+               .registerSubtype(BasicZombie.class)
+               .registerSubtype(ImpZombie.class)
+               .registerSubtype(BucketZombie.class);
+		RuntimeTypeAdapterFactory<Projectile> projectileAdapter =
+				RuntimeTypeAdapterFactory
+				.of(Projectile.class)
+				.registerSubtype(PeaProjectile.class);
+
+    		Gson gson=new GsonBuilder().setPrettyPrinting()
+    				.registerTypeAdapterFactory(plantAdapter)
+    				.registerTypeAdapterFactory(zombieAdapter)
+    				.registerTypeAdapterFactory(projectileAdapter)
+    				.create();
+
+    		
+        FileReader fileR;
+		try
+		{
+			fileR = new FileReader(path);
+
+	        String json = "{";
+	        int i = fileR.read();
+	        while( (i = fileR.read()) != -1) {  
+	            json += (char)i;
+	        }
+	        fileR.close();
+	        Level lvl = gson.fromJson(json, Level.class);
+	        View levelGui = new View(lvl);
+		} catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+    }
 
 	public void startGame() {
 

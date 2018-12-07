@@ -12,12 +12,16 @@ public abstract class Entity
 	@SuppressWarnings("unused")
 	private int currentHP, maxHP;
 	protected int attack;
-	protected Lane lane;
+	transient protected Lane lane;
 	protected double attackSpeed;
 	protected double attackState;
 	protected Status status;
 	protected int statusDelay;
 
+	protected Entity()
+	{
+		
+	}
 	/**
 	 * Entity constructor
 	 * @param maxHP Entities maximum health
@@ -120,4 +124,6 @@ public abstract class Entity
 	{
 		this.lane = newLane;
 	}
+	
+	
 }

@@ -69,4 +69,13 @@ public class Spot
 		}
 		else throw new NullPointerException();
 	}
+	
+	public void setReferences(Lane lane)
+	{
+		if(plant instanceof Plant)
+		{
+			plant.setLocation(this);
+			plant.setLane(lane);
+		}
+	}
 }

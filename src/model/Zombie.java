@@ -10,6 +10,9 @@ public abstract class Zombie extends Entity
 	private double moveSpeed;
 	private double position;
 
+	public Zombie() {
+		super();
+	}
 	/**
 	 * Create a zombie
 	 * @param hp Zombies current hp
