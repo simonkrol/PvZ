@@ -62,5 +62,13 @@ public class PeaProjectile extends Projectile
 		}
 		resized = true;
 	}
+	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof PeaProjectile))return false;
+		PeaProjectile toCompare = (PeaProjectile)toCheck;
+		if(!((Projectile)this).equals(toCompare))return false;
+		return true;
+	}
 
 }

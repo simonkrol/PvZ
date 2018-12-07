@@ -75,4 +75,12 @@ public class Wallnut extends Plant
 		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
+	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof Wallnut))return false;
+		Wallnut toCompare = (Wallnut)toCheck;
+		if(!((Plant)this).equals(toCompare))return false;
+		return true;
+	}
 }

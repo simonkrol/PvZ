@@ -91,5 +91,17 @@ public abstract class Plant extends Entity
 			}
 		}
 	}
+	
+	public boolean equals(Object toCheck)
+	{
+		if(toCheck == null)return false;
+		if(!(toCheck instanceof Plant))return false;
+		Plant toCompare = (Plant)toCheck;
+		if(!((Entity)this).equals(toCompare))return false;
+		if(distance != toCompare.distance)return false;
+		if(value != toCompare.value)return false;
+		if(delay != toCompare.delay)return false;
+		return true;
+	}
 
 }

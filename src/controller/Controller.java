@@ -189,7 +189,7 @@ public class Controller implements ActionListener, MouseListener
 		FileReader fileR;
 		try
 		{
-			fileR = new FileReader(saveLocation + gameName);
+			fileR = new FileReader(saveLocation + gameName+".json");
 
 	        String json = "{";
 	        int i = fileR.read();

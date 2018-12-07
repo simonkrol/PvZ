@@ -322,5 +322,31 @@ public class Lane
 			spot.setReferences(this);
 		}
 	}
+	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof Lane))return false;
+		Lane toCompare = (Lane)toCheck;
+		if(endState != toCompare.endState)return false;
+		if(length != toCompare.length)return false;
+		if(triggered != toCompare.triggered)return false;
+		if(spots.length != toCompare.spots.length)return false;
+		for(int i=0; i<spots.length; i++)
+		{
+			if(!spots[i].equals(toCompare.spots[i]))return false;
+		}
+		if(liveZombies.size() != toCompare.liveZombies.size())return false;
+		for(int i=0; i<liveZombies.size(); i++)
+		{
+			if(!liveZombies.get(i).equals(toCompare.liveZombies.get(i)))return false;
+		}
+		if(projectiles.size() != toCompare.projectiles.size())return false;
+		for(int i=0; i<projectiles.size(); i++)
+		{
+			if(!projectiles.get(i).equals(toCompare.projectiles.get(i)))return false;
+		}
+		return true;
+			
+	}
 
 }

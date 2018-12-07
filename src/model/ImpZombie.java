@@ -65,4 +65,12 @@ public class ImpZombie extends Zombie
 		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
+	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof ImpZombie))return false;
+		ImpZombie toCompare = (ImpZombie)toCheck;
+		if(!((Zombie)this).equals(toCompare))return false;
+		return true;
+	}
 }

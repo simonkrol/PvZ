@@ -78,4 +78,14 @@ public class Spot
 			plant.setLane(lane);
 		}
 	}
+	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof Spot))return false;
+		Spot toCompare = (Spot)toCheck;
+		if(placeable != toCompare.placeable)return false;
+		if(plant == null && toCompare.plant !=null)return false;
+		if(plant != null)if(!plant.equals(toCompare.plant))return false;
+		return true;
+	}
 }

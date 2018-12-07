@@ -64,5 +64,13 @@ public class Peashooter extends Plant
 		resized = true;
 	}
 	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof Peashooter))return false;
+		Peashooter toCompare = (Peashooter)toCheck;
+		if(!((Plant)this).equals(toCompare))return false;
+		return true;
+	}
+	
 
 }

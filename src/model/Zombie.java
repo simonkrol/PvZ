@@ -109,5 +109,15 @@ public abstract class Zombie extends Entity
 	{
 		position = newPosition;
 	}
+	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof Zombie))return false;
+		Zombie toCompare = (Zombie)toCheck;
+		if(!((Entity)this).equals(toCompare))return false;
+		if(moveSpeed!=toCompare.moveSpeed)return false;
+		if(position!= toCompare.position)return false;
+		return true;
+	}
 
 }

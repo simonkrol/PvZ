@@ -126,4 +126,20 @@ public abstract class Entity
 	}
 	
 	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof Entity))return false;
+		Entity toCompare = (Entity)toCheck;
+		if(currentHP != toCompare.currentHP)return false;
+		if(maxHP != toCompare.maxHP)return false;
+		if(attack != toCompare.attack)return false;
+		if(attackSpeed != toCompare.attackSpeed)return false;
+		if(attackState != toCompare.attackState)return false;
+		if(status != toCompare.status)return false;
+		if(statusDelay != toCompare.statusDelay)return false;
+		return true;	
+				
+	}
+	
+	
 }

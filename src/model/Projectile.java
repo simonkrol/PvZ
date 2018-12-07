@@ -119,5 +119,16 @@ public abstract class Projectile extends Entity
 	{
 		return moveSpeed;
 	}
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof Projectile))return false;
+		Projectile toCompare = (Projectile)toCheck;
+		if(!((Entity)this).equals(toCompare))return false;
+		if(moveSpeed != toCompare.moveSpeed)return false;
+		if(position != toCompare.position)return false;
+		if(offset != toCompare.offset)return false;
+		if(exploded != toCompare.exploded)return false;
+		return true;
+	}
 
 }
