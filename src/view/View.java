@@ -141,6 +141,7 @@ public class View extends JFrame
 		quitItem.addActionListener(new MenuController(level, this));
 		undoItem.addActionListener(new MenuController(level, this));
 		redoItem.addActionListener(new MenuController(level, this));
+		saveItem.addActionListener(new MenuController(level, this));
 	}
 
 	/**

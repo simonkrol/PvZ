@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,6 +39,7 @@ public class MenuController implements ActionListener
 	private Level level;
 	private View view;
 	
+	private static String lastSave = "";
 	private final static String saveLocation = "res/saves/";
 	private static RuntimeTypeAdapterFactory<Plant> plantAdapter = 
             RuntimeTypeAdapterFactory
@@ -90,7 +92,11 @@ public class MenuController implements ActionListener
 				break;
 				
 			case "Save":
-				//Put save stuff here
+				String s = (String)JOptionPane.showInputDialog(
+	                    view,
+	                    "Save as:",
+	                    lastSave);
+				saveGame(s);
 				break;
 		}
 
@@ -98,11 +104,8 @@ public class MenuController implements ActionListener
 	
 	public void saveGame(String gameName)
 	{
-		final String saveLocation = "res/saves/";
-
-
+		lastSave = gameName;
 		FileWriter fileW;
-		
 		String jLvl = gson.toJson(this);
 		try
 		{
