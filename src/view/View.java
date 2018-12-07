@@ -73,6 +73,11 @@ public class View extends JFrame
 		redoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
 		redoItem.setActionCommand("Redo");
 		menu.add(redoItem);
+		
+		JMenuItem saveItem = new JMenuItem("Save", KeyEvent.VK_S);
+		redoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		redoItem.setActionCommand("Save");
+		menu.add(saveItem);
 
 		selections = new JPanel();
 		selections.setLayout(new BoxLayout(selections, BoxLayout.PAGE_AXIS));
