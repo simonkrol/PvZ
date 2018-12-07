@@ -4,6 +4,8 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import controller.Main;
+
 /**
  * The Basic Zombie class
  * @author Simon Krol
@@ -15,7 +17,7 @@ public class BasicZombie extends Zombie
 	private static final int DEFAULT_ATTACK = 1;
 	private static final double DEFAULT_MOVESPEED = 1; // Units per turn
 	private static final double DEFAULT_ATTACKSPEED = 0.8; // Attacks per turn
-	private static Image sprite = new ImageIcon("res/assets/PvZ_G/BasicZombie.gif").getImage();
+	private static Image sprite = new ImageIcon(Main.class.getResource("/assets/PvZ_G/BasicZombie.gif")).getImage();
 	private static boolean resized = false;
 
 	/**

@@ -41,12 +41,12 @@ public class GameCanvas extends JPanel
 		this.blockHeight = blockHeight;
 		grass = new Image[4];
 
-		lawnMower = getScaledImage(new ImageIcon("res/assets/Pvz_G/LawnMower.png"), (int) (blockWidth / 1.5),
+		lawnMower = getScaledImage(new ImageIcon(Main.class.getResource("/assets/Pvz_G/LawnMower.png")), (int) (blockWidth / 1.5),
 				(int) (blockHeight / 1.5));
-		grass[0] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass0.png"), blockWidth, blockHeight);
-		grass[1] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass1.png"), blockWidth, blockHeight);
-		grass[2] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass0H.png"), blockWidth, blockHeight);
-		grass[3] = getScaledImage(new ImageIcon("res/assets/PvZ_G/Grass1H.png"), blockWidth, blockHeight);
+		grass[0] = getScaledImage(new ImageIcon(Main.class.getResource("/assets/PvZ_G/Grass0.png")), blockWidth, blockHeight);
+		grass[1] = getScaledImage(new ImageIcon(Main.class.getResource("/assets/PvZ_G/Grass1.png")), blockWidth, blockHeight);
+		grass[2] = getScaledImage(new ImageIcon(Main.class.getResource("/assets/PvZ_G/Grass0H.png")), blockWidth, blockHeight);
+		grass[3] = getScaledImage(new ImageIcon(Main.class.getResource("/assets/PvZ_G/Grass1H.png")), blockWidth, blockHeight);
 
 	}
 

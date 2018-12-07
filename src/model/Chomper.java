@@ -4,6 +4,8 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import controller.Main;
+
 /**
  * The Peashooter class, contains information about the Peashooter plant
  * @author Simon Krol
@@ -16,8 +18,8 @@ public class Chomper extends Plant
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	private static final int DEFAULT_VALUE = 60;
 	private static final int DEFAULT_DELAY = 5;
-	public static Image[] sprite = { new ImageIcon("res/assets/PvZ_G/Chomper.gif").getImage(),
-			new ImageIcon("res/assets/PvZ_G/ChomperEating.gif").getImage() };
+	public static Image[] sprite = { new ImageIcon(Main.class.getResource("/assets/PvZ_G/Chomper.gif")).getImage(),
+			new ImageIcon(Main.class.getResource("/assets/PvZ_G/ChomperEating.gif")).getImage() };
 	private static boolean resized = false;
 	private Zombie eating;
 
