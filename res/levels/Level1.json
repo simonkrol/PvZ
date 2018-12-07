@@ -3,6 +3,7 @@
   "height": 6,
   "name": "Level 1",
   "numturns": 19,
+  "passiveGen": 13,
   "plants": [
     "Sunflower",
     "Peashooter",
