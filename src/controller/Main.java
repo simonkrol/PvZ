@@ -3,7 +3,7 @@ package controller;
 /**
  * The main class, creates the gui object and the level object
  * @author Gordon MacDonald and Simon Krol
- * @version Nov 16, 2018
+ * @version Dec 7, 2018
  */
 import java.io.IOException;
 

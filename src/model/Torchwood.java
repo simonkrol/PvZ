@@ -9,7 +9,7 @@ import controller.Main;
 /**
  * The Torchwood class, contains information about the Torchwood plant
  * @author Simon Krol
- * @version Nov 16, 2018
+ * @version Dec 7, 2018
  */
 public class Torchwood extends Plant
 {
@@ -70,12 +70,18 @@ public class Torchwood extends Plant
 		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
-	
+
+	@Override
+	/**
+	 * Check if Torchwood are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof Torchwood))return false;
-		Torchwood toCompare = (Torchwood)toCheck;
-		if(!((Plant)this).equals(toCompare))return false;
+		if (!(toCheck instanceof Torchwood))
+			return false;
+		Torchwood toCompare = (Torchwood) toCheck;
+		if (!super.equals(toCompare))
+			return false;
 		return true;
 	}
 

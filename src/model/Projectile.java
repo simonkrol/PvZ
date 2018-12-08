@@ -3,7 +3,7 @@ package model;
 /**
  * Abstract class that is extended by all Projectiles within the game
  * @author Simon Krol
- * @version Nov 25, 2018
+ * @version Dec 7, 2018
  */
 import java.util.Random;
 
@@ -119,15 +119,26 @@ public abstract class Projectile extends Entity
 	{
 		return moveSpeed;
 	}
+
+	@Override
+	/**
+	 * Check if Projectiles are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof Projectile))return false;
-		Projectile toCompare = (Projectile)toCheck;
-		if(!((Entity)this).equals(toCompare))return false;
-		if(moveSpeed != toCompare.moveSpeed)return false;
-		if(position != toCompare.position)return false;
-		if(offset != toCompare.offset)return false;
-		if(exploded != toCompare.exploded)return false;
+		if (!(toCheck instanceof Projectile))
+			return false;
+		Projectile toCompare = (Projectile) toCheck;
+		if (!super.equals(toCompare))
+			return false;
+		if (moveSpeed != toCompare.moveSpeed)
+			return false;
+		if (position != toCompare.position)
+			return false;
+		if (offset != toCompare.offset)
+			return false;
+		if (exploded != toCompare.exploded)
+			return false;
 		return true;
 	}
 

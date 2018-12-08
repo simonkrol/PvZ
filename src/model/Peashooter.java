@@ -9,7 +9,7 @@ import controller.Main;
 /**
  * The Peashooter class, contains information about the Peashooter plant
  * @author Simon Krol
- * @version Nov 25, 2018
+ * @version Dec 7, 2018
  */
 public class Peashooter extends Plant
 {
@@ -34,7 +34,7 @@ public class Peashooter extends Plant
 	 */
 	protected void attack(Object toAttack)
 	{
-		lane.createProjectile(new PeaProjectile(attack, this. distance+0.3, lane));
+		lane.createProjectile(new PeaProjectile(attack, this.distance + 0.3, lane));
 	}
 
 	@Override
@@ -44,8 +44,9 @@ public class Peashooter extends Plant
 	public Image getSprite()
 	{
 		return sprite;
-		
+
 	}
+
 	@Override
 	/**
 	 * Get if the sprite has been resized already
@@ -54,23 +55,29 @@ public class Peashooter extends Plant
 	{
 		return resized;
 	}
+
 	@Override
 	/**
 	 * Set the sprite size
 	 */
 	public void setSpriteSize(int blockWidth, int blockHeight)
 	{
-		sprite = sprite.getScaledInstance(blockWidth/2, blockHeight, Image.SCALE_DEFAULT);
+		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
-	
+
+	@Override
+	/**
+	 * Check if Peashooters are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof Peashooter))return false;
-		Peashooter toCompare = (Peashooter)toCheck;
-		if(!((Plant)this).equals(toCompare))return false;
+		if (!(toCheck instanceof Peashooter))
+			return false;
+		Peashooter toCompare = (Peashooter) toCheck;
+		if (!super.equals(toCompare))
+			return false;
 		return true;
 	}
-	
 
 }

@@ -3,7 +3,7 @@ package model;
 /**
  * The lane class, seperates the game board into each lane.
  * @author Boyan Siromahov and Simon Krol
- * @version Nov 16, 2018
+ * @version Dec 7, 2018
  */
 import java.util.ArrayList;
 
@@ -310,43 +310,60 @@ public class Lane
 		}
 		return null;
 	}
-	
+
+	/**
+	 * Reset the lanes cyclical references
+	 */
 	public void setReferences()
 	{
-		for (Zombie zombie: liveZombies)
+		for (Zombie zombie : liveZombies)
 		{
 			zombie.setLane(this);
 		}
-		for(Spot spot: spots)
+		for (Spot spot : spots)
 		{
 			spot.setReferences(this);
 		}
 	}
-	
+
+	@Override
+	/**
+	 * Check if Lanes and their contents are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof Lane))return false;
-		Lane toCompare = (Lane)toCheck;
-		if(endState != toCompare.endState)return false;
-		if(length != toCompare.length)return false;
-		if(triggered != toCompare.triggered)return false;
-		if(spots.length != toCompare.spots.length)return false;
-		for(int i=0; i<spots.length; i++)
+		if (!(toCheck instanceof Lane))
+			return false;
+		Lane toCompare = (Lane) toCheck;
+		if (endState != toCompare.endState)
+			return false;
+		if (length != toCompare.length)
+			return false;
+		if (triggered != toCompare.triggered)
+			return false;
+		if (spots.length != toCompare.spots.length)
+			return false;
+		for (int i = 0; i < spots.length; i++)
 		{
-			if(!spots[i].equals(toCompare.spots[i]))return false;
+			if (!spots[i].equals(toCompare.spots[i]))
+				return false;
 		}
-		if(liveZombies.size() != toCompare.liveZombies.size())return false;
-		for(int i=0; i<liveZombies.size(); i++)
+		if (liveZombies.size() != toCompare.liveZombies.size())
+			return false;
+		for (int i = 0; i < liveZombies.size(); i++)
 		{
-			if(!liveZombies.get(i).equals(toCompare.liveZombies.get(i)))return false;
+			if (!liveZombies.get(i).equals(toCompare.liveZombies.get(i)))
+				return false;
 		}
-		if(projectiles.size() != toCompare.projectiles.size())return false;
-		for(int i=0; i<projectiles.size(); i++)
+		if (projectiles.size() != toCompare.projectiles.size())
+			return false;
+		for (int i = 0; i < projectiles.size(); i++)
 		{
-			if(!projectiles.get(i).equals(toCompare.projectiles.get(i)))return false;
+			if (!projectiles.get(i).equals(toCompare.projectiles.get(i)))
+				return false;
 		}
 		return true;
-			
+
 	}
 
 }

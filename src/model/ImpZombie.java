@@ -9,7 +9,7 @@ import controller.Main;
 /**
  * The Imp Zombie class, they have slightly less health thanr basic zombies
  * @author Simon Krol
- * @version Nov 16, 2018
+ * @version Dec 7, 2018
  */
 public class ImpZombie extends Zombie
 {
@@ -65,12 +65,18 @@ public class ImpZombie extends Zombie
 		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
-	
+
+	@Override
+	/**
+	 * Check if ImpZombies are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof ImpZombie))return false;
-		ImpZombie toCompare = (ImpZombie)toCheck;
-		if(!((Zombie)this).equals(toCompare))return false;
+		if (!(toCheck instanceof ImpZombie))
+			return false;
+		ImpZombie toCompare = (ImpZombie) toCheck;
+		if (!super.equals(toCompare))
+			return false;
 		return true;
 	}
 }

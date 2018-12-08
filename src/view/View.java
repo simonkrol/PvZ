@@ -73,12 +73,12 @@ public class View extends JFrame
 		redoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
 		redoItem.setActionCommand("Redo");
 		menu.add(redoItem);
-		
+
 		JMenuItem saveItem = new JMenuItem("Save", KeyEvent.VK_S);
 		redoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		redoItem.setActionCommand("Save");
 		menu.add(saveItem);
-		
+
 		JMenuItem loadItem = new JMenuItem("Load", KeyEvent.VK_O);
 		redoItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
 		redoItem.setActionCommand("Load");
@@ -229,10 +229,10 @@ public class View extends JFrame
 	{
 		return info;
 	}
-	
+
 	public void setLevel(Level newLevel)
 	{
-		if(newLevel instanceof Level)
+		if (newLevel instanceof Level)
 		{
 			level = newLevel;
 		}

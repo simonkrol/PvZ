@@ -1,5 +1,10 @@
 package view;
 
+/**
+ * The LevelBuilder class, creates the LevelBuilder GUI
+ * @author Boyan Siromahov, Gordon MacDonald
+ * @version Dec 7, 2018
+ */
 
 import java.awt.FlowLayout;
 import java.io.FileWriter;
@@ -20,30 +25,37 @@ import com.google.gson.JsonObject;
 import controller.BuildController;
 
 
-public class LevelBuilder {
+public class LevelBuilder
+{
+
 
 	private JTextField balance,passive, name;
 	private JRadioButton sunflower, peashooter, wallnut, torchwood, chomper;
 	public JFrame frame;
+
 	public SelectView sel;
 	private int height = 0;
 	private int width = 0;
 	private MainMenu mm;
 	@SuppressWarnings("rawtypes")
-	private JComboBox[] dropDowns;
 	private String[] zombies = {"None", "BasicZombie", "ImpZombie", "BucketZombie"};
 	private JLabel turnLabel;
-	
-	
+	private JComboBox<String>[] dropDowns;
+
 	/**
 	 * Create the application.
 	 */
-	public LevelBuilder(MainMenu mm) {
+	public LevelBuilder(MainMenu mm)
+	{
 		this.mm = mm;
 		select();
 	}
 
-	private void select() {
+	/**
+	 * Create a new select view
+	 */
+	private void select()
+	{
 		sel = new SelectView(mm);
 	}
 
@@ -55,11 +67,13 @@ public class LevelBuilder {
 		JPanel infoPanel = new JPanel();
 		turnPanel.setLayout(new BoxLayout(turnPanel, BoxLayout.PAGE_AXIS));
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.PAGE_AXIS));
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 640, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new FlowLayout());
 		frame.setVisible(true);
+
 		
 		turnLabel = new JLabel("Turn 0");
 		turnPanel.add(turnLabel);
@@ -83,7 +97,7 @@ public class LevelBuilder {
 			label.setBounds(60, y, 50, 20);
 			tempPanel.add(label);
 
-			JComboBox cB = new JComboBox(zombies);
+			JComboBox<String> cB = new JComboBox<String>(zombies);
 			cB.setBounds(150, y, 100, 20);
 			dropDowns[i] = cB;
 			cB.addActionListener(new BuildController());
@@ -149,10 +163,17 @@ public class LevelBuilder {
 
 	}
 
-	public boolean setDim() {
+	@SuppressWarnings("unchecked")
+	/**
+	 * Set the dimensions of the level builder
+	 * @return
+	 */
+	public boolean setDim()
+	{
 		height = sel.getHeight();
 		width = sel.getWidth();
-		if (height != 0 && width != 0) {
+		if (height != 0 && width != 0)
+		{
 			sel.frame.dispose();
 			dropDowns = new JComboBox[height];
 			return true;

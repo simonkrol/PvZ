@@ -1,10 +1,9 @@
 package model;
 
-
 /**
  * The level class, contains all info about the current game being played
  * @author Boyan Siromahov, Simon Krol, Gordon MacDonald
- * @version Nov 24, 2018
+ * @version Dec 7, 2018
  */
 
 import java.util.LinkedList;
@@ -12,7 +11,6 @@ import java.util.LinkedList;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
 
 public class Level
 {
@@ -40,7 +38,8 @@ public class Level
 	 * @param turns	   The zombies that are set to spawn
 	 * @param numTurns The number of turns until all zombies have spawned
 	 */
-	public Level(String name, int width, int height, int balance, String[] plants, JsonObject turns, int numTurns, int passiveGen)
+	public Level(String name, int width, int height, int balance, String[] plants, JsonObject turns, int numTurns,
+			int passiveGen)
 	{
 		this.name = name;
 		this.width = width;
@@ -167,12 +166,12 @@ public class Level
 	 */
 	public void undo()
 	{
-		if (doneList.size() >= 1)//make sure there is something to undo
+		if (doneList.size() >= 1)// make sure there is something to undo
 		{
-			Plant p = doneList.removeLast(); //get last move done
-			p.getLocation().killPlant(); //reverse last move done
+			Plant p = doneList.removeLast(); // get last move done
+			p.getLocation().killPlant(); // reverse last move done
 			balance += p.getValue();
-			undoneList.push(p); //add to redo list 
+			undoneList.push(p); // add to redo list
 		}
 	}
 
@@ -181,12 +180,12 @@ public class Level
 	 */
 	public void redo()
 	{
-		if (undoneList.size() >= 1) //make sure there is something to redo
+		if (undoneList.size() >= 1) // make sure there is something to redo
 		{
-			Plant p = undoneList.pop(); //get last undo done
-			p.getLocation().addPlant(p); //redo the last undo
+			Plant p = undoneList.pop(); // get last undo done
+			p.getLocation().addPlant(p); // redo the last undo
 			balance -= p.getValue();
-			doneList.add(p);//add to actions done
+			doneList.add(p);// add to actions done
 		}
 	}
 
@@ -236,7 +235,7 @@ public class Level
 	 */
 	public void allTurn()
 	{
-		
+
 		for (Lane lane : grid)
 		{
 			lane.allTurn(this);
@@ -328,43 +327,63 @@ public class Level
 	{
 		return name;
 	}
-	
+
+	/**
+	 * After reloading the level, we lose some cyclical references within plants/zombies, this resets them
+	 */
 	public void setReferences()
 	{
-		for(Lane lane: grid)
+		for (Lane lane : grid)
 		{
 			lane.setReferences();
 		}
 	}
-	
+
+	@Override
+	/**
+	 * Check if levels and their contents are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof Level))return false;
-		Level toCompare = (Level)toCheck;
-		if(balance != toCompare.balance)return false;
-		if(width != toCompare.width)return false;
-		if(height != toCompare.height)return false;
-		if(numTurns != toCompare.numTurns)return false;
-		if(passiveGeneration != toCompare.passiveGeneration)return false;
-		if(turn != toCompare.turn)return false;
-		if(grid.length != toCompare.grid.length)return false;
-		for(int i=0; i<grid.length; i++)
+		if (!(toCheck instanceof Level))
+			return false;
+		Level toCompare = (Level) toCheck;
+		if (balance != toCompare.balance)
+			return false;
+		if (width != toCompare.width)
+			return false;
+		if (height != toCompare.height)
+			return false;
+		if (numTurns != toCompare.numTurns)
+			return false;
+		if (passiveGeneration != toCompare.passiveGeneration)
+			return false;
+		if (turn != toCompare.turn)
+			return false;
+		if (grid.length != toCompare.grid.length)
+			return false;
+		for (int i = 0; i < grid.length; i++)
 		{
-			if(!grid[i].equals(toCompare.grid[i]))return false;
+			if (!grid[i].equals(toCompare.grid[i]))
+				return false;
 		}
-		//if(zombieSpawns != toCompare.zombieSpawns)return false;
-		if(doneList.size() != toCompare.doneList.size())return false;
-		for(int i=0; i<doneList.size(); i++)
+		// if(zombieSpawns != toCompare.zombieSpawns)return false;
+		if (doneList.size() != toCompare.doneList.size())
+			return false;
+		for (int i = 0; i < doneList.size(); i++)
 		{
-			if(!doneList.get(i).equals(toCompare.doneList.get(i)))return false;
+			if (!doneList.get(i).equals(toCompare.doneList.get(i)))
+				return false;
 		}
-		if(undoneList.size() != toCompare.undoneList.size())return false;
-		for(int i=0; i<undoneList.size(); i++)
+		if (undoneList.size() != toCompare.undoneList.size())
+			return false;
+		for (int i = 0; i < undoneList.size(); i++)
 		{
-			if(!undoneList.get(i).equals(toCompare.undoneList.get(i)))return false;
+			if (!undoneList.get(i).equals(toCompare.undoneList.get(i)))
+				return false;
 		}
-		//if(!availablePlants.equals(toCompare.availablePlants))return false;
+		// if(!availablePlants.equals(toCompare.availablePlants))return false;
 		return true;
 	}
-	
+
 }
