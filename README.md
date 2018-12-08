@@ -3,7 +3,7 @@
 ### Authors:
 - [Simon Krol](https://github.com/simonkrol)
 - [Boyan Siromahov](https://github.com/BoyanSiromahov)
-- [Shaun Gordon](https://github.com/swim224)
+- [Shaun Gordon](https://github.com/sGordon224)
 - [Gordon MacDonald](https://github.com/Gordon-MacDonald)
 
 ### Changes made in Deliverable 1:
@@ -26,6 +26,13 @@
 - The ability to have more than 1 level was added
 - The view was improved to form to different screen sizes and resolutions
 - Entity movement was changed to be based on # spots rather than # pixels
+
+### Changes made in Deliverable 4:
+- Added save/load functionality using GSON (loaded via Maven)
+- Added game level builder
+- Added Main Menu
+- JUnit testing for complete model, view, and controller
+- Cleaned up messy code
 
 
 
@@ -55,12 +62,10 @@
 
 ### Roadmap Ahead
 - Implement continuous integration on github
-- Allow for saving/loading the game at any point
-- Allow for user creation and saving/playing of levels
 - Fix the slight smell in Lane.java
 
-Readme Author: Simon Krol
+Readme Author: Simon Krol and Shaun Gordon
 
-JavaDoc Documentation Author: Simon Krol
+JavaDoc Documentation Author: Simon Krol and Shaun Gordon
 
 UML Diagram and Sequence Diagram Author: Shaun Gordon and Simon Krol
