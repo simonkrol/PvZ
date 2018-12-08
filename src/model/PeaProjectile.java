@@ -9,11 +9,13 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import controller.Main;
+
 public class PeaProjectile extends Projectile
 {
 	private static final double DEFAULT_MOVESPEED = 1;
-	private static Image[] sprite = { new ImageIcon("res/assets/PvZ_G/Pea.png").getImage(),
-			new ImageIcon("res/assets/PvZ_G/PeaFire.png").getImage() };
+	private static Image[] sprite = { new ImageIcon(Main.class.getResource("/assets/PvZ_G/Pea.png")).getImage(),
+			new ImageIcon(Main.class.getResource("/assets/PvZ_G/PeaFire.png")).getImage() };
 	private static boolean resized = false;
 
 	/**
@@ -59,6 +61,14 @@ public class PeaProjectile extends Projectile
 			sprite[i] = sprite[i].getScaledInstance(blockWidth / 4, blockWidth / 4, Image.SCALE_DEFAULT);
 		}
 		resized = true;
+	}
+	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof PeaProjectile))return false;
+		PeaProjectile toCompare = (PeaProjectile)toCheck;
+		if(!((Projectile)this).equals(toCompare))return false;
+		return true;
 	}
 
 }

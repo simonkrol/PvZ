@@ -1,7 +1,5 @@
 package model;
 
-import java.io.FileWriter;
-import java.io.IOException;
 
 /**
  * The level class, contains all info about the current game being played
@@ -11,13 +9,10 @@ import java.io.IOException;
 
 import java.util.LinkedList;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import view.RuntimeTypeAdapterFactory;
 
 public class Level
 {
@@ -340,6 +335,36 @@ public class Level
 		{
 			lane.setReferences();
 		}
+	}
+	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof Level))return false;
+		Level toCompare = (Level)toCheck;
+		if(balance != toCompare.balance)return false;
+		if(width != toCompare.width)return false;
+		if(height != toCompare.height)return false;
+		if(numTurns != toCompare.numTurns)return false;
+		if(passiveGeneration != toCompare.passiveGeneration)return false;
+		if(turn != toCompare.turn)return false;
+		if(grid.length != toCompare.grid.length)return false;
+		for(int i=0; i<grid.length; i++)
+		{
+			if(!grid[i].equals(toCompare.grid[i]))return false;
+		}
+		//if(zombieSpawns != toCompare.zombieSpawns)return false;
+		if(doneList.size() != toCompare.doneList.size())return false;
+		for(int i=0; i<doneList.size(); i++)
+		{
+			if(!doneList.get(i).equals(toCompare.doneList.get(i)))return false;
+		}
+		if(undoneList.size() != toCompare.undoneList.size())return false;
+		for(int i=0; i<undoneList.size(); i++)
+		{
+			if(!undoneList.get(i).equals(toCompare.undoneList.get(i)))return false;
+		}
+		//if(!availablePlants.equals(toCompare.availablePlants))return false;
+		return true;
 	}
 	
 }

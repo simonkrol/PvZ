@@ -4,6 +4,8 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import controller.Main;
+
 /**
  * The Imp Zombie class, they have slightly less health thanr basic zombies
  * @author Simon Krol
@@ -15,7 +17,7 @@ public class ImpZombie extends Zombie
 	private static final int DEFAULT_ATTACK = 1;
 	private static final double DEFAULT_MOVESPEED = 1.0; // Units per turn
 	private static final double DEFAULT_ATTACKSPEED = 0.8; // Attacks per turn
-	private static Image sprite = new ImageIcon("res/assets/PvZ_G/ImpZombie.gif").getImage();
+	private static Image sprite = new ImageIcon(Main.class.getResource("/assets/PvZ_G/ImpZombie.gif")).getImage();
 	private static boolean resized = false;
 
 	/**
@@ -62,5 +64,13 @@ public class ImpZombie extends Zombie
 	{
 		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
+	}
+	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof ImpZombie))return false;
+		ImpZombie toCompare = (ImpZombie)toCheck;
+		if(!((Zombie)this).equals(toCompare))return false;
+		return true;
 	}
 }

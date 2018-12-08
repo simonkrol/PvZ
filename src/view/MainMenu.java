@@ -5,16 +5,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import controller.LevelLoader;
+import controller.Main;
 import controller.MainMenuController;
 import model.*;
 
 import java.awt.Button;
 import java.awt.Choice;
-import java.io.FileReader;
 
 public class MainMenu {
 
@@ -55,28 +52,26 @@ public class MainMenu {
 		loadGame.setBounds(226, 286, 132, 53);
 		frame.getContentPane().add(loadGame);
 		loadGame.addActionListener(new MainMenuController(this));
-
+		
 		Button buildGame = new Button("Build Level");
 		buildGame.setBounds(392, 286, 132, 53);
 		frame.getContentPane().add(buildGame);
 		buildGame.addActionListener(new MainMenuController(this));
-
-		// //Need to populate the list
-		// saveChoice = new Choice();
-		// saveChoice.setBounds(392, 345, 132, 20);
-		// frame.getContentPane().add(saveChoice);
-
-		ImageIcon logo = new ImageIcon("res/assets/PvZ/logo.png");
+		
+		
+		ImageIcon logo = new ImageIcon(Main.class.getResource("/assets/PvZ/logo.png"));
 		JLabel titleLogo = new JLabel(logo);
 		titleLogo.setBounds(63, 27, 461, 129);
 		frame.getContentPane().add(titleLogo);
-
-		ImageIcon backgroundGif = new ImageIcon("res/assets/PvZ_G/background.gif");
+		
+		ImageIcon backgroundGif = new ImageIcon(Main.class.getResource("/assets/PvZ_G/background.gif"));
 
 		Button newGame = new Button("New Game");
 		newGame.addActionListener(new MainMenuController(this));
 		newGame.setBounds(63, 286, 132, 53);
 		frame.getContentPane().add(newGame);
+
+		
 		JLabel background = new JLabel(backgroundGif);
 		background.setBounds(0, 0, 624, 441);
 		frame.getContentPane().add(background);

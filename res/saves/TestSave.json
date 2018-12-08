@@ -1,0 +1,217 @@
+{
+  "grid": [
+    {
+      "endState": 0,
+      "length": 8,
+      "triggered": false,
+      "spots": [
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": false
+        },
+        {
+          "placeable": false
+        }
+      ],
+      "liveZombies": [],
+      "projectiles": []
+    },
+    {
+      "endState": 0,
+      "length": 8,
+      "triggered": false,
+      "spots": [
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": false
+        },
+        {
+          "placeable": false
+        }
+      ],
+      "liveZombies": [],
+      "projectiles": []
+    },
+    {
+      "endState": 0,
+      "length": 8,
+      "triggered": false,
+      "spots": [
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": false
+        },
+        {
+          "placeable": false
+        }
+      ],
+      "liveZombies": [],
+      "projectiles": []
+    },
+    {
+      "endState": 0,
+      "length": 8,
+      "triggered": false,
+      "spots": [
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": false
+        },
+        {
+          "placeable": false
+        }
+      ],
+      "liveZombies": [],
+      "projectiles": []
+    },
+    {
+      "endState": 0,
+      "length": 8,
+      "triggered": false,
+      "spots": [
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": false
+        },
+        {
+          "placeable": false
+        }
+      ],
+      "liveZombies": [],
+      "projectiles": []
+    },
+    {
+      "endState": 0,
+      "length": 8,
+      "triggered": false,
+      "spots": [
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": true
+        },
+        {
+          "placeable": false
+        },
+        {
+          "placeable": false
+        }
+      ],
+      "liveZombies": [],
+      "projectiles": []
+    }
+  ],
+  "name": "Level 1",
+  "balance": 100,
+  "width": 8,
+  "height": 6,
+  "numTurns": 2,
+  "passiveGeneration": 10,
+  "availablePlants": [
+    "Sunflower",
+    "Peashooter",
+    "Wallnut"
+  ],
+  "zombieSpawns": {},
+  "turn": 0,
+  "doneList": [],
+  "undoneList": []
+}

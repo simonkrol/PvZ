@@ -123,5 +123,13 @@ public class TestController{
 		assertEquals("Balance should be 40", 40, balance);
 		
 	}
+	
+	@Test
+	public void testSaveLoad()
+	{
+		testController.saveGame("TestSave");
+		testController.loadGame("TestSave");
+		assertTrue("Levels should be identical", testLevel.equals(testController.level));
+	}
 
 }

@@ -4,8 +4,10 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import controller.Main;
+
 /**
- * The Peashooter class, contains information about the Peashooter plant
+ * The Torchwood class, contains information about the Torchwood plant
  * @author Simon Krol
  * @version Nov 16, 2018
  */
@@ -16,7 +18,7 @@ public class Torchwood extends Plant
 	private static final double DEFAULT_ATTACKSPEED = 1; // Attacks per turn
 	private static final int DEFAULT_VALUE = 60;
 	private static final int DEFAULT_DELAY = 5;
-	private static Image sprite = new ImageIcon("res/assets/PvZ_G/Torchwood.gif").getImage();
+	private static Image sprite = new ImageIcon(Main.class.getResource("/assets/PvZ_G/Torchwood.gif")).getImage();
 	private static boolean resized = false;
 
 	/**
@@ -67,6 +69,14 @@ public class Torchwood extends Plant
 	{
 		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
+	}
+	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof Torchwood))return false;
+		Torchwood toCompare = (Torchwood)toCheck;
+		if(!((Plant)this).equals(toCompare))return false;
+		return true;
 	}
 
 }

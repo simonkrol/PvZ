@@ -4,6 +4,8 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import controller.Main;
+
 /**
  * The Sunflower class, contains information about the Wallnut plant
  * @author Simon Krol
@@ -16,7 +18,7 @@ public class Wallnut extends Plant
 	private static final double DEFAULT_ATTACKSPEED = 0; // Attacks per turn
 	private static final int DEFAULT_VALUE = 50;
 	private static final int DEFAULT_DELAY = 5;
-	private static Image sprite = new ImageIcon("res/assets/PvZ_G/Wallnut.gif").getImage();
+	private static Image sprite = new ImageIcon(Main.class.getResource("/assets/PvZ_G/Wallnut.gif")).getImage();
 	private static boolean resized = false;
 
 	/**
@@ -72,5 +74,13 @@ public class Wallnut extends Plant
 	{
 		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
+	}
+	
+	public boolean equals(Object toCheck)
+	{
+		if(!(toCheck instanceof Wallnut))return false;
+		Wallnut toCompare = (Wallnut)toCheck;
+		if(!((Plant)this).equals(toCompare))return false;
+		return true;
 	}
 }
