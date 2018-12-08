@@ -37,7 +37,6 @@ public class LevelBuilder
 	private int height = 0;
 	private int width = 0;
 	private MainMenu mm;
-	@SuppressWarnings("rawtypes")
 	private String[] zombies = {"None", "BasicZombie", "ImpZombie", "BucketZombie"};
 	private JLabel turnLabel;
 	private JComboBox<String>[] dropDowns;
