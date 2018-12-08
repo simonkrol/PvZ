@@ -1,10 +1,9 @@
 package controller;
 
-import java.awt.FileDialog;
 /**
  * The menu controller, controls the menu.
- * @author Boyan Siromahov
- * @version Nov 25th, 2018
+ * @author Boyan Siromahov and Simon Krol
+ * @version Dec 7, 2018
  */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +18,6 @@ import view.View;
 public class MenuController extends Controller implements ActionListener
 {
 	JMenuItem menuButton;
-	
 
 	public MenuController(Level lvl, View view)
 	{
@@ -46,22 +44,13 @@ public class MenuController extends Controller implements ActionListener
 				level.redo();
 				view.update();
 				break;
-				
+
 			case "Save":
-				String s = (String)JOptionPane.showInputDialog(
-	                    view,
-	                    "Save as:",
-	                    lastSave);
+				String s = (String) JOptionPane.showInputDialog(view, "Save as:", lastSave);
 				saveGame(s);
 				break;
 			case "Load":
-				FileDialog fd = new FileDialog(view, "Choose a file", FileDialog.LOAD);
-				fd.setDirectory("res/saves");
-				fd.setFile("*.json");
-				fd.setVisible(true);
-				String filename = fd.getFile();
-				if (filename != null)
-					loadGame(filename);
+				loadGame(getName(view));
 				break;
 		}
 

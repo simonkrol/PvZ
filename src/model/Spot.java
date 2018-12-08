@@ -3,7 +3,7 @@ package model;
 /**
  * The Spot class, used to split lanes
  * @author Boyan Siromahov and Simon Krol
- * @version Nov 25, 2018
+ * @version Dec 7, 2018
  */
 public class Spot
 {
@@ -66,26 +66,39 @@ public class Spot
 		if (this.getOccupied())
 		{
 			this.plant = null;
-		}
-		else throw new NullPointerException();
+		} else
+			throw new NullPointerException();
 	}
-	
+
+	/**
+	 * Reset lost cyclical references upon reload
+	 * @param lane The lane plants should be set to
+	 */
 	public void setReferences(Lane lane)
 	{
-		if(plant instanceof Plant)
+		if (plant instanceof Plant)
 		{
 			plant.setLocation(this);
 			plant.setLane(lane);
 		}
 	}
-	
+
+	@Override
+	/**
+	 * Check if Spots are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof Spot))return false;
-		Spot toCompare = (Spot)toCheck;
-		if(placeable != toCompare.placeable)return false;
-		if(plant == null && toCompare.plant !=null)return false;
-		if(plant != null)if(!plant.equals(toCompare.plant))return false;
+		if (!(toCheck instanceof Spot))
+			return false;
+		Spot toCompare = (Spot) toCheck;
+		if (placeable != toCompare.placeable)
+			return false;
+		if (plant == null && toCompare.plant != null)
+			return false;
+		if (plant != null)
+			if (!plant.equals(toCompare.plant))
+				return false;
 		return true;
 	}
 }

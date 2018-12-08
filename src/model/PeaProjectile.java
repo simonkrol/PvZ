@@ -3,7 +3,7 @@ package model;
 /**
  * The PeaProjectile class, the projectile created by the Peashooter
  * @author Simon Krol
- * @version Nov 25th, 2018
+ * @version Dec 7, 2018
  */
 import java.awt.Image;
 
@@ -62,12 +62,18 @@ public class PeaProjectile extends Projectile
 		}
 		resized = true;
 	}
-	
+
+	@Override
+	/**
+	 * Check if PeaProjectiles are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof PeaProjectile))return false;
-		PeaProjectile toCompare = (PeaProjectile)toCheck;
-		if(!((Projectile)this).equals(toCompare))return false;
+		if (!(toCheck instanceof PeaProjectile))
+			return false;
+		PeaProjectile toCompare = (PeaProjectile) toCheck;
+		if (!super.equals(toCompare))
+			return false;
 		return true;
 	}
 

@@ -3,16 +3,18 @@ package model;
 /**
  * Abstract class that contains all Zombies within the game (BasicZombie)
  * @author Simon Krol
- * @version Nov 16, 2018
+ * @version Dec 7, 2018
  */
 public abstract class Zombie extends Entity
 {
 	private double moveSpeed;
 	private double position;
 
-	public Zombie() {
+	public Zombie()
+	{
 		super();
 	}
+
 	/**
 	 * Create a zombie
 	 * @param hp Zombies current hp
@@ -109,14 +111,22 @@ public abstract class Zombie extends Entity
 	{
 		position = newPosition;
 	}
-	
+
+	@Override
+	/**
+	 * Check if Zombies are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof Zombie))return false;
-		Zombie toCompare = (Zombie)toCheck;
-		if(!((Entity)this).equals(toCompare))return false;
-		if(moveSpeed!=toCompare.moveSpeed)return false;
-		if(position!= toCompare.position)return false;
+		if (!(toCheck instanceof Zombie))
+			return false;
+		Zombie toCompare = (Zombie) toCheck;
+		if (!super.equals(toCompare))
+			return false;
+		if (moveSpeed != toCompare.moveSpeed)
+			return false;
+		if (position != toCompare.position)
+			return false;
 		return true;
 	}
 

@@ -5,7 +5,7 @@ import java.awt.Image;
 /**
  * Abstract class that contains all entities within the game (Plants and Zombies)
  * @author Simon Krol
- * @version Nov 16, 2018
+ * @version Dec 7, 2018
  */
 public abstract class Entity
 {
@@ -20,8 +20,9 @@ public abstract class Entity
 
 	protected Entity()
 	{
-		
+
 	}
+
 	/**
 	 * Entity constructor
 	 * @param maxHP Entities maximum health
@@ -124,22 +125,32 @@ public abstract class Entity
 	{
 		this.lane = newLane;
 	}
-	
-	
+
+	@Override
+	/**
+	 * Check if Entities are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof Entity))return false;
-		Entity toCompare = (Entity)toCheck;
-		if(currentHP != toCompare.currentHP)return false;
-		if(maxHP != toCompare.maxHP)return false;
-		if(attack != toCompare.attack)return false;
-		if(attackSpeed != toCompare.attackSpeed)return false;
-		if(attackState != toCompare.attackState)return false;
-		if(status != toCompare.status)return false;
-		if(statusDelay != toCompare.statusDelay)return false;
-		return true;	
-				
+		if (!(toCheck instanceof Entity))
+			return false;
+		Entity toCompare = (Entity) toCheck;
+		if (currentHP != toCompare.currentHP)
+			return false;
+		if (maxHP != toCompare.maxHP)
+			return false;
+		if (attack != toCompare.attack)
+			return false;
+		if (attackSpeed != toCompare.attackSpeed)
+			return false;
+		if (attackState != toCompare.attackState)
+			return false;
+		if (status != toCompare.status)
+			return false;
+		if (statusDelay != toCompare.statusDelay)
+			return false;
+		return true;
+
 	}
-	
-	
+
 }

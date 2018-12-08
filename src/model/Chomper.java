@@ -9,7 +9,7 @@ import controller.Main;
 /**
  * The Peashooter class, contains information about the Peashooter plant
  * @author Simon Krol
- * @version Nov 16, 2018
+ * @version Dec 7, 2018
  */
 public class Chomper extends Plant
 {
@@ -93,14 +93,22 @@ public class Chomper extends Plant
 		}
 		resized = true;
 	}
-	
+
+	@Override
+	/**
+	 * Check if Chompers are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof Chomper))return false;
-		Chomper toCompare = (Chomper)toCheck;
-		if(!((Plant)this).equals(toCompare))return false;
-		if(eating == null && toCompare.eating !=null)return false;
-		if(!eating.equals(toCompare.eating))return false;
+		if (!(toCheck instanceof Chomper))
+			return false;
+		Chomper toCompare = (Chomper) toCheck;
+		if (!super.equals(toCompare))
+			return false;
+		if (eating == null && toCompare.eating != null)
+			return false;
+		if (!eating.equals(toCompare.eating))
+			return false;
 		return true;
 	}
 

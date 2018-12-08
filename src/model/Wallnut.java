@@ -9,7 +9,7 @@ import controller.Main;
 /**
  * The Sunflower class, contains information about the Wallnut plant
  * @author Simon Krol
- * @version Nov 16, 2018
+ * @version Dec 7, 2018
  */
 public class Wallnut extends Plant
 {
@@ -75,12 +75,18 @@ public class Wallnut extends Plant
 		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
-	
+
+	@Override
+	/**
+	 * Check if Wallnuts are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof Wallnut))return false;
-		Wallnut toCompare = (Wallnut)toCheck;
-		if(!((Plant)this).equals(toCompare))return false;
+		if (!(toCheck instanceof Wallnut))
+			return false;
+		Wallnut toCompare = (Wallnut) toCheck;
+		if (!super.equals(toCompare))
+			return false;
 		return true;
 	}
 }

@@ -9,7 +9,7 @@ import controller.Main;
 /**
  * The Bucket Zombie class, they have more health than regular zombies
  * @author Simon Krol
- * @version Nov 16, 2018
+ * @version Dec 7, 2018
  */
 public class BucketZombie extends Zombie
 {
@@ -64,5 +64,19 @@ public class BucketZombie extends Zombie
 	{
 		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
+	}
+
+	@Override
+	/**
+	 * Check if BucketZombies are equivalent
+	 */
+	public boolean equals(Object toCheck)
+	{
+		if (!(toCheck instanceof BucketZombie))
+			return false;
+		BucketZombie toCompare = (BucketZombie) toCheck;
+		if (!super.equals(toCompare))
+			return false;
+		return true;
 	}
 }

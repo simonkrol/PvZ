@@ -9,7 +9,7 @@ import controller.Main;
 /**
  * The Basic Zombie class
  * @author Simon Krol
- * @version Nov 16, 2018
+ * @version Dec 7, 2018
  */
 public class BasicZombie extends Zombie
 {
@@ -64,5 +64,17 @@ public class BasicZombie extends Zombie
 	{
 		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
+	}
+
+	@Override
+	/**
+	 * Check if BasicZombies are equivalent
+	 */
+	public boolean equals(Object toCheck)
+	{
+		if (!(toCheck instanceof BasicZombie))
+			return false;
+		BasicZombie toCompare = (BasicZombie) toCheck;
+		return super.equals(toCompare);
 	}
 }

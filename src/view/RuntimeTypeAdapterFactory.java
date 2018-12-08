@@ -1,6 +1,8 @@
 package view;
 /*
  * Copyright (C) 2011 Google Inc.
+ * We use this to properly deserialize our json strings so that lists of Zombies/Plants/Projectiles, 
+ * which may contain multiple different types of zombies/plants/projectiles, are recreated properly.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

@@ -51,7 +51,7 @@ public class TestController{
 		testLevel.placePlant(flower, 2, 2);
 		testButton.doClick();
 		int balance = testLevel.getBalance();
-		assertEquals("Balance should be 62", 62, balance);
+		assertEquals("Balance should be 73", 73, balance);
 		
 	}
 	@Test
@@ -92,7 +92,7 @@ public class TestController{
 		testButton.doClick();
 		assertFalse("Space is occupied", testLevel.placePlant(flower, 2, 2));
 		int balance = testLevel.getBalance();
-		assertEquals("Balance should be 60", 60, balance);
+		assertEquals("Balance should be 0", 0, balance);
 		
 	}
 	@Test

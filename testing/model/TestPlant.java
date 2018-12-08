@@ -49,7 +49,7 @@ public class TestPlant
 	public void testValue()
 	{
 		assertEquals("Sunflower should cost 50", 50, flower.getValue());
-		assertEquals("Peashooter should cost 40", 40, shooty.getValue());
+		assertEquals("Peashooter should cost 100", 100, shooty.getValue());
 	}
 	@Test
 	public void testTurn() 

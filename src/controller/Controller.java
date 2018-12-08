@@ -3,7 +3,7 @@ package controller;
 /**
  * The Controller Class
  * @author Boyan Siromahov, Gordon MacDonald, Simon Krol and Shaun Gordon
- * @version Nov 25, 2018
+ * @version Dec 7, 2018
  */
 import model.*;
 import view.*;
@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
@@ -27,32 +28,23 @@ public class Controller implements ActionListener, MouseListener
 	private int x, y;
 	private int posY;
 	private int posX;
-	
-	protected static String lastSave = "";
-	protected final static String saveLocation = "res/saves/";
-	private static RuntimeTypeAdapterFactory<Plant> plantAdapter = 
-            RuntimeTypeAdapterFactory
-           .of(Plant.class)
-           .registerSubtype(Sunflower.class)
-           .registerSubtype(Peashooter.class)
-           .registerSubtype(Chomper.class)
-           .registerSubtype(Torchwood.class)
-           .registerSubtype(Wallnut.class);
-	private static RuntimeTypeAdapterFactory<Zombie> zombieAdapter = 
-            RuntimeTypeAdapterFactory
-           .of(Zombie.class)
-           .registerSubtype(BasicZombie.class)
-           .registerSubtype(ImpZombie.class)
-           .registerSubtype(BucketZombie.class);
-	private static RuntimeTypeAdapterFactory<Projectile> projectileAdapter =
-			RuntimeTypeAdapterFactory
-			.of(Projectile.class)
-			.registerSubtype(PeaProjectile.class);
-	protected static Gson gson = new GsonBuilder().setPrettyPrinting()
-			.registerTypeAdapterFactory(plantAdapter)
-			.registerTypeAdapterFactory(zombieAdapter)
-			.registerTypeAdapterFactory(projectileAdapter).create();
 
+	// The save name used last time
+	protected static String lastSave = "";
+	// Where files are saved
+	protected final static String saveLocation = "res/saves/";
+
+	// Allow for deserialization of abstract objects like Plant, Zombie and
+	// Projectile
+	private static RuntimeTypeAdapterFactory<Plant> plantAdapter = RuntimeTypeAdapterFactory.of(Plant.class)
+			.registerSubtype(Sunflower.class).registerSubtype(Peashooter.class).registerSubtype(Chomper.class)
+			.registerSubtype(Torchwood.class).registerSubtype(Wallnut.class);
+	private static RuntimeTypeAdapterFactory<Zombie> zombieAdapter = RuntimeTypeAdapterFactory.of(Zombie.class)
+			.registerSubtype(BasicZombie.class).registerSubtype(ImpZombie.class).registerSubtype(BucketZombie.class);
+	private static RuntimeTypeAdapterFactory<Projectile> projectileAdapter = RuntimeTypeAdapterFactory
+			.of(Projectile.class).registerSubtype(PeaProjectile.class);
+	protected static Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(plantAdapter)
+			.registerTypeAdapterFactory(zombieAdapter).registerTypeAdapterFactory(projectileAdapter).create();
 
 	/**
 	 * Create a controller for the current level
@@ -112,7 +104,6 @@ public class Controller implements ActionListener, MouseListener
 					view.update();
 				} catch (Exception e1)
 				{
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -136,7 +127,6 @@ public class Controller implements ActionListener, MouseListener
 		view.getCanvas().highLight(posX, posY);
 		view.update();
 	}
-	
 
 	@Override
 	/**
@@ -167,7 +157,11 @@ public class Controller implements ActionListener, MouseListener
 	{
 
 	}
-	
+
+	/**
+	 * Save the game to our saves directory with the given name
+	 * @param gameName The name the level should be saved to
+	 */
 	protected void saveGame(String gameName)
 	{
 		lastSave = gameName;
@@ -175,7 +169,7 @@ public class Controller implements ActionListener, MouseListener
 		String jLvl = gson.toJson(level);
 		try
 		{
-			fileW = new FileWriter(saveLocation + gameName+".json");
+			fileW = new FileWriter(saveLocation + gameName + ".json");
 			fileW.write(jLvl.toString());
 			fileW.close();
 		} catch (IOException e)
@@ -183,28 +177,49 @@ public class Controller implements ActionListener, MouseListener
 			System.out.println("error on update LL - 120");
 		}
 	}
+
+	/**
+	 * Load the game from our saves directory with the given name
+	 * @param gameName The name of the file to load
+	 */
 	protected void loadGame(String gameName)
 	{
-		
+		if (gameName == null)
+			return;
 		FileReader fileR;
 		try
 		{
 			fileR = new FileReader(saveLocation + gameName);
 
-	        String json = "{";
-	        int i = fileR.read();
-	        while( (i = fileR.read()) != -1) {  
-	            json += (char)i;
-	        }
-	        fileR.close();
-	        level = gson.fromJson(json, Level.class);
-	        if(view instanceof View)view.dispose();
-	        view = new View(level);
-	        
+			String json = "{";
+			int i = fileR.read();
+			while ((i = fileR.read()) != -1)
+			{
+				json += (char) i;
+			}
+			fileR.close();
+			level = gson.fromJson(json, Level.class);
+			if (view instanceof View)
+				view.dispose();
+			view = new View(level);
+
 		} catch (Exception e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Open a file searcher and return the name of the selected file
+	 * @return The selected file's name
+	 */
+	protected String getName(JFrame showframe)
+	{
+		FileDialog fd = new FileDialog(showframe, "Choose a file", FileDialog.LOAD);
+		fd.setDirectory("/saves");
+		fd.setFile("*.json");
+		fd.setVisible(true);
+		return fd.getFile();
 	}
 }

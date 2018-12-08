@@ -1,7 +1,7 @@
 package controller;
 
 /**
- * The LevelLoader class, used to load levels from JSON and create Level objects
+ * The LevelLoader class, used to load default levels from JSON and create Level objects
  * @author Simon Krol
  * @version Nov 25, 2018
  */

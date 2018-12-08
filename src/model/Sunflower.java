@@ -9,7 +9,7 @@ import controller.Main;
 /**
  * The Sunflower class, contains information about the Peashooter plant
  * @author Simon Krol
- * @version Nov 25, 2018
+ * @version Dec 7, 2018
  */
 public class Sunflower extends Plant
 {
@@ -83,12 +83,18 @@ public class Sunflower extends Plant
 		sprite = sprite.getScaledInstance(blockWidth / 2, blockHeight, Image.SCALE_DEFAULT);
 		resized = true;
 	}
-	
+
+	@Override
+	/**
+	 * Check if sunflowers are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(!(toCheck instanceof Sunflower))return false;
-		Sunflower toCompare = (Sunflower)toCheck;
-		if(!((Plant)this).equals(toCompare))return false;
+		if (!(toCheck instanceof Sunflower))
+			return false;
+		Sunflower toCompare = (Sunflower) toCheck;
+		if (!super.equals(toCompare))
+			return false;
 		return true;
 	}
 }

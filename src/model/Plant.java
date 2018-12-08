@@ -3,7 +3,7 @@ package model;
 /**
  * Abstract class that is extended by all Plants within the game
  * @author Simon Krol
- * @version Nov 25, 2018
+ * @version Dec 7, 2018
  */
 public abstract class Plant extends Entity
 {
@@ -12,11 +12,11 @@ public abstract class Plant extends Entity
 	protected int value;
 	protected int delay;
 
-	
 	public Plant()
 	{
 		super();
 	}
+
 	/**
 	 * Constructor for plant (Only called from subclasses)
 	 * @param maxHP Maximum HP
@@ -58,6 +58,7 @@ public abstract class Plant extends Entity
 	{
 		return value;
 	}
+
 	/**
 	 * Set the index location of the plant
 	 * @param newDistance The new distance value
@@ -91,16 +92,26 @@ public abstract class Plant extends Entity
 			}
 		}
 	}
-	
+
+	@Override
+	/**
+	 * Check if Plants are equivalent
+	 */
 	public boolean equals(Object toCheck)
 	{
-		if(toCheck == null)return false;
-		if(!(toCheck instanceof Plant))return false;
-		Plant toCompare = (Plant)toCheck;
-		if(!((Entity)this).equals(toCompare))return false;
-		if(distance != toCompare.distance)return false;
-		if(value != toCompare.value)return false;
-		if(delay != toCompare.delay)return false;
+		if (toCheck == null)
+			return false;
+		if (!(toCheck instanceof Plant))
+			return false;
+		Plant toCompare = (Plant) toCheck;
+		if (!super.equals(toCompare))
+			return false;
+		if (distance != toCompare.distance)
+			return false;
+		if (value != toCompare.value)
+			return false;
+		if (delay != toCompare.delay)
+			return false;
 		return true;
 	}
 
