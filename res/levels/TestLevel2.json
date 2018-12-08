@@ -1,0 +1,1 @@
+{"balance":100,"passiveGen":15,"name":"TestLevel2","numturns":4,"turns":{"1":{"1":"[\"BasicZombie\"]","2":"[\"ImpZombie\"]","3":"[\"BasicZombie\"]"},"2":{"1":"[\"BasicZombie\"]","2":"[\"ImpZombie\"]","3":"[\"BasicZombie\"]"},"3":{"1":"[\"BasicZombie\"]","2":"[\"ImpZombie\"]","3":"[\"BasicZombie\"]"}},"height":5,"width":5,"plants":["Sunflower","Peashooter","Torchwood","Chomper"]}

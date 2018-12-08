@@ -19,7 +19,13 @@ public class MainMenuController extends Controller implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("New Game")) {
-			mm.startGame();
+			FileDialog fd = new FileDialog(mm.frame, "Choose a file", FileDialog.LOAD);
+			fd.setDirectory("/levels");
+			fd.setFile("*.json");
+			fd.setVisible(true);
+			String filename = fd.getFile();
+			if (filename != null)
+				mm.startGame(filename);
 		} else if (e.getActionCommand().equals("Load Game")) {
 			FileDialog fd = new FileDialog(mm.frame, "Choose a file", FileDialog.LOAD);
 			fd.setDirectory("/saves");
@@ -29,7 +35,7 @@ public class MainMenuController extends Controller implements ActionListener {
 			if (filename != null)
 				loadGame(filename);
 		} else if (e.getActionCommand().equals("Build Level")) {
-			mm.frame.dispose();
+			//mm.frame.dispose();
 			mm.buildLevel();
 		} else if (e.getActionCommand().equals("Done")) {
 			if (mm.lvlB.setDim()) {

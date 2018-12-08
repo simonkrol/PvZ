@@ -27,10 +27,10 @@ public class MainMenu {
 		initialize();
 	}
 
-	public void startGame() {
+	public void startGame(String game) {
 
 		LevelLoader levels = new LevelLoader();
-		level = levels.getLevel("Level1.json");
+		level = levels.getLevel(game);
 		@SuppressWarnings("unused")
 		View levelGui = new View(level);
 		JOptionPane.showMessageDialog(null,
