@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,8 +21,8 @@ public class LevelBuilder {
 	private int width = 0;
 	private MainMenu mm;
 	private JComboBox[] dropDowns;
-	private String[] zombies = { "None", "ImpZombie", "Zombie" };
-
+	private String[] zombies = {"None", "BasicZombie", "ImpZombie", "BucketZombie"};
+	
 	/**
 	 * Create the application.
 	 */
@@ -46,12 +47,12 @@ public class LevelBuilder {
 		
 		JButton doneBtn = new JButton("Done");
 		doneBtn.setBounds(360, 380, 100, 50);
-		//doneBtn.addActionListener(ADD BUTTON CONTROLLER);
+		doneBtn.addActionListener(new BuildController());
 		frame.getContentPane().add(doneBtn);
 		
 		JButton nextBtn = new JButton("Next Wave");
 		nextBtn.setBounds(490, 380, 100, 50);
-		//nextBtn.addActionListener(ADD BUTTON CONTROLLER);
+		nextBtn.addActionListener(new BuildController());
 		frame.getContentPane().add(nextBtn);
 
 		int y = 10;
@@ -65,7 +66,6 @@ public class LevelBuilder {
 			dropDowns[i] = cB;
 			cB.addActionListener(new BuildController());
 			frame.getContentPane().add(cB);
-
 			y += 30;
 		}
 
